@@ -44,3 +44,17 @@ column name | data type | details
 id          | integer   | not null, primary key
 playlist_id | integer   | not null, foreign key (references playlists), indexed
 song_id     | integer   | not null, foreign key (references songs), indexed
+
+## userPlaylists
+column name | data type | details
+------------|-----------|-----------------------
+id          | integer   | not null, primary key
+user_id     | integer   | not null, foreign key (references playlists), indexed
+playlist_id | integer   | not null, foreign key (references songs), indexed
+
+## userFollows
+column name | data type | details
+------------|-----------|-----------------------
+id          | integer   | not null, primary key
+followee_id | integer   | not null, foreign key (references playlists), indexed
+follower_id | integer   | not null, foreign key (references songs), indexed
