@@ -41,3 +41,7 @@
   0. the `ErrorReducer` removes `errors` for a given `form` in the application's state.
 
 ## Song Cycles
+* `fetchSongs`
+  0. invoked from `App` in `didMount`
+  0. `GET /api/session` is called.
+  0. `receiveCurrentUser` is set as the success callback.
