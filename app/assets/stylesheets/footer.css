@@ -1,0 +1,13 @@
+.footer-container {
+
+  height:35px;
+  width:auto;
+
+  margin-bottom: -50px;
+  background-color: red;
+  color: white;
+}
+
+.footer-logo {
+  float: right;
+}
