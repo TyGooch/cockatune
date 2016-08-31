@@ -27,7 +27,7 @@ function Greeting({currentUser, logout}){
 function Header({currentUser, logout}){
   return(
     <div className ='header-container'>
-      <img src={"<%= asset_url('assets/images/logo.png') %>"}/>
+      <img src='http://res.cloudinary.com/dtatkxxcm/image/upload/v1472660214/cockatuneLogo_tni8od.png'/>
     </div>
   );
 }
