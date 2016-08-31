@@ -27,7 +27,7 @@ function Greeting({currentUser, logout}){
 function Header({currentUser, logout}){
   return(
     <div className ='header-container'>
-      <img src="%image_path(logo.png)%"/>
+      <img src={"<%= asset_url('assets/images/logo.png') %>"}/>
     </div>
   );
 }
