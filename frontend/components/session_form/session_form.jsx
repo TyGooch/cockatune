@@ -33,15 +33,48 @@ class SessionForm extends React.Component {
 
 	navLink(){
 		if (this.props.formType === "login") {
-			return <Link to="/signup">sign up instead</Link>;
+			return(
+				<div className = "login-form-nav">
+					OR
+					<br />
+					<br />
+					<Link to="/signup" className="login-form-nav-button">Sign Up</Link>
+				</div>
+			);
 		} else {
-			return <Link to="/login">log in instead</Link>;
+			return(
+				<div className = "login-form-nav">
+					Already have an account?
+					<br />
+					<br />
+					<Link to="/login" className="login-form-nav-button">Sign In</Link>
+				</div>
+			);
 		}
 	}
 
+	optionName(){
+		if (this.props.formType === "login") {
+			return <div className="login-form-header">Sign In</div>;
+		} else {
+			return <div className="login-form-header">Sign Up</div>;
+		}
+	}
+
+	// renderErrors(){
+	// 	return(
+	// 		<ul className="login-errors">
+	// 			{this.props.errors.map( (error, i) => (
+	// 				<li key={`error-${i}`}>
+	// 					{error}
+	// 				</li>
+	// 			))}
+	// 		</ul>
+	// 	);
+	// }
 	renderErrors(){
 		return(
-			<ul>
+			<ul className="login-errors">
 				{this.props.errors.map( (error, i) => (
 					<li key={`error-${i}`}>
 						{error}
@@ -51,34 +84,51 @@ class SessionForm extends React.Component {
 		);
 	}
 
+	errors() {
+		return (this.props.errors.map( (error, i) => (
+			error
+		)));
+	}
+
 	render() {
+		let userError;
+		let passwordError;
+		this.errors().forEach((error) => {
+			if(error[0] === 'U' || error[0] === 'I'){
+				userError = error;
+			}
+			if(error[0] === 'P'){
+				passwordError = error;
+			}
+		});
+
 		return (
 			<div className="login-form-container">
 				<form onSubmit={this.handleSubmit} className="login-form-box">
-					Welcome to Cockatune!
-					<br/>
-					Please { this.props.formType } or { this.navLink() }
-					{ this.renderErrors() }
+					{ this.optionName() }
+					<br />
 					<div className="login-form">
-						<br />
-						<label> Username:
+						<div className = "login-error">{userError || <br />}</div>
 							<input type="text"
+								className = "login"
 								value={this.state.username}
 								onChange={this.update("username")}
-								className="login-input" />
-						</label>
+								className="login-input"
+								placeholder='Username'/>
 
-						<br />
-						<label> Password:
+						<div className = "login-error">{passwordError || <br />}</div>
 							<input type="password"
+								className = "login"
 								value={this.state.password}
 								onChange={this.update("password")}
-								className="login-input" />
-						</label>
+								className="login-input"
+								placeholder='Password'/>
 
 						<br />
-						<input type="submit" value="Submit" />
+						<input className="login-submit" type="submit" value="Go!" />
+						<br />
 					</div>
+					{ this.navLink() }
 				</form>
 			</div>
 		);

@@ -1,0 +1,14 @@
+html *
+{
+   font-family: 'Helvetica Neue' !important;
+}
+
+body {
+  background-color: #CCCCCC;
+}
+
+main {
+  margin-left: 35px;
+  margin-right: 35px;
+  background-color: #000000;
+}

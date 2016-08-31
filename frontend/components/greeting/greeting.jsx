@@ -24,4 +24,13 @@ function Greeting({currentUser, logout}){
   }
 }
 
-export default Greeting;
+function Header({currentUser, logout}){
+  return(
+    <div className ='header-container'>
+      <img src="%image_path(logo.png)%"/>
+    </div>
+  );
+}
+
+// export default Greeting;
+export default Header;
