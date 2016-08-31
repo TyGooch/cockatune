@@ -4,6 +4,7 @@ import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 //Components
 import App from '../app';
 import SessionFormContainer from '../session_form/session_form_container';
+import ExploreContainer from '../explore/explore_container';
 
 class AppRouter extends React.Component{
   constructor(props){
@@ -30,6 +31,7 @@ class AppRouter extends React.Component{
     return(
       <Router history={ hashHistory }>
         <Route path="/" component={ App }>
+          <Route path="/explore" component={ ExploreContainer } />
           <Route path="/login" component={ SessionFormContainer } onEnter={this._redirectIfLoggedIn}/>
           <Route path="/signup" component={ SessionFormContainer } onEnter={this._redirectIfLoggedIn}/>
         </Route>

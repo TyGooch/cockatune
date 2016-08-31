@@ -2,11 +2,11 @@ import React from 'react';
 import { Link } from 'react-router';
 
 const sessionLinks = () => (
-  <nav className="login-signup">
-    <Link to="/login" activeClassName="current">Login</Link>
+  <ul className="login-signup">
+    <li><Link to="/login" className="header-signin">Sign In</Link></li>
     &nbsp;or&nbsp;
-    <Link to="/signup" activeClassName="current">Sign up!</Link>
-  </nav>
+    <li><Link to="/signup" className="header-signup">Sign Up!</Link></li>
+  </ul>
 );
 
 const personalGreeting = (currentUser, logout) => (
@@ -25,9 +25,12 @@ function Greeting({currentUser, logout}){
 }
 
 function Header({currentUser, logout}){
+  // debugger;
   return(
     <div className ='header-container'>
-      <img src='http://res.cloudinary.com/dtatkxxcm/image/upload/v1472660214/cockatuneLogo_tni8od.png'/>
+      <a href='/' ><img src='http://res.cloudinary.com/dtatkxxcm/image/upload/v1472660214/cockatuneLogo_tni8od.png'
+        className='header-logo'/></a>
+      <Greeting currentUser = {currentUser} logout = {logout}/>
     </div>
   );
 }

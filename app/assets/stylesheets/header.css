@@ -1,4 +1,43 @@
 .header-container {
+  margin-top: -15px;
+  margin-left: -45px !important;
+  margin-right: -45px !important;
   background-color: red;
   height: 50px;
+}
+
+.login-signup {
+  display: inline-flex;
+  float: right;
+  margin-top: 30px;
+  align-self: right;
+  text-decoration: none;
+  color: white;
+}
+
+.login-signup li{
+  text-decoration: none;
+  background-color: #FFCCCC;
+  border: 1px hidden;
+  border-radius: 2px;
+  font-style: bold;
+  height:25px;
+  padding-left: 5px;
+  padding-right: 5px;
+  list-style: none;
+  align-self: center;
+}
+
+.header-signin {
+  color:red;
+  text-decoration: none;
+}
+
+.header-signup {
+  text-decoration: none;
+}
+
+.header-logo {
+  margin-top: 14px;
+  width:250px;
 }

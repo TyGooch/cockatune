@@ -1,12 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router';
-import GreetingContainer from './greeting/greeting_container';
+import HeaderContainer from './header/header_container';
+import ExploreContainer from './explore/explore_container';
 
 const App = ({children}) => (
   <div>
     <header>
-      <GreetingContainer />
+      <HeaderContainer />
     </header>
+    <ExploreContainer />
     {children}
   </div>
 );

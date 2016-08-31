@@ -8,6 +8,8 @@ body {
 }
 
 main {
+  height: auto;
+  padding-bottom: 50px;
   margin-left: 35px;
   margin-right: 35px;
   background-color: #000000;
