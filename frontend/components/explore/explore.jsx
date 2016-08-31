@@ -5,7 +5,7 @@ const exploreHeader = () => (
     <img src='http://res.cloudinary.com/dtatkxxcm/image/upload/v1472669919/exploreHeader_ilzyq7.png'
       className="explore-header-image" />
   </div>
-)
+);
 
 const Explore = () => (
   <div className = 'explore-comtainer'>

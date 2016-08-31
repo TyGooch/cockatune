@@ -8,7 +8,6 @@ const App = ({children}) => (
     <header>
       <HeaderContainer />
     </header>
-    <ExploreContainer />
     {children}
   </div>
 );
