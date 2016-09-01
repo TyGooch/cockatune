@@ -73,6 +73,7 @@
   height:45px;
   width:45px;
   opacity: 0.85;
+  padding-right: 5px;
 }
 
 .profile-picture:hover {
