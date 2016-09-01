@@ -17,11 +17,12 @@ ActiveRecord::Schema.define(version: 20160830205214) do
   enable_extension "plpgsql"
 
   create_table "users", force: :cascade do |t|
-    t.string   "username",        null: false
-    t.string   "password_digest", null: false
-    t.string   "session_token",   null: false
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.string   "username",                                                                                                                   null: false
+    t.string   "password_digest",                                                                                                            null: false
+    t.string   "session_token",                                                                                                              null: false
+    t.string   "profile_picture_url", default: "http://res.cloudinary.com/dtatkxxcm/image/upload/v1472688884/Profile-blank-male_awwzd2.png"
+    t.datetime "created_at",                                                                                                                 null: false
+    t.datetime "updated_at",                                                                                                                 null: false
   end
 
   add_index "users", ["session_token"], name: "index_users_on_session_token", unique: true, using: :btree

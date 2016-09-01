@@ -13,7 +13,7 @@ const profileLinks = (currentUser, logout) => (
 	<ul className="profile-links">
     <li>
       <a href='http://google.com'><img
-        src ="http://res.cloudinary.com/dtatkxxcm/image/upload/v1472680415/NotPink_ppycej.jpg"
+        src = {currentUser.profile_picture_url}
         className="profile-picture"/></a>
     </li>
 		<li className="user-username">{currentUser.username}</li>
