@@ -11,10 +11,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160830205214) do
+ActiveRecord::Schema.define(version: 20160901164933) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "albums", force: :cascade do |t|
+    t.string   "title",                                                                                                                   null: false
+    t.integer  "artist_id",                                                                                                               null: false
+    t.string   "album_picture_url", default: "http://res.cloudinary.com/dtatkxxcm/image/upload/v1472748852/albumDefaultImage_bj4xid.png"
+    t.datetime "created_at",                                                                                                              null: false
+    t.datetime "updated_at",                                                                                                              null: false
+  end
+
+  add_index "albums", ["artist_id"], name: "index_albums_on_artist_id", using: :btree
+
+  create_table "artists", force: :cascade do |t|
+    t.string   "name",                                                                                                                      null: false
+    t.string   "genre"
+    t.string   "artist_picture_url", default: "http://res.cloudinary.com/dtatkxxcm/image/upload/v1472748793/artistDefaultImage_gk2jck.png"
+    t.datetime "created_at",                                                                                                                null: false
+    t.datetime "updated_at",                                                                                                                null: false
+  end
+
+  create_table "songs", force: :cascade do |t|
+    t.string   "title",      null: false
+    t.integer  "length",     null: false
+    t.integer  "artist_id",  null: false
+    t.integer  "album_id",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "songs", ["artist_id", "album_id"], name: "index_songs_on_artist_id_and_album_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "username",                                                                                                                   null: false
