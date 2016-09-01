@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import Root from './components/root';
 //Actions
 import configureStore from './store/store';
+import {requestArtists} from './actions/artist_actions';
 
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -15,6 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
    } else {
      store = configureStore();
    }
+   window.store = store;
+  window.requestArtists = requestArtists;
 
   const root = document.getElementById('root');
   ReactDOM.render(<Root store = {store}/>, root);

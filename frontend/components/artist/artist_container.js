@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
-import Explore from './explore';
+import Artist from './artist';
 
 const mapStateToProps = state => ({
-
+  currentUser: state.session.currentUser
 });
 
 const mapDispatchToProps = dispatch => ({
