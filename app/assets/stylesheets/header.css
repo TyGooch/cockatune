@@ -6,8 +6,8 @@
   top: 0;
   width:101%;
   height: 50px;
-  background-color: #FF0000;
-  opacity: 0.75;
+  background-color: rgba(255, 0, 0, 0.75);
+  /*opacity: 0.75;*/
   z-index: 1030;
 }
 

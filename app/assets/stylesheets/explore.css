@@ -1,14 +1,37 @@
-/*.explore-comtainer {
+.explore-comtainer {
   display: flex;
+  flex-direction: column;
   background-color: black;
   width: 75%;
-  height: 500px;
-  margin-left: 24.5%;
 }
 .explore-header {
+  display: flex;
+  flex-direction: column;
   width: inherit;
+  position: relative;
+  height: 30vh;
+  width: 100%;
+  min-height: 75px;
+  min-width: 400px;
+  z-index: 1000;
+  background-image: url('http://wallpoper.com/images/00/36/33/23/black-white_00363323.jpg');
+  background-position: center;
+  padding-bottom: 10px;
+  align-items: center;
+}
+
+.explore-header-text {
+  position: relative;
+  align-self: center;
+  font-size: 72px;
+  font-weight: bold;
+  text-shadow: 1px 1px  12px black;
+}
+
+.explore-content-container {
+  overflow: auto;
 }
 
 .explore-header-image {
-  width: 133.5%;
-}*/
+  width:auto;
+}

@@ -7,6 +7,11 @@ body {
   min-height: 100%;
   background-color: #000000;
   margin-left: -10px;
+  background-image: url('http://media.adriadaily.com/2016/03/dim.jpg');
+  background-repeat: no-repeat;
+  background-color: black;
+  background-size: 200%;
+  background-position: top;
 }
 
 .app-container {
@@ -20,8 +25,8 @@ body {
   width: 85%;
   margin-left: 7.5%;
   margin-right: 7.5%;
-  /*background-color: grey;*/
-  opacity: 0.85;
+  background-color: rgba(0,0,0,0.75);
+  /*opacity: 0.65;*/
   height: auto;
   /*padding-top: 15px;*/
 }
