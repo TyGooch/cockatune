@@ -1,13 +1,16 @@
 .footer-container {
-
+  position: fixed;
+  bottom: 0;
   height:35px;
-  width:auto;
+  width:101%;
 
-  margin-bottom: -50px;
   background-color: #FF0000;
+  opacity: 0.75;
   color: white;
 }
 
 .footer-logo {
-  float: right;
+  position: fixed;
+  right: 0;
+  bottom: 0;
 }

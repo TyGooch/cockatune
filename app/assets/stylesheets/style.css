@@ -4,14 +4,24 @@ html *
 }
 
 body {
-  background-color: #CCCCCC;
-
+  min-height: 100%;
+  background-color: #000000;
+  margin-left: -10px;
 }
 
-main {
+.app-container {
+  color:white;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  overflow: auto;
+  top: 50px;
+  bottom: 35px;
+  width: 85%;
+  margin-left: 7.5%;
+  margin-right: 7.5%;
+  /*background-color: grey;*/
+  opacity: 0.85;
   height: auto;
-  padding-bottom: 50px;
-  margin-left: 35px;
-  margin-right: 35px;
-  background-color: #000000;
+  /*padding-top: 15px;*/
 }

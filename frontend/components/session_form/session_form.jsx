@@ -80,14 +80,13 @@ class SessionForm extends React.Component {
 		});
 
 		return (
-			<div className="login-form-container">
-				<form onSubmit={this.handleSubmit} className="login-form-box">
+				<form onSubmit={this.handleSubmit} className="login-form-container">
 					{ this.optionName() }
 					<br />
 					<div className="login-form">
 						<div className = "login-error">{userError || <br />}</div>
 							<input type="text"
-								className = "login"
+								className = "login-input"
 								value={this.state.username}
 								onChange={this.update("username")}
 								className="login-input"
@@ -95,7 +94,7 @@ class SessionForm extends React.Component {
 
 						<div className = "login-error">{passwordError || <br />}</div>
 							<input type="password"
-								className = "login"
+								className = "login-input"
 								value={this.state.password}
 								onChange={this.update("password")}
 								className="login-input"
@@ -107,7 +106,6 @@ class SessionForm extends React.Component {
 					</div>
 					{ this.navLink() }
 				</form>
-			</div>
 		);
 	}
 
