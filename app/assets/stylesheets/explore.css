@@ -1,8 +1,9 @@
 .explore-comtainer {
   display: flex;
   flex-direction: column;
-  background-color: black;
+  background-color: none;
   width: 75%;
+  align-self: flex-end;
 }
 .explore-header {
   display: flex;
@@ -12,7 +13,8 @@
   height: 30vh;
   width: 100%;
   min-height: 75px;
-  min-width: 400px;
+  max-height: 75px;
+  min-width: 75px;
   z-index: 1000;
   background-image: url('http://wallpoper.com/images/00/36/33/23/black-white_00363323.jpg');
   background-position: center;
@@ -30,6 +32,10 @@
 
 .explore-content-container {
   overflow: auto;
+}
+
+.explore-content-container::-webkit-scrollbar {
+    display: none;
 }
 
 .explore-header-image {

@@ -5,5 +5,5 @@ import ArtistReducer from './artist_reducer';
 
 export default combineReducers({
   session: SessionReducer,
-  artist: ArtistReducer
+  artists: ArtistReducer
 });

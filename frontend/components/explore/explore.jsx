@@ -1,4 +1,5 @@
 import React from 'react';
+import ArtistIndexContainer from '../artist/artist_index_container';
 
 const exploreHeader = () => (
   <div className="explore-header">
@@ -10,20 +11,8 @@ const Explore = () => (
   <div className = 'explore-comtainer'>
     {exploreHeader()}
     <div className='explore-content-container'>
-    <div><img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdSkbGJYQxY1uD_fi8Ot7LIbs29xPzzCLCqgjdDUELevGOs36ngg' /></div>
-    <div><img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdSkbGJYQxY1uD_fi8Ot7LIbs29xPzzCLCqgjdDUELevGOs36ngg' /></div>
-    <div><img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdSkbGJYQxY1uD_fi8Ot7LIbs29xPzzCLCqgjdDUELevGOs36ngg' /></div>
-    <div><img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdSkbGJYQxY1uD_fi8Ot7LIbs29xPzzCLCqgjdDUELevGOs36ngg' /></div>
-    <div><img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdSkbGJYQxY1uD_fi8Ot7LIbs29xPzzCLCqgjdDUELevGOs36ngg' /></div>
-    <div><img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdSkbGJYQxY1uD_fi8Ot7LIbs29xPzzCLCqgjdDUELevGOs36ngg' /></div>
-    <div><img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdSkbGJYQxY1uD_fi8Ot7LIbs29xPzzCLCqgjdDUELevGOs36ngg' /></div>
-    <div><img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdSkbGJYQxY1uD_fi8Ot7LIbs29xPzzCLCqgjdDUELevGOs36ngg' /></div>
-    <div><img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdSkbGJYQxY1uD_fi8Ot7LIbs29xPzzCLCqgjdDUELevGOs36ngg' /></div>
-    <div><img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdSkbGJYQxY1uD_fi8Ot7LIbs29xPzzCLCqgjdDUELevGOs36ngg' /></div>
-    <div><img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdSkbGJYQxY1uD_fi8Ot7LIbs29xPzzCLCqgjdDUELevGOs36ngg' /></div>
-    <div><img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdSkbGJYQxY1uD_fi8Ot7LIbs29xPzzCLCqgjdDUELevGOs36ngg' /></div>
-    <div><img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdSkbGJYQxY1uD_fi8Ot7LIbs29xPzzCLCqgjdDUELevGOs36ngg' /></div>
-  </div>
+      <ArtistIndexContainer />
+    </div>
   </div>
 );
 
