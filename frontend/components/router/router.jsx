@@ -5,6 +5,7 @@ import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import App from '../app';
 import SessionFormContainer from '../session_form/session_form_container';
 import ExploreContainer from '../explore/explore_container';
+import ArtistShowContainer from '../artist/artist_show_container';
 
 class AppRouter extends React.Component{
   constructor(props){
@@ -34,6 +35,7 @@ class AppRouter extends React.Component{
           <Route path="/login" component={ SessionFormContainer } onEnter={this._redirectIfLoggedIn}/>
           <Route path="/signup" component={ SessionFormContainer } onEnter={this._redirectIfLoggedIn}/>
           <Route path="/explore" component={ ExploreContainer } />
+          <Route path="/artists/:artistId" component={ ArtistShowContainer } />
         </Route>
       </Router>
     );
