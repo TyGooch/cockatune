@@ -8,7 +8,7 @@ const exploreHeader = () => (
 );
 
 const Explore = () => (
-  <div className = 'explore-comtainer'>
+  <div className = 'explore-container'>
     {exploreHeader()}
     <div className='explore-content-container'>
       <ArtistIndexContainer />

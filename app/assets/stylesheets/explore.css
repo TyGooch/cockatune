@@ -1,9 +1,10 @@
-.explore-comtainer {
+.explore-container {
   display: flex;
-  flex-direction: column;
-  background-color: none;
-  width: 75%;
-  align-self: flex-end;
+  flex-direction: column;*/
+  /*background-color: none;
+  width: 100%;
+  /*align-self: flex-end;*/
+  overflow: auto;
 }
 .explore-header {
   display: flex;
@@ -16,8 +17,8 @@
   max-height: 75px;
   min-width: 75px;
   z-index: 1000;
-  background-image: url('http://wallpoper.com/images/00/36/33/23/black-white_00363323.jpg');
-  background-position: center;
+  /*background-image: url('http://wallpoper.com/images/00/36/33/23/black-white_00363323.jpg');*/
+  /*background-position: center;*/
   padding-bottom: 10px;
   align-items: center;
 }
@@ -31,6 +32,7 @@
 }
 
 .explore-content-container {
+  width: inherit;
   overflow: auto;
 }
 

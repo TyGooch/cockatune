@@ -17,7 +17,7 @@ body {
 .app-container {
   color:white;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   position: fixed;
   overflow: auto;
   top: 50px;
@@ -29,4 +29,26 @@ body {
   /*opacity: 0.65;*/
   height: auto;
   /*padding-top: 15px;*/
+}
+
+.sidebar-container {
+  display: flex;
+  width: 20%;
+  max-width: 150px;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.sidebar-container:hover {
+
+}
+
+.app-content-container {
+  display: inline-flex;
+  flex-direction: column;
+  background-color: none;
+  width: 100%;
+  align-self: flex-end;
+  overflow: auto;
+  height: 100%;
 }

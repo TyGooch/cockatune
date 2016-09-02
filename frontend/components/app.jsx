@@ -9,8 +9,13 @@ const App = ({children}) => (
     <header>
       <HeaderContainer />
     </header>
-    <div className = 'app-container'>
-      {children}
+    <div className = 'app-container' >
+      <div className='sidebar-container' >
+        SIDEBAR
+      </div>
+      <div className = 'app-content-container'>
+        {children}
+      </div>
     </div>
     <FooterContainer />
   </div>
