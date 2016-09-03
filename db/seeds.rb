@@ -16,7 +16,7 @@ User.create({username: 'pGarcia', password:'password', profile_picture_url: 'htt
 
 
 #Artist, Album, Songs
-Artist.create({name: 'Tycho', genre:'ambient', artist_picture_url: 'https://jukely.imgix.net/a393dda6c2f451731fb593ee154ae37db56d348dab7262ed6aabd08cf379?ixlib=rb-0.3.5&w=750&h=656&fit=crop&s=0714fea9fba115413bf64f8a7df09770'})
+Artist.create({name: 'Tycho', genre:'ambient', artist_picture_url: 'https://jukely.imgix.net/a393dda6c2f451731fb593ee154ae37db56d348dab7262ed6aabd08cf379?ixlib=rb-0.3.5&w=750&h=656&fit=crop&s=0714fea9fba115413bf64f8a7df09770', header_image_url: 'http://blog.iso50.com/wp-content/uploads/2012/12/Tycho-WC13-header.jpg'})
   Album.create({title: 'Awake', artist_id: 1, album_picture_url: 'https://upload.wikimedia.org/wikipedia/en/c/ca/Tycho_-_Awake.png'})
     Song.create({title:'See', audio_url: 'google.com', length: '135', album_id: 1, artist_id: 1})
   Album.create({title: 'Dive', artist_id: 1, album_picture_url: 'https://upload.wikimedia.org/wikipedia/en/1/11/Dive_tycho_album.jpg'})

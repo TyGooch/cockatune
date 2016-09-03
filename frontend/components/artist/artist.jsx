@@ -10,7 +10,11 @@ class Artist extends React.Component {
     return(
       <div className = 'artist-container'>
         <div className = 'artist-header-container'>
-          <h1>{this.props.artist.name}</h1>
+          <img className = 'artist-header-image'
+            src={this.props.artist.header_image_url} />
+          <div className='artist-header-name'>
+            {this.props.artist.name}
+          </div>
         </div>
         <AlbumIndex albums = {this.props.artist.albums}/>
       </div>

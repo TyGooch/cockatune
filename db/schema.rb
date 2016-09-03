@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160901164933) do
+ActiveRecord::Schema.define(version: 20160903224457) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,11 +27,12 @@ ActiveRecord::Schema.define(version: 20160901164933) do
   add_index "albums", ["artist_id"], name: "index_albums_on_artist_id", using: :btree
 
   create_table "artists", force: :cascade do |t|
-    t.string   "name",                                                                                                                      null: false
+    t.string   "name",                                                                                                                         null: false
     t.string   "genre"
     t.string   "artist_picture_url", default: "http://res.cloudinary.com/dtatkxxcm/image/upload/v1472748793/artistDefaultImage_gk2jck.png"
-    t.datetime "created_at",                                                                                                                null: false
-    t.datetime "updated_at",                                                                                                                null: false
+    t.datetime "created_at",                                                                                                                   null: false
+    t.datetime "updated_at",                                                                                                                   null: false
+    t.string   "header_image_url",   default: "http://demo.select-themes.com/nouveau/wp-content/uploads/2014/04/title_black_and_white_03.jpg"
   end
 
   create_table "songs", force: :cascade do |t|
