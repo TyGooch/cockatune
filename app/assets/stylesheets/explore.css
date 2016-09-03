@@ -1,9 +1,6 @@
 .explore-container {
   display: flex;
   flex-direction: column;*/
-  /*background-color: none;
-  width: 100%;
-  /*align-self: flex-end;*/
   overflow: auto;
 }
 .explore-header {
