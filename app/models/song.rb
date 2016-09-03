@@ -4,4 +4,10 @@ class Song < ActiveRecord::Base
   validates :length, presence: true
   validates :artist_id, presence: true
   validates :album_id, presence: true
+
+  belongs_to :album
+
+  def artist
+    album.artist_id
+  end
 end

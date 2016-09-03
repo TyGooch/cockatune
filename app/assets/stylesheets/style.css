@@ -51,4 +51,5 @@ body {
   align-self: flex-end;
   overflow: auto;
   height: 100%;
+  margin-right: 0 auto;
 }

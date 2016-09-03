@@ -3,7 +3,7 @@ import ArtistIndexItem from './artist_index_item';
 import Masonry from 'react-masonry-component';
 
 class ArtistIndex extends React.Component {
-  componentWillMount(){
+  componentDidMount(){
     this.props.requestArtists();
   }
 
