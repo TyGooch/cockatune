@@ -7,7 +7,6 @@ class Artist extends React.Component {
   }
 
   render(){
-    debugger;
     return(
       <div className = 'artist-container'>
         <div className = 'artist-header-container'>

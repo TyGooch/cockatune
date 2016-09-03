@@ -17,8 +17,12 @@ User.create({username: 'pGarcia', password:'password', profile_picture_url: 'htt
 
 #Artist, Album, Songs
 Artist.create({name: 'Tycho', genre:'ambient', artist_picture_url: 'https://jukely.imgix.net/a393dda6c2f451731fb593ee154ae37db56d348dab7262ed6aabd08cf379?ixlib=rb-0.3.5&w=750&h=656&fit=crop&s=0714fea9fba115413bf64f8a7df09770'})
-Album.create({title: 'Awake', artist_id: 1, album_picture_url: 'https://upload.wikimedia.org/wikipedia/en/c/ca/Tycho_-_Awake.png'})
-Song.create({title:'See', audio_url: 'google.com', length: '135', album_id: 1, artist_id: 1})
+  Album.create({title: 'Awake', artist_id: 1, album_picture_url: 'https://upload.wikimedia.org/wikipedia/en/c/ca/Tycho_-_Awake.png'})
+    Song.create({title:'See', audio_url: 'google.com', length: '135', album_id: 1, artist_id: 1})
+  Album.create({title: 'Dive', artist_id: 1, album_picture_url: 'https://upload.wikimedia.org/wikipedia/en/1/11/Dive_tycho_album.jpg'})
+    Song.create({title:'A Walk', audio_url: 'google.com', length: '135', album_id: 2, artist_id: 1})
+  Album.create({title: 'The Science of Patterns', artist_id: 1, album_picture_url: 'http://sentiospace.com/wp-content/uploads/2016/02/the-science-of-patterns-tycho-400x400.jpg'})
+    Song.create({title:'Red Bridge', audio_url: 'google.com', length: '135', album_id: 3, artist_id: 1})
 
 Artist.create({name: 'Ariana Grande', genre:'pop', artist_picture_url: 'http://www.rap-up.com/wp-content/uploads/2014/12/ariana-grande.jpg'})
 
