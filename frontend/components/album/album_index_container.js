@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import AlbumIndex from './album_index';
 
 const mapStateToProps = state => ({
-  albums: state.artists[1].albums
+  albums: state.artists.albums
 });
 
 const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(
-  mapStateToProps,
+  mapStateToProps
 )(AlbumIndex);
