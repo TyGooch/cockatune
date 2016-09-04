@@ -58,7 +58,7 @@
   position: relative;
   left: 0;
   background-size: 500%;
-  height: 65%;
+
 }
 
 
@@ -78,10 +78,13 @@
   left: 0;
   font-size: 36px;
   font-weight: bold;
+  margin-bottom: 10px;
+  color: black;
 }
 
 .album-song-index {
   position: absolute;
+  top: 25px;
   left: 275px;
 }
 

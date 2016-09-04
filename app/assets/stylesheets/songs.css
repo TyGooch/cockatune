@@ -1,0 +1,14 @@
+.song-index-container {
+  list-style: none;
+  width: 100%;
+}
+
+.song-index-item {
+  background-color: rgba(0,0,0,0.65);
+  margin-bottom: 5px;
+  width: 100%;
+}
+
+.song-index-item-title {
+  font-style: italic;
+}
