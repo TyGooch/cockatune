@@ -14,7 +14,3 @@ const AlbumIndexItem = ({album}) => (
 );
 
 export default AlbumIndexItem;
-
-// <Link to={`/albums/${album.id}`} ><img className = 'album-index-item-image'
-//   src={album.album_picture_url}
-// /></Link>

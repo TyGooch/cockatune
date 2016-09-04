@@ -1,8 +1,11 @@
 import React from 'react';
 import AlbumIndex from './album_index';
+import SongIndex from '../song/song_index';
 
 class Album extends React.Component {
   render(){
+    const albumSongs = this.props.artist.songs.filter(song => song.album_id === this.props.album.id);
+    const otherAlbums = this.props.artist.albums.filter(el => el.id !== this.props.album.id);
     return(
       <div className = 'album-container'>
         <div className = 'album-content-container'>
@@ -14,12 +17,13 @@ class Album extends React.Component {
               {this.props.album.title}
             </div>
           </div>
+          <SongIndex songs={albumSongs} />
         </div>
         <div className = 'album-sidebar-index-container'>
           <div className = 'album-sidebar-index-header'>
             More by {this.props.artist.name}
           </div>
-          <AlbumIndex albums = {this.props.artist.albums.filter(el => el.id !== this.props.album.id)} />
+          <AlbumIndex albums = {otherAlbums} />
         </div>
       </div>
     );
