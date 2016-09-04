@@ -63,7 +63,6 @@
 
 
 .album-header {
-
 }
 
 .album-header-image {
@@ -76,16 +75,22 @@
   position: absolute;
   top: 0;
   left: 0;
+  margin-top: 15px;
   font-size: 36px;
+  padding-left: 15px;
+  padding-right: 15px;
   font-weight: bold;
   margin-bottom: 10px;
-  color: black;
+  color: rgba(255,255,255, 0.75);
+  background-color: rgba(0,0,0,0.35);
 }
 
 .album-song-index {
   position: absolute;
-  top: 25px;
+  top: 43px;
   left: 275px;
+  /*background-color: rgba(0,0,0,0.35);*/
+  width: auto;
 }
 
 .album-sidebar-index-container {
@@ -102,6 +107,7 @@
 
 .album-sidebar-index-header {
   align-self: center;
+  font-weight: bold;
 }
 
 

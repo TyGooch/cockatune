@@ -32,7 +32,7 @@ function HeaderLinks({currentUser, logout}){
 function Header({currentUser, logout}){
   return(
     <div className ='header-container'>
-      <a href='/' ><img src='http://res.cloudinary.com/dtatkxxcm/image/upload/v1472675224/cockatuneLogoPadded_vzgskl.png'
+      <a href='/#/explore' ><img src='http://res.cloudinary.com/dtatkxxcm/image/upload/v1472675224/cockatuneLogoPadded_vzgskl.png'
         className='header-logo'/></a>
       <HeaderLinks currentUser = {currentUser} logout = {logout}/>
     </div>
