@@ -42,36 +42,81 @@
   top:67px;
 }
 
+
+
 .album-container {
   display: flex;
   flex-direction: row;
+  overflow: auto;
+  height: auto;
 }
 
 .album-content-container {
-  display: flex;
-  height: auto;
-  align-self: center;
+  display: inline-flex;
+  flex-direction: column;
   width: 75%;
-  background-color: red;
+  position: relative;
+  left: 0;
+  background-size: 500%;
+  height: 65%;
 }
 
-.album-content-image {
-  opacity: 0.5;
-  overflow: hidden;
-}
 
 .album-header {
 
 }
 
-.album-header-name {
+.album-header-image {
+  height: 300px;
+  width: 300px;
+  opacity: 0.5;
+}
 
+.album-header-name {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.album-song-index {
+  position: absolute;
+  left: 275px;
 }
 
 .album-sidebar-index-container {
   display: flex;
   flex-direction: column;
-  align-self: flex-end;
+  align-self: right;
   overflow: auto;
   width: 25%;
+  align-content: center;
+  max-width: 25%;
+  max-height: 25%;
+
+}
+
+.album-sidebar-index-header {
+  align-self: center;
+}
+
+
+
+.album-sidebar-index-header {
+  align-self: center;
+}
+
+
+
+
+.album-sidebar-index-header {
+  align-self: center;
+}
+
+
+
+
+.album-sidebar-index-header {
+  align-self: center;
 }

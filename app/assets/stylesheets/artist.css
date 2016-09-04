@@ -21,7 +21,7 @@
 }
 
 .artist-header-name {
-  font-size: 72px;
+  font-size: 300%;
   padding-left: 5px;
   padding-right: 5px;
   font-weight: bold;
@@ -30,7 +30,7 @@
   align-self: center;
   color: white;
   opacity: 0.85;
-  top:25%;
+  bottom: 0;
 }
 
 .artist-index-container {
