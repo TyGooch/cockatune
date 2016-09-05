@@ -47,8 +47,7 @@
 .album-container {
   display: flex;
   flex-direction: row;
-  overflow: auto;
-  height: auto;
+  overflow: hidden;
 }
 
 .album-content-container {
@@ -58,7 +57,12 @@
   position: relative;
   left: 0;
   background-size: 500%;
+  overflow: auto;
+  ;
+}
 
+.album-content-container::-webkit-scrollbar {
+    display: none;
 }
 
 
@@ -66,8 +70,8 @@
 }
 
 .album-header-image {
-  height: 300px;
-  width: 300px;
+  height: 200px;
+  width: 200px;
   opacity: 0.5;
 }
 
@@ -87,10 +91,10 @@
 
 .album-song-index {
   position: absolute;
-  top: 43px;
-  left: 275px;
+  top: 50px;
+  left: 225px;
   /*background-color: rgba(0,0,0,0.35);*/
-  width: auto;
+  width: 200%;
 }
 
 .album-sidebar-index-container {
@@ -102,7 +106,7 @@
   align-content: center;
   max-width: 25%;
   max-height: 25%;
-
+  overflow-x: hidden;
 }
 
 .album-sidebar-index-header {

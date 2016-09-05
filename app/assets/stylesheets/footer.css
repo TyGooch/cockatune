@@ -7,10 +7,20 @@
   background-color: #FF0000;
   opacity: 0.75;
   color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.footer-audio-player {
+   max-width: 60%
 }
 
 .footer-logo {
   position: fixed;
   right: 0;
   bottom: 0;
+   align-self: flex-end;
 }

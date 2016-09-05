@@ -19,7 +19,7 @@ body {
   display: flex;
   flex-direction: row;
   position: fixed;
-  overflow: auto;
+
   top: 50px;
   bottom: 35px;
   width: 85%;

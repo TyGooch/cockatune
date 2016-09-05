@@ -27,7 +27,7 @@ class Song extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className = 'song-button'>
         <img src={this.playPauseIcon()} onClick={this.playPause} className="play-button"></img>
       </div>
     );
