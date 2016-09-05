@@ -6,7 +6,10 @@ const SongIndexItem = ({song}) => (
   <li className = 'song-index-item'>
     <SongContainer id = {song.id} song = {song} />
     <div className = 'song-index-item-title'>
-        {song.title} {Math.floor(song.length / 60)}:{song.length % 60}
+        {song.title}
+    </div>
+    <div className = 'song-length'>
+      {Math.floor(song.length / 60)}:{song.length % 60}
     </div>
   </li>
 );

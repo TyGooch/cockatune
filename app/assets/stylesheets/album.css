@@ -58,7 +58,6 @@
   left: 0;
   background-size: 500%;
   overflow: auto;
-  ;
 }
 
 .album-content-container::-webkit-scrollbar {

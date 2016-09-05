@@ -3,6 +3,9 @@ import AudioPlayer from '../audio_player/audio_player_container';
 
 const Footer = () => (
   <div className='footer-container'>
+    <div className = 'footer-current-song'>
+      
+    </div>
     <div className = 'footer-audio-player'>
       <AudioPlayer />
     </div>
