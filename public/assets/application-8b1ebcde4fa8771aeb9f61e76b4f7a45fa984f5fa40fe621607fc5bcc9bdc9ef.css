@@ -1,0 +1,535 @@
+.album-index-container {
+  align-self: center;
+  height:100%;
+  background-color: none;
+  overflow:auto;
+  margin: 0 auto;
+  margin-top: -10px;
+}
+
+.album-index-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 150px;
+  width:150px;
+  overflow: hidden;
+  margin: 15px;
+}
+
+.album-index-item:hover {
+  opacity: 0.5 !important;
+}
+
+.album-index-item-image {
+  height: 150px;
+  width: 150px;
+}
+
+.album-index-item-title {
+  font-size: 18px;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding-left: 5px;
+  padding-right: 5px;
+  font-weight: bold;
+  text-shadow: 1px 1px 0.5 black;
+  position: absolute;
+  align-self: center;
+  color: white;
+  z-index: 111111;
+  opacity: 0.85;
+  top:67px;
+}
+
+
+
+.album-container {
+  display: flex;
+  flex-direction: row;
+  overflow: auto;
+  height: auto;
+}
+
+.album-content-container {
+  display: inline-flex;
+  flex-direction: column;
+  width: 75%;
+  position: relative;
+  left: 0;
+  background-size: 500%;
+
+}
+
+
+.album-header {
+}
+
+.album-header-image {
+  height: 300px;
+  width: 300px;
+  opacity: 0.5;
+}
+
+.album-header-name {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-top: 15px;
+  font-size: 36px;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: rgba(255,255,255, 0.75);
+  background-color: rgba(0,0,0,0.35);
+}
+
+.album-song-index {
+  position: absolute;
+  top: 43px;
+  left: 275px;
+  /*background-color: rgba(0,0,0,0.35);*/
+  width: auto;
+}
+
+.album-sidebar-index-container {
+  display: flex;
+  flex-direction: column;
+  align-self: right;
+  overflow: auto;
+  width: 25%;
+  align-content: center;
+  max-width: 25%;
+  max-height: 25%;
+
+}
+
+.album-sidebar-index-header {
+  align-self: center;
+  font-weight: bold;
+}
+
+
+
+.album-sidebar-index-header {
+  align-self: center;
+}
+
+
+
+
+.album-sidebar-index-header {
+  align-self: center;
+}
+
+
+
+
+.album-sidebar-index-header {
+  align-self: center;
+}
+.artist-header-container {
+  display: flex;
+  flex-direction: column;
+  width: inherit;
+  position: relative;
+  height: 30vh;
+  width: 100%;
+  min-height: 75px;
+  max-height: 125px;
+  min-width: 75px;
+  z-index: 1000;
+  /*background-image: url('http://wallpoper.com/images/00/36/33/23/black-white_00363323.jpg');*/
+  /*background-position: center;*/
+  padding-bottom: 10px;
+  align-items: center;
+  overflow: hidden;
+}
+
+.artist-header-image {
+  opacity: 0.65;
+}
+
+.artist-header-name {
+  font-size: 300%;
+  padding-left: 5px;
+  padding-right: 5px;
+  font-weight: bold;
+  text-shadow: 1px 1px 0.5 black;
+  position: absolute;
+  align-self: center;
+  color: white;
+  opacity: 0.85;
+  bottom: 0;
+}
+
+.artist-index-container {
+  align-self: center;
+  height:100%;
+  background-color: none;
+  overflow:auto;
+  margin: 0 auto;
+  margin-top: -10px;
+}
+
+.artist-index-item:hover {
+  opacity: 0.5 !important;
+}
+
+.artist-container::-webkit-scrollbar {
+    display: none;
+}
+
+.artist-index-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 150px;
+  width:150px;
+  overflow: hidden;
+  margin: 15px;
+}
+
+.artist-index-item-image {
+  height: 150px;
+  width: 150px;
+}
+
+.artist-index-item-name {
+  font-size: 18px;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding-left: 5px;
+  padding-right: 5px;
+  font-weight: bold;
+  text-shadow: 1px 1px 0.5 black;
+  position: absolute;
+  align-self: center;
+  color: white;
+  z-index: 111111;
+  opacity: 0.85;
+  top:67px;
+}
+.explore-container {
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+.explore-header {
+  display: flex;
+  flex-direction: column;
+  width: inherit;
+  position: relative;
+  height: 30vh;
+  width: 100%;
+  min-height: 75px;
+  max-height: 75px;
+  min-width: 75px;
+  z-index: 1000;
+  /*background-image: url('http://wallpoper.com/images/00/36/33/23/black-white_00363323.jpg');*/
+  /*background-position: center;*/
+  padding-bottom: 10px;
+  align-items: center;
+}
+
+.explore-header-text {
+  position: relative;
+  align-self: center;
+  font-size: 72px;
+  font-weight: bold;
+  text-shadow: 1px 1px  12px black;
+}
+
+.explore-content-container {
+  width: inherit;
+  overflow: auto;
+}
+
+.explore-content-container::-webkit-scrollbar {
+    display: none;
+}
+
+.explore-header-image {
+  width:auto;
+}
+.footer-container {
+  position: fixed;
+  bottom: 0;
+  height:35px;
+  width:101%;
+
+  background-color: #FF0000;
+  opacity: 0.75;
+  color: white;
+}
+
+.footer-logo {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+}
+.header-container {
+  display: inline-flex;
+  position: fixed;
+  left:0
+  right: 0;
+  top: 0;
+  width:101%;
+  height: 50px;
+  background-color: rgba(255, 0, 0, 0.75);
+  /*opacity: 0.75;*/
+  z-index: 1030;
+}
+
+.login-signup {
+  display: inline-flex;
+  float:right;
+  position: fixed;
+  margin-right: 10px;
+  right:0;
+  top:0;
+  list-style: none;
+}
+
+.login-signup li{
+  display: block;
+  top:0;
+}
+
+.login-signup-button {
+  display: block;
+  text-decoration: none;
+  color:black;
+  font-weight: bold;
+  font-style: italic;
+  border:1px hidden;
+  background-color: white;
+  opacity: 0.65;
+  margin-top: 15px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+.login-signup-button:hover {
+  opacity: 1;
+}
+
+.header-signin {
+
+}
+
+.header-signup {
+
+}
+
+.header-logo {
+
+}
+
+.profile-links {
+  display: inline-flex;
+  float: right;
+  position: fixed;
+  right: 0;
+  list-style: none;
+  margin-right: 15px;
+  margin-top: 0px;
+  height: 50px;
+}
+
+.profile-picture {
+  height:50px;
+  width: 50px;
+  opacity: 0.65;
+  margin-right: 5px;
+}
+
+.profile-picture:hover {
+  opacity: 1;
+}
+
+.user-username {
+  color: white;
+  font-weight: bold;
+  opacity: 1;
+  margin-right: 15px;
+  margin-bottom: 0px;
+  margin-top: 10px;
+  position: fixed;
+  right:0;
+}
+
+.logout-button {
+  height: 20px;
+  font-size: 15px;
+  font-weight: bold;
+  font-style: italic;
+  border:1px hidden;
+  background-color: white;
+  opacity: 0.65;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  margin-top: 30px;
+}
+
+.logout-button:hover {
+  opacity: 1;
+  cursor:pointer;
+}
+.login-form-container {
+  display: inline-flex;
+  flex-direction: column;
+  height:auto;
+  width: auto;
+  overflow: auto;
+  position: fixed;
+  background-color: white;
+  opacity: 0.75;
+  align-self: center;
+  align-items: center;
+  align-content: center;
+  padding: 15px;
+  top: 25%;
+}
+
+.login-form-header {
+  position: relative;
+  top:0;
+  color: black;
+  align-content: center;
+  margin-bottom: 10px;
+
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.login-form {
+
+}
+
+.login-input {
+  font-style: italic;
+}
+
+.login-form-box {
+
+}
+
+.login-submit {
+
+
+
+
+
+
+
+
+}
+.login-submit:hover {
+
+}
+
+.login-form-nav {
+
+}
+
+.login-form-nav-button {
+
+}
+.login-form-nav-button:hover {
+
+}
+
+.login-error {
+
+}
+.song-index-container {
+  background-color: rgba(0,0,0,0.35);
+  list-style: none;
+  width: 100%;
+  margin-left: 0px;
+}
+
+.song-index-item {
+  margin-bottom: 5px;
+  border-bottom: 1px solid black;
+  width: 100%;
+}
+
+.song-index-item-title {
+  position: relative;
+  left: 0;
+  font-style: italic;
+}
+html *
+{
+   font-family: 'Helvetica Neue' !important;
+}
+
+body {
+  min-height: 100%;
+  background-color: #000000;
+  margin-left: -10px;
+  background-image: url('http://media.adriadaily.com/2016/03/dim.jpg');
+  background-repeat: no-repeat;
+  background-color: black;
+  background-size: 200%;
+  background-position: top;
+}
+
+.app-container {
+  color:white;
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  overflow: auto;
+  top: 50px;
+  bottom: 35px;
+  width: 85%;
+  margin-left: 7.5%;
+  margin-right: 7.5%;
+  background-color: rgba(0,0,0,0.75);
+  height: auto;
+}
+
+.sidebar-container {
+  display: flex;
+  width: 20%;
+  max-width: 150px;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.sidebar-container:hover {
+
+}
+
+.app-content-container {
+  display: inline-flex;
+  flex-direction: column;
+  background-color: none;
+  width: 100%;
+  align-self: flex-end;
+  overflow: auto;
+  height: 100%;
+  margin-right: 0 auto;
+}
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+
+
+ */
+
