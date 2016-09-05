@@ -4,7 +4,16 @@
   <title>Cockatune</title>
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
+  <%= javascript_include_tag 'audiojs/audio.min.js' %>
+
   <%= csrf_meta_tags %>
+
+  <script>
+   audiojs.events.ready(function() {
+     window.as = audiojs.createAll();
+   });
+ </script>
+ 
 </head>
 <body>
 

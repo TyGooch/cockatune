@@ -1,7 +1,11 @@
 import React from 'react';
+import AudioPlayer from '../audio_player/audio_player_container';
 
 const Footer = () => (
   <div className='footer-container'>
+    <div className = 'footer-audio-player'>
+      <AudioPlayer />
+    </div>
     <ul className='footer-list'>
       <a href='/#/explore'>
         <img

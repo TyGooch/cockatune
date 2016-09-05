@@ -1,4 +1,3 @@
-
 import { ArtistConstants } from '../actions/artist_actions';
 import merge from 'lodash/merge';
 
