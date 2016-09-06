@@ -17,12 +17,17 @@ class Artist extends React.Component {
   }
 
   render(){
-    return(
-      <div className = 'artist-container'>
-        <ArtistHeader artist = {this.props.artist} />
-        <AlbumIndex albums = {this.props.artist.albums}/>
-      </div>
-    );
+    if(Object.keys(this.props.artist).length > 0){
+      return(
+        <div className = 'artist-container'>
+          <ArtistHeader artist = {this.props.artist} />
+          <AlbumIndex albums = {this.props.artist.albums}/>
+        </div>
+      );
+    }
+  else{
+    return <div></div> ;
+  }
   }
 }
 export default Artist;

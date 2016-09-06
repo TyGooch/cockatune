@@ -8,8 +8,8 @@ class ArtistIndex extends React.Component {
   }
 
   render(){
-    let artistIndexItems = Object.keys(this.props.artists).map(key => (
-      <ArtistIndexItem artist = {this.props.artists[key]} />
+    let artistIndexItems = Object.keys(this.props.artists).map((key, idx) => (
+      <ArtistIndexItem artist = {this.props.artists[key]} key = {idx}/>
     ));
     return(
         <Masonry className='artist-index-container' options={{fitWidth: true}}>
