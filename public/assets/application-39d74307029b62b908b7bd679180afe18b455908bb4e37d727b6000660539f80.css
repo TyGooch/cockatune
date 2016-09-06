@@ -47,8 +47,8 @@
 .album-container {
   display: flex;
   flex-direction: row;
-  overflow: auto;
-  height: auto;
+  overflow: hidden;
+
 }
 
 .album-content-container {
@@ -58,7 +58,11 @@
   position: relative;
   left: 0;
   background-size: 500%;
+  overflow: auto;
+}
 
+.album-content-container::-webkit-scrollbar {
+    display: none;
 }
 
 
@@ -66,8 +70,8 @@
 }
 
 .album-header-image {
-  height: 300px;
-  width: 300px;
+  height: 200px;
+  width: 200px;
   opacity: 0.5;
 }
 
@@ -87,10 +91,10 @@
 
 .album-song-index {
   position: absolute;
-  top: 43px;
-  left: 275px;
+  top: 50px;
+  left: 175px;
   /*background-color: rgba(0,0,0,0.35);*/
-  width: auto;
+  width: 200%;
 }
 
 .album-sidebar-index-container {
@@ -102,7 +106,7 @@
   align-content: center;
   max-width: 25%;
   max-height: 25%;
-
+  overflow-x: hidden;
 }
 
 .album-sidebar-index-header {
@@ -262,12 +266,22 @@
   background-color: #FF0000;
   opacity: 0.75;
   color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+
+.footer-audio-player {
+   max-width: 60%
 }
 
 .footer-logo {
   position: fixed;
   right: 0;
   bottom: 0;
+   align-self: flex-end;
 }
 .header-container {
   display: inline-flex;
@@ -447,22 +461,47 @@
 
 }
 .song-index-container {
-  background-color: rgba(0,0,0,0.35);
   list-style: none;
   width: 100%;
   margin-left: 0px;
+  height: inherit;
+  overflow: auto;
 }
 
 .song-index-item {
-  margin-bottom: 5px;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid rgba(255,255,255,0.25);
   width: 100%;
+  display: flex;
+  flex-direction: row;
+  padding-top: 5px;
+  color: rgba(255,255,255,0.55);
+}
+
+.play-button {
+  display: flex;
+  max-width: 15px;
+  max-height: 15px;
+  opacity: 0.75;
+  background-color: rgba(255,255,255,0.55)
+  border: 1px hidden;
+  border-radius: 2px;
+}
+
+.play-button:hover {
+  opacity: 1;
+  cursor: pointer;
 }
 
 .song-index-item-title {
-  position: relative;
+  display: flex;
   left: 0;
   font-style: italic;
+  padding-left: 10px;
+}
+
+.song-length {
+  position: fixed;
+  right: 27%;
 }
 html *
 {
@@ -485,7 +524,7 @@ body {
   display: flex;
   flex-direction: row;
   position: fixed;
-  overflow: auto;
+
   top: 50px;
   bottom: 35px;
   width: 85%;

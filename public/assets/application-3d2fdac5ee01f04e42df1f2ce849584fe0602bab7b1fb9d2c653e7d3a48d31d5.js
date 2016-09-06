@@ -11579,7 +11579,7 @@ return jQuery;
 
 }).call(this);
 (function(h,o,g){var p=function(){for(var b=/audio(.min)?.js.*/,a=document.getElementsByTagName("script"),c=0,d=a.length;c<d;c++){var e=a[c].getAttribute("src");if(b.test(e))return e.replace(b,"")}}();g[h]={instanceCount:0,instances:{},flashSource:'      <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" id="$1" width="1" height="1" name="$1" style="position: absolute; left: -1px;">         <param name="movie" value="$2?playerInstance='+h+'.instances[\'$1\']&datetime=$3">         <param name="allowscriptaccess" value="always">         <embed name="$1" src="$2?playerInstance='+
-h+'.instances[\'$1\']&datetime=$3" width="1" height="1" allowscriptaccess="always">       </object>',settings:{autoplay:false,loop:false,preload:true,imageLocation:p+"player-graphics.gif",swfLocation:p+"audiojs.swf",useFlash:function(){var b=document.createElement("audio");return!(b.canPlayType&&b.canPlayType("audio/mpeg;").replace(/no/,""))}(),hasFlash:function(){if(navigator.plugins&&navigator.plugins.length&&navigator.plugins["Shockwave Flash"])return true;else if(navigator.mimeTypes&&navigator.mimeTypes.length){var b=
+h+'.instances[\'$1\']&datetime=$3" width="1" height="1" allowscriptaccess="always">       </object>',settings:{autoplay:false,loop:false,preload:true,imageLocation:"assets/audiojs/player-graphics.gif",swfLocation:p+"audiojs.swf",useFlash:function(){var b=document.createElement("audio");return!(b.canPlayType&&b.canPlayType("audio/mpeg;").replace(/no/,""))}(),hasFlash:function(){if(navigator.plugins&&navigator.plugins.length&&navigator.plugins["Shockwave Flash"])return true;else if(navigator.mimeTypes&&navigator.mimeTypes.length){var b=
 navigator.mimeTypes["application/x-shockwave-flash"];return b&&b.enabledPlugin}else try{new ActiveXObject("ShockwaveFlash.ShockwaveFlash");return true}catch(a){}return false}(),createPlayer:{markup:'          <div class="play-pause">             <p class="play"></p>             <p class="pause"></p>             <p class="loading"></p>             <p class="error"></p>           </div>           <div class="scrubber">             <div class="progress"></div>             <div class="loaded"></div>           </div>           <div class="time">             <em class="played">00:00</em>/<strong class="duration">00:00</strong>           </div>           <div class="error-message"></div>',
 playPauseClass:"play-pause",scrubberClass:"scrubber",progressClass:"progress",loaderClass:"loaded",timeClass:"time",durationClass:"duration",playedClass:"played",errorMessageClass:"error-message",playingClass:"playing",loadingClass:"loading",errorClass:"error"},css:'        .audiojs audio { position: absolute; left: -1px; }         .audiojs { width: 460px; height: 36px; background: #404040; overflow: hidden; font-family: monospace; font-size: 12px;           background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #444), color-stop(0.5, #555), color-stop(0.51, #444), color-stop(1, #444));           background-image: -moz-linear-gradient(center top, #444 0%, #555 50%, #444 51%, #444 100%);           -webkit-box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3); -moz-box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3);           -o-box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3); box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.3); }         .audiojs .play-pause { width: 25px; height: 40px; padding: 4px 6px; margin: 0px; float: left; overflow: hidden; border-right: 1px solid #000; }         .audiojs p { display: none; width: 25px; height: 40px; margin: 0px; cursor: pointer; }         .audiojs .play { display: block; }         .audiojs .scrubber { position: relative; float: left; width: 280px; background: #5a5a5a; height: 14px; margin: 10px; border-top: 1px solid #3f3f3f; border-left: 0px; border-bottom: 0px; overflow: hidden; }         .audiojs .progress { position: absolute; top: 0px; left: 0px; height: 14px; width: 0px; background: #ccc; z-index: 1;           background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #ccc), color-stop(0.5, #ddd), color-stop(0.51, #ccc), color-stop(1, #ccc));           background-image: -moz-linear-gradient(center top, #ccc 0%, #ddd 50%, #ccc 51%, #ccc 100%); }         .audiojs .loaded { position: absolute; top: 0px; left: 0px; height: 14px; width: 0px; background: #000;           background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #222), color-stop(0.5, #333), color-stop(0.51, #222), color-stop(1, #222));           background-image: -moz-linear-gradient(center top, #222 0%, #333 50%, #222 51%, #222 100%); }         .audiojs .time { float: left; height: 36px; line-height: 36px; margin: 0px 0px 0px 6px; padding: 0px 6px 0px 12px; border-left: 1px solid #000; color: #ddd; text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5); }         .audiojs .time em { padding: 0px 2px 0px 0px; color: #f9f9f9; font-style: normal; }         .audiojs .time strong { padding: 0px 0px 0px 2px; font-weight: normal; }         .audiojs .error-message { float: left; display: none; margin: 0px 10px; height: 36px; width: 400px; overflow: hidden; line-height: 36px; white-space: nowrap; color: #fff;           text-overflow: ellipsis; -o-text-overflow: ellipsis; -icab-text-overflow: ellipsis; -khtml-text-overflow: ellipsis; -moz-text-overflow: ellipsis; -webkit-text-overflow: ellipsis; }         .audiojs .error-message a { color: #eee; text-decoration: none; padding-bottom: 1px; border-bottom: 1px solid #999; white-space: wrap; }                 .audiojs .play { background: url("$1") -2px -1px no-repeat; }         .audiojs .loading { background: url("$1") -2px -31px no-repeat; }         .audiojs .error { background: url("$1") -2px -61px no-repeat; }         .audiojs .pause { background: url("$1") -2px -91px no-repeat; }                 .playing .play, .playing .loading, .playing .error { display: none; }         .playing .pause { display: block; }                 .loading .play, .loading .pause, .loading .error { display: none; }         .loading .loading { display: block; }                 .error .time, .error .play, .error .pause, .error .scrubber, .error .loading { display: none; }         .error .error { display: block; }         .error .play-pause p { cursor: auto; }         .error .error-message { display: block; }',
 trackEnded:function(){},flashError:function(){var b=this.settings.createPlayer,a=j(b.errorMessageClass,this.wrapper),c='Missing <a href="http://get.adobe.com/flashplayer/">flash player</a> plugin.';if(this.mp3)c+=' <a href="'+this.mp3+'">Download audio file</a>.';g[h].helpers.removeClass(this.wrapper,b.loadingClass);g[h].helpers.addClass(this.wrapper,b.errorClass);a.innerHTML=c},loadError:function(){var b=this.settings.createPlayer,a=j(b.errorMessageClass,this.wrapper);g[h].helpers.removeClass(this.wrapper,
@@ -46335,6 +46335,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	  return _react2.default.createElement(
 	    'div',
 	    { className: 'footer-container' },
+	    _react2.default.createElement('div', { className: 'footer-current-song' }),
 	    _react2.default.createElement(
 	      'div',
 	      { className: 'footer-audio-player' },
@@ -46821,7 +46822,9 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	  var artistId = parseInt(ownProps.params.artistId);
 	  var albumId = parseInt(ownProps.params.albumId);
 	  var artist = state.artists[artistId] || {};
-	  var album = state.artists[artistId].albums[albumId - 1] || {};
+	  var album = state.artists[artistId].albums.filter(function (el) {
+	    return el.id === albumId;
+	  }) || {};
 	  return {
 	    artistId: artistId,
 	    artist: artist,
@@ -46885,10 +46888,10 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	      var _this2 = this;
 	
 	      var albumSongs = this.props.artist.songs.filter(function (song) {
-	        return song.album_id === _this2.props.album.id;
+	        return song.album_id === _this2.props.albumId;
 	      });
 	      var otherAlbums = this.props.artist.albums.filter(function (el) {
-	        return el.id !== _this2.props.album.id;
+	        return el.id !== _this2.props.albumId;
 	      });
 	      return _react2.default.createElement(
 	        'div',
@@ -46899,21 +46902,21 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	          { className: 'album-container' },
 	          _react2.default.createElement(
 	            'div',
-	            { className: 'album-content-container',
-	              style: { 'backgroundImage': 'url(' + this.props.album.album_picture_url + ')' } },
+	            { className: 'album-content-container'
+	            },
 	            _react2.default.createElement(
 	              'div',
 	              { className: 'album-header' },
 	              _react2.default.createElement(
 	                'div',
 	                null,
-	                _react2.default.createElement('img', { src: this.props.album.album_picture_url,
+	                _react2.default.createElement('img', { src: this.props.album[0].album_picture_url,
 	                  className: 'album-header-image' })
 	              ),
 	              _react2.default.createElement(
 	                'div',
 	                { className: 'album-header-name' },
-	                this.props.album.title
+	                this.props.album[0].title
 	              )
 	            ),
 	            _react2.default.createElement(
@@ -47033,8 +47036,11 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	    _react2.default.createElement(
 	      'div',
 	      { className: 'song-index-item-title' },
-	      song.title,
-	      ' ',
+	      song.title
+	    ),
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'song-length' },
 	      Math.floor(song.length / 60),
 	      ':',
 	      song.length % 60
@@ -51118,7 +51124,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	    var _this = _possibleConstructorReturn(this, (Song.__proto__ || Object.getPrototypeOf(Song)).call(this, props));
 	
 	    _this.playPause = _this.playPause.bind(_this);
-	    _this.playPauseIcon = _this.playPauseIcon.bind(_this);
+	    _this.songButton = _this.songButton.bind(_this);
 	    return _this;
 	  }
 	
@@ -51127,19 +51133,22 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	    value: function playPause() {
 	      if (window.as[0].mp3 !== this.props.song.audio_url) {
 	        this.props.playSong(this.props.song);
+	        this.forceUpdate();
 	      } else if (!window.as[0].playing) {
 	        window.as[0].play();
+	        this.forceUpdate();
 	      } else {
 	        window.as[0].pause();
+	        this.forceUpdate();
 	      }
 	    }
 	  }, {
-	    key: "playPauseIcon",
-	    value: function playPauseIcon() {
+	    key: "songButton",
+	    value: function songButton() {
 	      if (window.as[0].playing && this.props.currentSong.id === this.props.song.id) {
-	        return "http://findicons.com/files/icons/2579/iphone_icons/40/pause.png";
+	        return "http://res.cloudinary.com/dtatkxxcm/image/upload/v1473113147/pause_dj_music_club_party-128_ietf2s.png";
 	      } else {
-	        return "http://livingthingshabitat.weebly.com/uploads/2/0/5/9/20594030/5020026.png";
+	        return "http://res.cloudinary.com/dtatkxxcm/image/upload/v1473113149/play_dj_music_club_party-512_n8xnqx.png";
 	      }
 	    }
 	  }, {
@@ -51147,8 +51156,8 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	    value: function render() {
 	      return _react2.default.createElement(
 	        "div",
-	        null,
-	        _react2.default.createElement("img", { src: this.playPauseIcon(), onClick: this.playPause, className: "play-button" })
+	        { className: "song-button" },
+	        _react2.default.createElement("img", { src: this.songButton(), onClick: this.playPause, className: "play-button" })
 	      );
 	    }
 	  }]);
