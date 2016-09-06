@@ -27,22 +27,26 @@ Artist.create({name: 'Tycho', genre:'ambient', artist_picture_url: 'https://juke
     Song.create({title:'Spectre', audio_url: 'http://res.cloudinary.com/dtatkxxcm/video/upload/v1473110319/1-07_Spectre_xpyn8e.mp3', length: '226', album_id: 1, artist_id: 1})
     Song.create({title:'Plains', audio_url: 'http://res.cloudinary.com/dtatkxxcm/video/upload/v1473110955/1-08_Plains_tgcmzb.mp3', length: '197', album_id: 1, artist_id: 1})
   Album.create({title: 'Dive', artist_id: 1, album_picture_url: 'https://upload.wikimedia.org/wikipedia/en/1/11/Dive_tycho_album.jpg'})
-    Song.create({title:'A Walk', audio_url: 'google.com', length: '135', album_id: 2, artist_id: 1})
-    Song.create({title:'Hours', audio_url: 'http://res.cloudinary.com/dtatkxxcm/video/upload/v1473045345/19_Fade_tnonje.mp3', length: '135', album_id: 2, artist_id: 1})
-    Song.create({title:'Daydream', audio_url: 'http://res.cloudinary.com/dtatkxxcm/video/upload/v1473045345/19_Fade_tnonje.mp3', length: '135', album_id: 2, artist_id: 1})
-    Song.create({title:'Dive', audio_url: 'http://res.cloudinary.com/dtatkxxcm/video/upload/v1473045345/19_Fade_tnonje.mp3', length: '135', album_id: 2, artist_id: 1})
-    Song.create({title:'Coastal Brake', audio_url: 'http://res.cloudinary.com/dtatkxxcm/video/upload/v1473045345/19_Fade_tnonje.mp3', length: '135', album_id: 2, artist_id: 1})
-    Song.create({title:'Ascension', audio_url: 'http://res.cloudinary.com/dtatkxxcm/video/upload/v1473045345/19_Fade_tnonje.mp3', length: '135', album_id: 2, artist_id: 1})
-    Song.create({title:'Melanine', audio_url: 'http://res.cloudinary.com/dtatkxxcm/video/upload/v1473045345/19_Fade_tnonje.mp3', length: '135', album_id: 2, artist_id: 1})
-    Song.create({title:'Adrift', audio_url: 'http://res.cloudinary.com/dtatkxxcm/video/upload/v1473045345/19_Fade_tnonje.mp3', length: '135', album_id: 2, artist_id: 1})
-    Song.create({title:'Epigram', audio_url: 'http://res.cloudinary.com/dtatkxxcm/video/upload/v1473045345/19_Fade_tnonje.mp3', length: '135', album_id: 2, artist_id: 1})
-    Song.create({title:'Elegy', audio_url: 'http://res.cloudinary.com/dtatkxxcm/video/upload/v1473045345/19_Fade_tnonje.mp3', length: '135', album_id: 2, artist_id: 1})
+    # Song.create({title:'A Walk', audio_url: 'google.com', length: '135', album_id: 2, artist_id: 1})
+    # Song.create({title:'Hours', audio_url: '', length: '135', album_id: 2, artist_id: 1})
+    # Song.create({title:'Daydream', audio_url: '', length: '135', album_id: 2, artist_id: 1})
+    # Song.create({title:'Dive', audio_url: '', length: '135', album_id: 2, artist_id: 1})
+    # Song.create({title:'Coastal Brake', audio_url: '', length: '135', album_id: 2, artist_id: 1})
+    # Song.create({title:'Ascension', audio_url: '', length: '135', album_id: 2, artist_id: 1})
+    Song.create({title:'Melanine', audio_url: 'http://res.cloudinary.com/dtatkxxcm/video/upload/v1473111103/07_Melanine_w7pjly.mp3', length: '173', album_id: 2, artist_id: 1})
+    # Song.create({title:'Adrift', audio_url: '', length: '135', album_id: 2, artist_id: 1})
+    # Song.create({title:'Epigram', audio_url: '', length: '135', album_id: 2, artist_id: 1})
+    # Song.create({title:'Elegy', audio_url: '', length: '135', album_id: 2, artist_id: 1})
   Album.create({title: 'The Science of Patterns', artist_id: 1, album_picture_url: 'http://sentiospace.com/wp-content/uploads/2016/02/the-science-of-patterns-tycho-400x400.jpg'})
     Song.create({title:'Red Bridge', audio_url: 'google.com', length: '135', album_id: 3, artist_id: 1})
 
+Artist.create({name: 'Alan Walker', genre:'edm', artist_picture_url: 'http://d19y6wq6pk1k2b.cloudfront.net/~/media/images/artists/alan%20walker/alan-walker-1000x1000.png?mw=1500', header_image_url: 'http://i.amz.mshcdn.com/vuXkF1M-eAn1zkdn6w5fQa7NY_s=/950x534/https%3A%2F%2Fblueprint-api-production.s3.amazonaws.com%2Fuploads%2Fcard%2Fimage%2F25098%2Falan.walker.jpg'})
+  Album.create({title: 'Faded - Single', artist_id: 2, album_picture_url: 'http://a2.mzstatic.com/us/r30/Music69/v4/e6/52/ca/e652caf9-5769-cc74-ec37-d80e3b960505/cover600x600.jpeg'})
+    Song.create({title:'Faded', audio_url: 'http://res.cloudinary.com/dtatkxxcm/video/upload/v1473179941/Alan_Walker_-_Faded_fqmwpd.mp3', length: '312', album_id: 4, artist_id: 2})
+
+
 Artist.create({name: 'Ariana Grande', genre:'pop', artist_picture_url: 'http://www.rap-up.com/wp-content/uploads/2014/12/ariana-grande.jpg', header_image_url: 'http://static.tumblr.com/k9j0lua/B9Xnbavxq/8.png'})
 
-Artist.create({name: 'Alan Walker', genre:'edm', artist_picture_url: 'http://d19y6wq6pk1k2b.cloudfront.net/~/media/images/artists/alan%20walker/alan-walker-1000x1000.png?mw=1500', header_image_url: 'http://i.amz.mshcdn.com/vuXkF1M-eAn1zkdn6w5fQa7NY_s=/950x534/https%3A%2F%2Fblueprint-api-production.s3.amazonaws.com%2Fuploads%2Fcard%2Fimage%2F25098%2Falan.walker.jpg'})
 
 Artist.create({name: 'ODESZA', genre:'ambient', artist_picture_url: 'https://i1.sndcdn.com/avatars-000097056058-s07lh7-t500x500.jpg', header_image_url: 'https://upload.wikimedia.org/wikipedia/commons/3/31/Odesza_2014.jpg'})
 

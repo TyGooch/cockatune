@@ -5,21 +5,21 @@ import { ArtistHeader } from '../artist/artist' ;
 
 class Album extends React.Component {
   render(){
-    const albumSongs = this.props.artist.songs.filter(song => song.album_id === this.props.album.id);
-    const otherAlbums = this.props.artist.albums.filter(el => el.id !== this.props.album.id);
+    const albumSongs = this.props.artist.songs.filter(song => song.album_id === this.props.albumId);
+    const otherAlbums = this.props.artist.albums.filter(el => el.id !== this.props.albumId);
     return(
       <div>
         <ArtistHeader artist = {this.props.artist} />
         <div className = 'album-container'>
           <div className = 'album-content-container'
-            style={{'backgroundImage' : `url(${this.props.album.album_picture_url})`}}>
+            style={{'backgroundImage' : `url(${this.props.album[0].album_picture_url})`}}>
             <div className = 'album-header'>
               <div  >
-                <img src={this.props.album.album_picture_url}
+                <img src={this.props.album[0].album_picture_url}
                   className= 'album-header-image'/>
               </div>
               <div className = 'album-header-name'>
-                {this.props.album.title}
+                {this.props.album[0].title}
               </div>
             </div>
             <div className = 'album-song-index'>

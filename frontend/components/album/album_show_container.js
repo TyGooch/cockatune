@@ -5,7 +5,7 @@ const mapStateToProps = (state, ownProps) => {
   const artistId = parseInt(ownProps.params.artistId);
   const albumId = parseInt(ownProps.params.albumId);
   const artist = state.artists[artistId] || {};
-  const album = state.artists[artistId].albums[albumId-1] || {};
+  const album = state.artists[artistId].albums.filter(el => el.id === albumId) || {};
   return{
     artistId,
     artist,
