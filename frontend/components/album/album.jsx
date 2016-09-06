@@ -12,7 +12,7 @@ class Album extends React.Component {
         <ArtistHeader artist = {this.props.artist} />
         <div className = 'album-container'>
           <div className = 'album-content-container'
-            style={{'backgroundImage' : `url(${this.props.album[0].album_picture_url})`}}>
+          >
             <div className = 'album-header'>
               <div  >
                 <img src={this.props.album[0].album_picture_url}
