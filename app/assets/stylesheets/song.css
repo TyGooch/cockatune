@@ -38,6 +38,6 @@
 }
 
 .song-length {
-  position: fixed;
-  right: 27%;
+  position: absolute;
+  left: 32.5%;
 }
