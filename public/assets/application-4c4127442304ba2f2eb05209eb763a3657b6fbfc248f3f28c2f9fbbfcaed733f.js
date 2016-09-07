@@ -34720,6 +34720,10 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	
 	var _album_show_container2 = _interopRequireDefault(_album_show_container);
 	
+	var _user_show_container = __webpack_require__(417);
+	
+	var _user_show_container2 = _interopRequireDefault(_user_show_container);
+	
 	var _artist_actions = __webpack_require__(266);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -34782,7 +34786,8 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	          _react2.default.createElement(_reactRouter.Route, { path: '/signup', component: _session_form_container2.default, onEnter: this._redirectIfLoggedIn }),
 	          _react2.default.createElement(_reactRouter.Route, { path: '/explore', component: _explore_container2.default }),
 	          _react2.default.createElement(_reactRouter.Route, { path: '/artists/:artistId', component: _artist_show_container2.default }),
-	          _react2.default.createElement(_reactRouter.Route, { path: '/artists/:artistId/albums/:albumId', component: _album_show_container2.default })
+	          _react2.default.createElement(_reactRouter.Route, { path: '/artists/:artistId/albums/:albumId', component: _album_show_container2.default }),
+	          _react2.default.createElement(_reactRouter.Route, { path: '/users/:userId', component: _user_show_container2.default })
 	        )
 	      );
 	    }
@@ -40362,6 +40367,10 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	
 	var _footer_container2 = _interopRequireDefault(_footer_container);
 	
+	var _sidebar_container = __webpack_require__(423);
+	
+	var _sidebar_container2 = _interopRequireDefault(_sidebar_container);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var App = function App(_ref) {
@@ -40380,7 +40389,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	      _react2.default.createElement(
 	        'div',
 	        { className: 'sidebar-container' },
-	        'SIDEBAR'
+	        _react2.default.createElement(_sidebar_container2.default, null)
 	      ),
 	      _react2.default.createElement(
 	        'div',
@@ -40537,7 +40546,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	      null,
 	      _react2.default.createElement(
 	        'a',
-	        { href: 'http://google.com' },
+	        { href: '#/users/' + currentUser.id },
 	        _react2.default.createElement('img', {
 	          src: currentUser.profile_picture_url,
 	          className: 'profile-picture' })
@@ -47375,10 +47384,15 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	
 	var _song_reducer2 = _interopRequireDefault(_song_reducer);
 	
+	var _user_reducer = __webpack_require__(422);
+	
+	var _user_reducer2 = _interopRequireDefault(_user_reducer);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.default = (0, _redux.combineReducers)({
 	  session: _session_reducer2.default,
+	  users: _user_reducer2.default,
 	  artists: _artist_reducer2.default,
 	  currentSong: _song_reducer2.default
 	});
@@ -50840,11 +50854,15 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	
 	var _artist_middleware2 = _interopRequireDefault(_artist_middleware);
 	
+	var _user_middleware = __webpack_require__(418);
+	
+	var _user_middleware2 = _interopRequireDefault(_user_middleware);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var loggerMiddleware = (0, _reduxLogger2.default)();
 	
-	var RootMiddleware = (0, _redux.applyMiddleware)(_session_middleware2.default, _artist_middleware2.default, loggerMiddleware);
+	var RootMiddleware = (0, _redux.applyMiddleware)(_session_middleware2.default, _artist_middleware2.default, _user_middleware2.default, loggerMiddleware);
 	
 	exports.default = RootMiddleware;
 
@@ -51241,6 +51259,352 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	    success: success
 	  });
 	};
+
+/***/ },
+/* 417 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _reactRedux = __webpack_require__(173);
+	
+	var _user = __webpack_require__(421);
+	
+	var _user2 = _interopRequireDefault(_user);
+	
+	var _user_actions = __webpack_require__(420);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var mapStateToProps = function mapStateToProps(state, ownProps) {
+	  var userId = parseInt(ownProps.params.userId);
+	  var user = state.users[userId] || {};
+	  return {
+	    userId: userId,
+	    user: user
+	  };
+	};
+	
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	  return {
+	    requestUser: function requestUser(id) {
+	      return dispatch((0, _user_actions.requestUser)(id));
+	    }
+	  };
+	};
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_user2.default);
+
+/***/ },
+/* 418 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _user_api_util = __webpack_require__(419);
+	
+	var _user_actions = __webpack_require__(420);
+	
+	// User API Util
+	exports.default = function (_ref) {
+	  var getState = _ref.getState;
+	  var dispatch = _ref.dispatch;
+	  return function (next) {
+	    return function (action) {
+	      var usersSuccess = function usersSuccess(data) {
+	        return dispatch((0, _user_actions.receiveUsers)(data));
+	      };
+	      var userSuccess = function userSuccess(data) {
+	        return dispatch((0, _user_actions.receiveUser)(data));
+	      };
+	      var result = next(action);
+	
+	      switch (action.type) {
+	        case _user_actions.UserConstants.REQUEST_USERS:
+	          (0, _user_api_util.fetchUsers)(usersSuccess);
+	          break;
+	        case _user_actions.UserConstants.REQUEST_USER:
+	          (0, _user_api_util.fetchUser)(action.id, userSuccess);
+	          break;
+	        default:
+	          break;
+	      }
+	      return result;
+	    };
+	  };
+	};
+	//User Action
+
+/***/ },
+/* 419 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var fetchUsers = exports.fetchUsers = function fetchUsers(success) {
+	  $.ajax({
+	    method: 'GET',
+	    url: '/api/users',
+	    success: success
+	  });
+	};
+	
+	var fetchUser = exports.fetchUser = function fetchUser(id, success) {
+	  $.ajax({
+	    method: 'GET',
+	    url: '/api/user/' + id,
+	    success: success
+	  });
+	};
+
+/***/ },
+/* 420 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var UserConstants = exports.UserConstants = {
+	  REQUEST_USERS: "REQUEST_USERS",
+	  REQUEST_USER: "REQUEST_USER",
+	  RECEIVE_USERS: "RECEIVE_USERS",
+	  RECEIVE_USER: "RECEIVE_USER"
+	};
+	
+	var requestUsers = exports.requestUsers = function requestUsers() {
+	  return {
+	    type: UserConstants.REQUEST_USERS
+	  };
+	};
+	
+	var requestUser = exports.requestUser = function requestUser(id) {
+	  return {
+	    type: UserConstants.REQUEST_USERS,
+	    id: id
+	  };
+	};
+	
+	var receiveUsers = exports.receiveUsers = function receiveUsers(users) {
+	  return {
+	    type: UserConstants.RECEIVE_USERS,
+	    users: users
+	  };
+	};
+	
+	var receiveUser = exports.receiveUser = function receiveUser(user) {
+	  return {
+	    type: UserConstants.RECEIVE_USERS,
+	    user: user
+	  };
+	};
+
+/***/ },
+/* 421 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var User = function (_React$Component) {
+	  _inherits(User, _React$Component);
+	
+	  function User() {
+	    _classCallCheck(this, User);
+	
+	    return _possibleConstructorReturn(this, (User.__proto__ || Object.getPrototypeOf(User)).apply(this, arguments));
+	  }
+	
+	  _createClass(User, [{
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      this.props.requestUser(this.props.userId);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      if (Object.keys(this.props.user).length > 0) {
+	        return _react2.default.createElement(
+	          'div',
+	          { className: 'user-container' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'user-header-container' },
+	            _react2.default.createElement('img', { src: this.props.user.profile_picture_url,
+	              className: 'user-header-profile-picture' }),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'user-header-username' },
+	              this.props.user.username
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'user-header-follows' },
+	              'XXXXXX FOLLOWERS'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'user-playlist-container' },
+	            'PLAYLISTS GO HERE'
+	          )
+	        );
+	      } else {
+	        return _react2.default.createElement('div', null);
+	      }
+	    }
+	  }]);
+	
+	  return User;
+	}(_react2.default.Component);
+	
+	exports.default = User;
+
+/***/ },
+/* 422 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _user_actions = __webpack_require__(420);
+	
+	var _merge = __webpack_require__(301);
+	
+	var _merge2 = _interopRequireDefault(_merge);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+	
+	var UserReducer = function UserReducer() {
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+	  var action = arguments[1];
+	
+	  switch (action.type) {
+	    case _user_actions.UserConstants.RECEIVE_USERS:
+	      return action.users;
+	    case _user_actions.UserConstants.RECEIVE_USER:
+	      var newUser = _defineProperty({}, action.user.id, action.user);
+	      return (0, _merge2.default)({}, state, newUser);
+	    default:
+	      return state;
+	  }
+	};
+	
+	exports.default = UserReducer;
+
+/***/ },
+/* 423 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _reactRedux = __webpack_require__(173);
+	
+	var _sidebar = __webpack_require__(424);
+	
+	var _sidebar2 = _interopRequireDefault(_sidebar);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var mapStateToProps = function mapStateToProps(state) {
+	  return {
+	    currentSong: state.currentSong,
+	    artists: state.artists
+	  };
+	};
+	// import Greeting from './greeting';
+	exports.default = (0, _reactRedux.connect)(mapStateToProps)(_sidebar2.default);
+
+/***/ },
+/* 424 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var nowPlaying = function nowPlaying(currentSong, artists) {
+	  if (currentSong) {
+	    return _react2.default.createElement(
+	      'div',
+	      null,
+	      'Now Playing',
+	      _react2.default.createElement('br', null),
+	      currentSong.title,
+	      _react2.default.createElement('br', null),
+	      artists[currentSong.artist_id].name,
+	      _react2.default.createElement('br', null),
+	      _react2.default.createElement('img', { src: artists[currentSong.artist_id].albums.filter(function (el) {
+	          return el.id === currentSong.album_id;
+	        })[0].album_picture_url,
+	        className: 'sidebar-album-picture' })
+	    );
+	  } else {
+	    return _react2.default.createElement('div', null);
+	  }
+	};
+	
+	var Sidebar = function Sidebar(_ref) {
+	  var currentSong = _ref.currentSong;
+	  var artists = _ref.artists;
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'sidebar' },
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'sidebar-playing-container' },
+	      nowPlaying(currentSong, artists)
+	    )
+	  );
+	};
+	
+	exports.default = Sidebar;
 
 /***/ }
 /******/ ]);
