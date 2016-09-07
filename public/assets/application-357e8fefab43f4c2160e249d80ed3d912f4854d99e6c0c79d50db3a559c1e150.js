@@ -11663,7 +11663,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	
 	var _root2 = _interopRequireDefault(_root);
 	
-	var _store = __webpack_require__(293);
+	var _store = __webpack_require__(298);
 	
 	var _store2 = _interopRequireDefault(_store);
 	
@@ -34704,7 +34704,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	
 	var _app2 = _interopRequireDefault(_app);
 	
-	var _session_form_container = __webpack_require__(283);
+	var _session_form_container = __webpack_require__(285);
 	
 	var _session_form_container2 = _interopRequireDefault(_session_form_container);
 	
@@ -34712,13 +34712,15 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	
 	var _explore_container2 = _interopRequireDefault(_explore_container);
 	
-	var _artist_show_container = __webpack_require__(285);
+	var _artist_show_container = __webpack_require__(287);
 	
 	var _artist_show_container2 = _interopRequireDefault(_artist_show_container);
 	
-	var _album_show_container = __webpack_require__(289);
+	var _album_show_container = __webpack_require__(291);
 	
 	var _album_show_container2 = _interopRequireDefault(_album_show_container);
+	
+	var _artist_actions = __webpack_require__(266);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -34742,6 +34744,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	
 	    _this._ensureLoggedIn = _this._ensureLoggedIn.bind(_this);
 	    _this._redirectIfLoggedIn = _this._redirectIfLoggedIn.bind(_this);
+	    _this._populateArtists = _this._populateArtists.bind(_this);
 	    return _this;
 	  }
 	
@@ -34762,6 +34765,11 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	      }
 	    }
 	  }, {
+	    key: '_populateArtists',
+	    value: function _populateArtists(nextState, replace) {
+	      this.context.store.dispatch((0, _artist_actions.requestArtists)());
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
@@ -34769,7 +34777,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	        { history: _reactRouter.hashHistory },
 	        _react2.default.createElement(
 	          _reactRouter.Route,
-	          { path: '/', component: _app2.default },
+	          { path: '/', component: _app2.default, onEnter: this._populateArtists },
 	          _react2.default.createElement(_reactRouter.Route, { path: '/login', component: _session_form_container2.default, onEnter: this._redirectIfLoggedIn }),
 	          _react2.default.createElement(_reactRouter.Route, { path: '/signup', component: _session_form_container2.default, onEnter: this._redirectIfLoggedIn }),
 	          _react2.default.createElement(_reactRouter.Route, { path: '/explore', component: _explore_container2.default }),
@@ -34782,6 +34790,10 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	
 	  return AppRouter;
 	}(_react2.default.Component);
+	
+	AppRouter.contextTypes = {
+	  store: _react2.default.PropTypes.object.isRequired
+	};
 	
 	exports.default = AppRouter;
 
@@ -40780,8 +40792,8 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	    value: function render() {
 	      var _this2 = this;
 	
-	      var artistIndexItems = Object.keys(this.props.artists).map(function (key) {
-	        return _react2.default.createElement(_artist_index_item2.default, { artist: _this2.props.artists[key] });
+	      var artistIndexItems = Object.keys(this.props.artists).map(function (key, idx) {
+	        return _react2.default.createElement(_artist_index_item2.default, { artist: _this2.props.artists[key], key: idx });
 	      });
 	      return _react2.default.createElement(
 	        _reactMasonryComponent2.default,
@@ -40824,12 +40836,16 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	      { to: '/artists/' + artist.id },
 	      _react2.default.createElement('img', { className: 'artist-index-item-image',
 	        src: artist.artist_picture_url
-	      })
-	    ),
-	    _react2.default.createElement(
-	      'div',
-	      { className: 'artist-index-item-name' },
-	      artist.name
+	      }),
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'artist-index-item-name' },
+	        _react2.default.createElement(
+	          'span',
+	          null,
+	          artist.name
+	        )
+	      )
 	    )
 	  );
 	};
@@ -46325,7 +46341,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _audio_player_container = __webpack_require__(413);
+	var _audio_player_container = __webpack_require__(283);
 	
 	var _audio_player_container2 = _interopRequireDefault(_audio_player_container);
 	
@@ -46367,9 +46383,110 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	  value: true
 	});
 	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
 	var _reactRedux = __webpack_require__(173);
 	
-	var _session_form = __webpack_require__(284);
+	var _audio_player = __webpack_require__(284);
+	
+	var _audio_player2 = _interopRequireDefault(_audio_player);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var mapStateToProps = function mapStateToProps(state, ownProps) {
+	  return {
+	    song: state.currentSong
+	  };
+	};
+	
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	  return {};
+	};
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_audio_player2.default);
+
+/***/ },
+/* 284 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var AudioPlayer = function (_React$Component) {
+	  _inherits(AudioPlayer, _React$Component);
+	
+	  function AudioPlayer(props) {
+	    _classCallCheck(this, AudioPlayer);
+	
+	    var _this = _possibleConstructorReturn(this, (AudioPlayer.__proto__ || Object.getPrototypeOf(AudioPlayer)).call(this, props));
+	
+	    _this.playSong = _this.playSong.bind(_this);
+	    return _this;
+	  }
+	
+	  _createClass(AudioPlayer, [{
+	    key: "playSong",
+	    value: function playSong() {
+	      if (window.as) {
+	        if (this.props.song && this.props.song.audio_url != window.as[0].mp3) {
+	          window.as[0].load(this.props.song.audio_url);
+	          window.as[0].play();
+	        }
+	      }
+	    }
+	  }, {
+	    key: "render",
+	    value: function render() {
+	      this.playSong();
+	      return _react2.default.createElement(
+	        "div",
+	        { className: "audio-player-container" },
+	        _react2.default.createElement(
+	          "div",
+	          null,
+	          _react2.default.createElement("audio", { preload: "none" })
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return AudioPlayer;
+	}(_react2.default.Component);
+	
+	exports.default = AudioPlayer;
+
+/***/ },
+/* 285 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _reactRedux = __webpack_require__(173);
+	
+	var _session_form = __webpack_require__(286);
 	
 	var _session_form2 = _interopRequireDefault(_session_form);
 	
@@ -46399,7 +46516,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_session_form2.default);
 
 /***/ },
-/* 284 */
+/* 286 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46584,7 +46701,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	exports.default = SessionForm;
 
 /***/ },
-/* 285 */
+/* 287 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46595,7 +46712,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	
 	var _reactRedux = __webpack_require__(173);
 	
-	var _artist = __webpack_require__(286);
+	var _artist = __webpack_require__(288);
 	
 	var _artist2 = _interopRequireDefault(_artist);
 	
@@ -46623,7 +46740,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_artist2.default);
 
 /***/ },
-/* 286 */
+/* 288 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46639,7 +46756,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _album_index = __webpack_require__(287);
+	var _album_index = __webpack_require__(289);
 	
 	var _album_index2 = _interopRequireDefault(_album_index);
 	
@@ -46683,12 +46800,16 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      return _react2.default.createElement(
-	        'div',
-	        { className: 'artist-container' },
-	        _react2.default.createElement(ArtistHeader, { artist: this.props.artist }),
-	        _react2.default.createElement(_album_index2.default, { albums: this.props.artist.albums })
-	      );
+	      if (Object.keys(this.props.artist).length > 0) {
+	        return _react2.default.createElement(
+	          'div',
+	          { className: 'artist-container' },
+	          _react2.default.createElement(ArtistHeader, { artist: this.props.artist }),
+	          _react2.default.createElement(_album_index2.default, { albums: this.props.artist.albums })
+	        );
+	      } else {
+	        return _react2.default.createElement('div', null);
+	      }
 	    }
 	  }]);
 	
@@ -46698,7 +46819,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	exports.default = Artist;
 
 /***/ },
-/* 287 */
+/* 289 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46717,7 +46838,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	
 	var _reactMasonryComponent2 = _interopRequireDefault(_reactMasonryComponent);
 	
-	var _album_index_item = __webpack_require__(288);
+	var _album_index_item = __webpack_require__(290);
 	
 	var _album_index_item2 = _interopRequireDefault(_album_index_item);
 	
@@ -46761,7 +46882,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	exports.default = AlbumIndex;
 
 /***/ },
-/* 288 */
+/* 290 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46787,13 +46908,16 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	      _reactRouter.Link,
 	      { to: '/artists/' + album.artist_id + '/albums/' + album.id },
 	      _react2.default.createElement('img', { className: 'album-index-item-image',
-	        src: album.album_picture_url
-	      })
-	    ),
-	    _react2.default.createElement(
-	      'div',
-	      { className: 'album-index-item-title' },
-	      album.title
+	        src: album.album_picture_url }),
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'album-index-item-title' },
+	        _react2.default.createElement(
+	          'span',
+	          null,
+	          album.title
+	        )
+	      )
 	    )
 	  );
 	};
@@ -46801,7 +46925,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	exports.default = AlbumIndexItem;
 
 /***/ },
-/* 289 */
+/* 291 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46812,7 +46936,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	
 	var _reactRedux = __webpack_require__(173);
 	
-	var _album = __webpack_require__(290);
+	var _album = __webpack_require__(292);
 	
 	var _album2 = _interopRequireDefault(_album);
 	
@@ -46821,10 +46945,14 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	var mapStateToProps = function mapStateToProps(state, ownProps) {
 	  var artistId = parseInt(ownProps.params.artistId);
 	  var albumId = parseInt(ownProps.params.albumId);
-	  var artist = state.artists[artistId] || {};
-	  var album = state.artists[artistId].albums.filter(function (el) {
-	    return el.id === albumId;
-	  }) || {};
+	  var artist = {};
+	  var album = {};
+	  if (Object.keys(state.artists).length > 0) {
+	    artist = state.artists[artistId];
+	    album = state.artists[artistId].albums.filter(function (el) {
+	      return el.id === albumId;
+	    }) || {};
+	  }
 	  return {
 	    artistId: artistId,
 	    artist: artist,
@@ -46840,7 +46968,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_album2.default);
 
 /***/ },
-/* 290 */
+/* 292 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46855,15 +46983,15 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _album_index = __webpack_require__(287);
+	var _album_index = __webpack_require__(289);
 	
 	var _album_index2 = _interopRequireDefault(_album_index);
 	
-	var _song_index = __webpack_require__(291);
+	var _song_index = __webpack_require__(293);
 	
 	var _song_index2 = _interopRequireDefault(_song_index);
 	
-	var _artist = __webpack_require__(286);
+	var _artist = __webpack_require__(288);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -46887,57 +47015,61 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	    value: function render() {
 	      var _this2 = this;
 	
-	      var albumSongs = this.props.artist.songs.filter(function (song) {
-	        return song.album_id === _this2.props.albumId;
-	      });
-	      var otherAlbums = this.props.artist.albums.filter(function (el) {
-	        return el.id !== _this2.props.albumId;
-	      });
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(_artist.ArtistHeader, { artist: this.props.artist }),
-	        _react2.default.createElement(
+	      if (Object.keys(this.props.artist).length > 0) {
+	        var albumSongs = this.props.artist.songs.filter(function (song) {
+	          return song.album_id === _this2.props.albumId;
+	        });
+	        var otherAlbums = this.props.artist.albums.filter(function (el) {
+	          return el.id !== _this2.props.albumId;
+	        });
+	        return _react2.default.createElement(
 	          'div',
-	          { className: 'album-container' },
+	          { className: 'album-show-container' },
+	          _react2.default.createElement(_artist.ArtistHeader, { artist: this.props.artist }),
 	          _react2.default.createElement(
 	            'div',
-	            { className: 'album-content-container'
-	            },
+	            { className: 'album-container' },
 	            _react2.default.createElement(
 	              'div',
-	              { className: 'album-header' },
+	              { className: 'album-content-container'
+	              },
 	              _react2.default.createElement(
 	                'div',
-	                null,
-	                _react2.default.createElement('img', { src: this.props.album[0].album_picture_url,
-	                  className: 'album-header-image' })
+	                { className: 'album-header' },
+	                _react2.default.createElement(
+	                  'div',
+	                  { className: 'album-header-name' },
+	                  this.props.album[0].title
+	                ),
+	                _react2.default.createElement(
+	                  'div',
+	                  null,
+	                  _react2.default.createElement('img', { src: this.props.album[0].album_picture_url,
+	                    className: 'album-header-image' })
+	                )
 	              ),
 	              _react2.default.createElement(
 	                'div',
-	                { className: 'album-header-name' },
-	                this.props.album[0].title
+	                { className: 'album-song-index' },
+	                _react2.default.createElement(_song_index2.default, { songs: albumSongs })
 	              )
 	            ),
 	            _react2.default.createElement(
 	              'div',
-	              { className: 'album-song-index' },
-	              _react2.default.createElement(_song_index2.default, { songs: albumSongs })
+	              { className: 'album-sidebar-index-container' },
+	              _react2.default.createElement(
+	                'div',
+	                { className: 'album-sidebar-index-header' },
+	                'More by ',
+	                this.props.artist.name
+	              ),
+	              _react2.default.createElement(_album_index2.default, { albums: otherAlbums })
 	            )
-	          ),
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'album-sidebar-index-container' },
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'album-sidebar-index-header' },
-	              'More by ',
-	              this.props.artist.name
-	            ),
-	            _react2.default.createElement(_album_index2.default, { albums: otherAlbums })
 	          )
-	        )
-	      );
+	        );
+	      } else {
+	        return _react2.default.createElement('div', null);
+	      }
 	    }
 	  }]);
 	
@@ -46947,7 +47079,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	exports.default = Album;
 
 /***/ },
-/* 291 */
+/* 293 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46962,7 +47094,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _song_index_item = __webpack_require__(292);
+	var _song_index_item = __webpack_require__(294);
 	
 	var _song_index_item2 = _interopRequireDefault(_song_index_item);
 	
@@ -47006,7 +47138,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	exports.default = SongIndex;
 
 /***/ },
-/* 292 */
+/* 294 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -47019,7 +47151,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _song_container = __webpack_require__(416);
+	var _song_container = __webpack_require__(295);
 	
 	var _song_container2 = _interopRequireDefault(_song_container);
 	
@@ -47035,15 +47167,19 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	    _react2.default.createElement(_song_container2.default, { id: song.id, song: song }),
 	    _react2.default.createElement(
 	      'div',
-	      { className: 'song-index-item-title' },
-	      song.title
-	    ),
-	    _react2.default.createElement(
-	      'div',
-	      { className: 'song-length' },
-	      Math.floor(song.length / 60),
-	      ':',
-	      song.length % 60
+	      { className: 'song-index-item-info' },
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'song-index-item-title' },
+	        song.title
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'song-length' },
+	        Math.floor(song.length / 60),
+	        ':',
+	        song.length % 60
+	      )
 	    )
 	  );
 	};
@@ -47051,7 +47187,143 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	exports.default = SongIndexItem;
 
 /***/ },
-/* 293 */
+/* 295 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRedux = __webpack_require__(173);
+	
+	var _song = __webpack_require__(296);
+	
+	var _song2 = _interopRequireDefault(_song);
+	
+	var _song_actions = __webpack_require__(297);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var mapStateToProps = function mapStateToProps(state) {
+	  return {
+	    currentSong: state.currentSong
+	  };
+	};
+	
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	  return {
+	    playSong: function playSong(id) {
+	      return dispatch((0, _song_actions.playSong)(id));
+	    }
+	  };
+	};
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_song2.default);
+
+/***/ },
+/* 296 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Song = function (_React$Component) {
+	  _inherits(Song, _React$Component);
+	
+	  function Song(props) {
+	    _classCallCheck(this, Song);
+	
+	    var _this = _possibleConstructorReturn(this, (Song.__proto__ || Object.getPrototypeOf(Song)).call(this, props));
+	
+	    _this.playPause = _this.playPause.bind(_this);
+	    _this.songButton = _this.songButton.bind(_this);
+	    return _this;
+	  }
+	
+	  _createClass(Song, [{
+	    key: "playPause",
+	    value: function playPause() {
+	      if (window.as[0].mp3 !== this.props.song.audio_url) {
+	        this.props.playSong(this.props.song);
+	        this.forceUpdate();
+	      } else if (!window.as[0].playing) {
+	        window.as[0].play();
+	        this.forceUpdate();
+	      } else {
+	        window.as[0].pause();
+	        this.forceUpdate();
+	      }
+	    }
+	  }, {
+	    key: "songButton",
+	    value: function songButton() {
+	      if (window.as[0].playing && this.props.currentSong.id === this.props.song.id) {
+	        return "http://res.cloudinary.com/dtatkxxcm/image/upload/v1473113147/pause_dj_music_club_party-128_ietf2s.png";
+	      } else {
+	        return "http://res.cloudinary.com/dtatkxxcm/image/upload/v1473113149/play_dj_music_club_party-512_n8xnqx.png";
+	      }
+	    }
+	  }, {
+	    key: "render",
+	    value: function render() {
+	      return _react2.default.createElement(
+	        "div",
+	        { className: "song-button" },
+	        _react2.default.createElement("img", { src: this.songButton(), onClick: this.playPause, className: "play-button" })
+	      );
+	    }
+	  }]);
+	
+	  return Song;
+	}(_react2.default.Component);
+	
+	exports.default = Song;
+
+/***/ },
+/* 297 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var SongConstants = exports.SongConstants = {
+	  PLAY_SONG: "PLAY_SONG"
+	};
+	
+	var playSong = exports.playSong = function playSong(song) {
+	  return {
+	    type: SongConstants.PLAY_SONG,
+	    song: song
+	  };
+	};
+
+/***/ },
+/* 298 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -47062,11 +47334,11 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	
 	var _redux = __webpack_require__(180);
 	
-	var _root_reducer = __webpack_require__(294);
+	var _root_reducer = __webpack_require__(299);
 	
 	var _root_reducer2 = _interopRequireDefault(_root_reducer);
 	
-	var _root_middleware = __webpack_require__(405);
+	var _root_middleware = __webpack_require__(411);
 	
 	var _root_middleware2 = _interopRequireDefault(_root_middleware);
 	
@@ -47080,7 +47352,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	exports.default = configureStore;
 
 /***/ },
-/* 294 */
+/* 299 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -47091,15 +47363,15 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	
 	var _redux = __webpack_require__(180);
 	
-	var _session_reducer = __webpack_require__(295);
+	var _session_reducer = __webpack_require__(300);
 	
 	var _session_reducer2 = _interopRequireDefault(_session_reducer);
 	
-	var _artist_reducer = __webpack_require__(404);
+	var _artist_reducer = __webpack_require__(409);
 	
 	var _artist_reducer2 = _interopRequireDefault(_artist_reducer);
 	
-	var _song_reducer = __webpack_require__(411);
+	var _song_reducer = __webpack_require__(410);
 	
 	var _song_reducer2 = _interopRequireDefault(_song_reducer);
 	
@@ -47112,7 +47384,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	});
 
 /***/ },
-/* 295 */
+/* 300 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -47123,7 +47395,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	
 	var _session_actions = __webpack_require__(261);
 	
-	var _merge = __webpack_require__(296);
+	var _merge = __webpack_require__(301);
 	
 	var _merge2 = _interopRequireDefault(_merge);
 	
@@ -47155,11 +47427,11 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	exports.default = SessionReducer;
 
 /***/ },
-/* 296 */
+/* 301 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseMerge = __webpack_require__(297),
-	    createAssigner = __webpack_require__(400);
+	var baseMerge = __webpack_require__(302),
+	    createAssigner = __webpack_require__(405);
 	
 	/**
 	 * This method is like `_.assign` except that it recursively merges own and
@@ -47200,17 +47472,17 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 297 */
+/* 302 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Stack = __webpack_require__(298),
-	    arrayEach = __webpack_require__(338),
-	    assignMergeValue = __webpack_require__(339),
-	    baseKeysIn = __webpack_require__(340),
-	    baseMergeDeep = __webpack_require__(343),
-	    isArray = __webpack_require__(355),
-	    isObject = __webpack_require__(316),
-	    isTypedArray = __webpack_require__(394);
+	var Stack = __webpack_require__(303),
+	    arrayEach = __webpack_require__(343),
+	    assignMergeValue = __webpack_require__(344),
+	    baseKeysIn = __webpack_require__(345),
+	    baseMergeDeep = __webpack_require__(348),
+	    isArray = __webpack_require__(360),
+	    isObject = __webpack_require__(321),
+	    isTypedArray = __webpack_require__(399);
 	
 	/**
 	 * The base implementation of `_.merge` without support for multiple sources.
@@ -47256,15 +47528,15 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 298 */
+/* 303 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var ListCache = __webpack_require__(299),
-	    stackClear = __webpack_require__(307),
-	    stackDelete = __webpack_require__(308),
-	    stackGet = __webpack_require__(309),
-	    stackHas = __webpack_require__(310),
-	    stackSet = __webpack_require__(311);
+	var ListCache = __webpack_require__(304),
+	    stackClear = __webpack_require__(312),
+	    stackDelete = __webpack_require__(313),
+	    stackGet = __webpack_require__(314),
+	    stackHas = __webpack_require__(315),
+	    stackSet = __webpack_require__(316);
 	
 	/**
 	 * Creates a stack cache object to store key-value pairs.
@@ -47288,14 +47560,14 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 299 */
+/* 304 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var listCacheClear = __webpack_require__(300),
-	    listCacheDelete = __webpack_require__(301),
-	    listCacheGet = __webpack_require__(304),
-	    listCacheHas = __webpack_require__(305),
-	    listCacheSet = __webpack_require__(306);
+	var listCacheClear = __webpack_require__(305),
+	    listCacheDelete = __webpack_require__(306),
+	    listCacheGet = __webpack_require__(309),
+	    listCacheHas = __webpack_require__(310),
+	    listCacheSet = __webpack_require__(311);
 	
 	/**
 	 * Creates an list cache object.
@@ -47326,7 +47598,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 300 */
+/* 305 */
 /***/ function(module, exports) {
 
 	/**
@@ -47344,10 +47616,10 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 301 */
+/* 306 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var assocIndexOf = __webpack_require__(302);
+	var assocIndexOf = __webpack_require__(307);
 	
 	/** Used for built-in method references. */
 	var arrayProto = Array.prototype;
@@ -47384,10 +47656,10 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 302 */
+/* 307 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var eq = __webpack_require__(303);
+	var eq = __webpack_require__(308);
 	
 	/**
 	 * Gets the index at which the `key` is found in `array` of key-value pairs.
@@ -47411,7 +47683,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 303 */
+/* 308 */
 /***/ function(module, exports) {
 
 	/**
@@ -47454,10 +47726,10 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 304 */
+/* 309 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var assocIndexOf = __webpack_require__(302);
+	var assocIndexOf = __webpack_require__(307);
 	
 	/**
 	 * Gets the list cache value for `key`.
@@ -47479,10 +47751,10 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 305 */
+/* 310 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var assocIndexOf = __webpack_require__(302);
+	var assocIndexOf = __webpack_require__(307);
 	
 	/**
 	 * Checks if a list cache value for `key` exists.
@@ -47501,10 +47773,10 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 306 */
+/* 311 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var assocIndexOf = __webpack_require__(302);
+	var assocIndexOf = __webpack_require__(307);
 	
 	/**
 	 * Sets the list cache `key` to `value`.
@@ -47532,10 +47804,10 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 307 */
+/* 312 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var ListCache = __webpack_require__(299);
+	var ListCache = __webpack_require__(304);
 	
 	/**
 	 * Removes all key-value entries from the stack.
@@ -47552,7 +47824,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 308 */
+/* 313 */
 /***/ function(module, exports) {
 
 	/**
@@ -47572,7 +47844,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 309 */
+/* 314 */
 /***/ function(module, exports) {
 
 	/**
@@ -47592,7 +47864,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 310 */
+/* 315 */
 /***/ function(module, exports) {
 
 	/**
@@ -47612,12 +47884,12 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 311 */
+/* 316 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var ListCache = __webpack_require__(299),
-	    Map = __webpack_require__(312),
-	    MapCache = __webpack_require__(323);
+	var ListCache = __webpack_require__(304),
+	    Map = __webpack_require__(317),
+	    MapCache = __webpack_require__(328);
 	
 	/** Used as the size to enable large array optimizations. */
 	var LARGE_ARRAY_SIZE = 200;
@@ -47650,11 +47922,11 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 312 */
+/* 317 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var getNative = __webpack_require__(313),
-	    root = __webpack_require__(319);
+	var getNative = __webpack_require__(318),
+	    root = __webpack_require__(324);
 	
 	/* Built-in method references that are verified to be native. */
 	var Map = getNative(root, 'Map');
@@ -47663,11 +47935,11 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 313 */
+/* 318 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseIsNative = __webpack_require__(314),
-	    getValue = __webpack_require__(322);
+	var baseIsNative = __webpack_require__(319),
+	    getValue = __webpack_require__(327);
 	
 	/**
 	 * Gets the native function at `key` of `object`.
@@ -47686,14 +47958,14 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 314 */
+/* 319 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isFunction = __webpack_require__(315),
+	var isFunction = __webpack_require__(320),
 	    isHostObject = __webpack_require__(185),
-	    isMasked = __webpack_require__(317),
-	    isObject = __webpack_require__(316),
-	    toSource = __webpack_require__(321);
+	    isMasked = __webpack_require__(322),
+	    isObject = __webpack_require__(321),
+	    toSource = __webpack_require__(326);
 	
 	/**
 	 * Used to match `RegExp`
@@ -47740,10 +48012,10 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 315 */
+/* 320 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isObject = __webpack_require__(316);
+	var isObject = __webpack_require__(321);
 	
 	/** `Object#toString` result references. */
 	var funcTag = '[object Function]',
@@ -47787,7 +48059,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 316 */
+/* 321 */
 /***/ function(module, exports) {
 
 	/**
@@ -47824,10 +48096,10 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 317 */
+/* 322 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var coreJsData = __webpack_require__(318);
+	var coreJsData = __webpack_require__(323);
 	
 	/** Used to detect methods masquerading as native. */
 	var maskSrcKey = (function() {
@@ -47850,10 +48122,10 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 318 */
+/* 323 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var root = __webpack_require__(319);
+	var root = __webpack_require__(324);
 	
 	/** Used to detect overreaching core-js shims. */
 	var coreJsData = root['__core-js_shared__'];
@@ -47862,10 +48134,10 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 319 */
+/* 324 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var freeGlobal = __webpack_require__(320);
+	var freeGlobal = __webpack_require__(325);
 	
 	/** Detect free variable `self`. */
 	var freeSelf = typeof self == 'object' && self && self.Object === Object && self;
@@ -47877,7 +48149,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 320 */
+/* 325 */
 /***/ function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {/** Detect free variable `global` from Node.js. */
@@ -47888,7 +48160,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 321 */
+/* 326 */
 /***/ function(module, exports) {
 
 	/** Used for built-in method references. */
@@ -47920,7 +48192,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 322 */
+/* 327 */
 /***/ function(module, exports) {
 
 	/**
@@ -47939,14 +48211,14 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 323 */
+/* 328 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var mapCacheClear = __webpack_require__(324),
-	    mapCacheDelete = __webpack_require__(332),
-	    mapCacheGet = __webpack_require__(335),
-	    mapCacheHas = __webpack_require__(336),
-	    mapCacheSet = __webpack_require__(337);
+	var mapCacheClear = __webpack_require__(329),
+	    mapCacheDelete = __webpack_require__(337),
+	    mapCacheGet = __webpack_require__(340),
+	    mapCacheHas = __webpack_require__(341),
+	    mapCacheSet = __webpack_require__(342);
 	
 	/**
 	 * Creates a map cache object to store key-value pairs.
@@ -47977,12 +48249,12 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 324 */
+/* 329 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Hash = __webpack_require__(325),
-	    ListCache = __webpack_require__(299),
-	    Map = __webpack_require__(312);
+	var Hash = __webpack_require__(330),
+	    ListCache = __webpack_require__(304),
+	    Map = __webpack_require__(317);
 	
 	/**
 	 * Removes all key-value entries from the map.
@@ -48003,14 +48275,14 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 325 */
+/* 330 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var hashClear = __webpack_require__(326),
-	    hashDelete = __webpack_require__(328),
-	    hashGet = __webpack_require__(329),
-	    hashHas = __webpack_require__(330),
-	    hashSet = __webpack_require__(331);
+	var hashClear = __webpack_require__(331),
+	    hashDelete = __webpack_require__(333),
+	    hashGet = __webpack_require__(334),
+	    hashHas = __webpack_require__(335),
+	    hashSet = __webpack_require__(336);
 	
 	/**
 	 * Creates a hash object.
@@ -48041,10 +48313,10 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 326 */
+/* 331 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var nativeCreate = __webpack_require__(327);
+	var nativeCreate = __webpack_require__(332);
 	
 	/**
 	 * Removes all key-value entries from the hash.
@@ -48061,10 +48333,10 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 327 */
+/* 332 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var getNative = __webpack_require__(313);
+	var getNative = __webpack_require__(318);
 	
 	/* Built-in method references that are verified to be native. */
 	var nativeCreate = getNative(Object, 'create');
@@ -48073,7 +48345,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 328 */
+/* 333 */
 /***/ function(module, exports) {
 
 	/**
@@ -48094,10 +48366,10 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 329 */
+/* 334 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var nativeCreate = __webpack_require__(327);
+	var nativeCreate = __webpack_require__(332);
 	
 	/** Used to stand-in for `undefined` hash values. */
 	var HASH_UNDEFINED = '__lodash_hash_undefined__';
@@ -48130,10 +48402,10 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 330 */
+/* 335 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var nativeCreate = __webpack_require__(327);
+	var nativeCreate = __webpack_require__(332);
 	
 	/** Used for built-in method references. */
 	var objectProto = Object.prototype;
@@ -48159,10 +48431,10 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 331 */
+/* 336 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var nativeCreate = __webpack_require__(327);
+	var nativeCreate = __webpack_require__(332);
 	
 	/** Used to stand-in for `undefined` hash values. */
 	var HASH_UNDEFINED = '__lodash_hash_undefined__';
@@ -48187,10 +48459,10 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 332 */
+/* 337 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var getMapData = __webpack_require__(333);
+	var getMapData = __webpack_require__(338);
 	
 	/**
 	 * Removes `key` and its value from the map.
@@ -48209,10 +48481,10 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 333 */
+/* 338 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isKeyable = __webpack_require__(334);
+	var isKeyable = __webpack_require__(339);
 	
 	/**
 	 * Gets the data for `map`.
@@ -48233,7 +48505,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 334 */
+/* 339 */
 /***/ function(module, exports) {
 
 	/**
@@ -48254,10 +48526,10 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 335 */
+/* 340 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var getMapData = __webpack_require__(333);
+	var getMapData = __webpack_require__(338);
 	
 	/**
 	 * Gets the map value for `key`.
@@ -48276,10 +48548,10 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 336 */
+/* 341 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var getMapData = __webpack_require__(333);
+	var getMapData = __webpack_require__(338);
 	
 	/**
 	 * Checks if a map value for `key` exists.
@@ -48298,10 +48570,10 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 337 */
+/* 342 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var getMapData = __webpack_require__(333);
+	var getMapData = __webpack_require__(338);
 	
 	/**
 	 * Sets the map `key` to `value`.
@@ -48322,7 +48594,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 338 */
+/* 343 */
 /***/ function(module, exports) {
 
 	/**
@@ -48350,10 +48622,10 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 339 */
+/* 344 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var eq = __webpack_require__(303);
+	var eq = __webpack_require__(308);
 	
 	/**
 	 * This function is like `assignValue` except that it doesn't assign
@@ -48375,12 +48647,12 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 340 */
+/* 345 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isObject = __webpack_require__(316),
-	    isPrototype = __webpack_require__(341),
-	    nativeKeysIn = __webpack_require__(342);
+	var isObject = __webpack_require__(321),
+	    isPrototype = __webpack_require__(346),
+	    nativeKeysIn = __webpack_require__(347);
 	
 	/** Used for built-in method references. */
 	var objectProto = Object.prototype;
@@ -48414,7 +48686,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 341 */
+/* 346 */
 /***/ function(module, exports) {
 
 	/** Used for built-in method references. */
@@ -48438,7 +48710,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 342 */
+/* 347 */
 /***/ function(module, exports) {
 
 	/**
@@ -48464,20 +48736,20 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 343 */
+/* 348 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var assignMergeValue = __webpack_require__(339),
-	    baseClone = __webpack_require__(344),
-	    copyArray = __webpack_require__(360),
-	    isArguments = __webpack_require__(351),
-	    isArray = __webpack_require__(355),
-	    isArrayLikeObject = __webpack_require__(352),
-	    isFunction = __webpack_require__(315),
-	    isObject = __webpack_require__(316),
+	var assignMergeValue = __webpack_require__(344),
+	    baseClone = __webpack_require__(349),
+	    copyArray = __webpack_require__(365),
+	    isArguments = __webpack_require__(356),
+	    isArray = __webpack_require__(360),
+	    isArrayLikeObject = __webpack_require__(357),
+	    isFunction = __webpack_require__(320),
+	    isObject = __webpack_require__(321),
 	    isPlainObject = __webpack_require__(182),
-	    isTypedArray = __webpack_require__(394),
-	    toPlainObject = __webpack_require__(398);
+	    isTypedArray = __webpack_require__(399),
+	    toPlainObject = __webpack_require__(403);
 	
 	/**
 	 * A specialized version of `baseMerge` for arrays and objects which performs
@@ -48552,26 +48824,26 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 344 */
+/* 349 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Stack = __webpack_require__(298),
-	    arrayEach = __webpack_require__(338),
-	    assignValue = __webpack_require__(345),
-	    baseAssign = __webpack_require__(346),
-	    cloneBuffer = __webpack_require__(359),
-	    copyArray = __webpack_require__(360),
-	    copySymbols = __webpack_require__(361),
-	    getAllKeys = __webpack_require__(364),
-	    getTag = __webpack_require__(367),
-	    initCloneArray = __webpack_require__(373),
-	    initCloneByTag = __webpack_require__(374),
-	    initCloneObject = __webpack_require__(389),
-	    isArray = __webpack_require__(355),
-	    isBuffer = __webpack_require__(391),
+	var Stack = __webpack_require__(303),
+	    arrayEach = __webpack_require__(343),
+	    assignValue = __webpack_require__(350),
+	    baseAssign = __webpack_require__(351),
+	    cloneBuffer = __webpack_require__(364),
+	    copyArray = __webpack_require__(365),
+	    copySymbols = __webpack_require__(366),
+	    getAllKeys = __webpack_require__(369),
+	    getTag = __webpack_require__(372),
+	    initCloneArray = __webpack_require__(378),
+	    initCloneByTag = __webpack_require__(379),
+	    initCloneObject = __webpack_require__(394),
+	    isArray = __webpack_require__(360),
+	    isBuffer = __webpack_require__(396),
 	    isHostObject = __webpack_require__(185),
-	    isObject = __webpack_require__(316),
-	    keys = __webpack_require__(348);
+	    isObject = __webpack_require__(321),
+	    keys = __webpack_require__(353);
 	
 	/** `Object#toString` result references. */
 	var argsTag = '[object Arguments]',
@@ -48697,10 +48969,10 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 345 */
+/* 350 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var eq = __webpack_require__(303);
+	var eq = __webpack_require__(308);
 	
 	/** Used for built-in method references. */
 	var objectProto = Object.prototype;
@@ -48730,11 +49002,11 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 346 */
+/* 351 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var copyObject = __webpack_require__(347),
-	    keys = __webpack_require__(348);
+	var copyObject = __webpack_require__(352),
+	    keys = __webpack_require__(353);
 	
 	/**
 	 * The base implementation of `_.assign` without support for multiple sources
@@ -48753,10 +49025,10 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 347 */
+/* 352 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var assignValue = __webpack_require__(345);
+	var assignValue = __webpack_require__(350);
 	
 	/**
 	 * Copies properties of `source` to `object`.
@@ -48790,12 +49062,12 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 348 */
+/* 353 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var arrayLikeKeys = __webpack_require__(349),
-	    baseKeys = __webpack_require__(357),
-	    isArrayLike = __webpack_require__(353);
+	var arrayLikeKeys = __webpack_require__(354),
+	    baseKeys = __webpack_require__(362),
+	    isArrayLike = __webpack_require__(358);
 	
 	/**
 	 * Creates an array of the own enumerable property names of `object`.
@@ -48833,13 +49105,13 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 349 */
+/* 354 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseTimes = __webpack_require__(350),
-	    isArguments = __webpack_require__(351),
-	    isArray = __webpack_require__(355),
-	    isIndex = __webpack_require__(356);
+	var baseTimes = __webpack_require__(355),
+	    isArguments = __webpack_require__(356),
+	    isArray = __webpack_require__(360),
+	    isIndex = __webpack_require__(361);
 	
 	/** Used for built-in method references. */
 	var objectProto = Object.prototype;
@@ -48878,7 +49150,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 350 */
+/* 355 */
 /***/ function(module, exports) {
 
 	/**
@@ -48904,10 +49176,10 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 351 */
+/* 356 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isArrayLikeObject = __webpack_require__(352);
+	var isArrayLikeObject = __webpack_require__(357);
 	
 	/** `Object#toString` result references. */
 	var argsTag = '[object Arguments]';
@@ -48956,10 +49228,10 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 352 */
+/* 357 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isArrayLike = __webpack_require__(353),
+	var isArrayLike = __webpack_require__(358),
 	    isObjectLike = __webpack_require__(186);
 	
 	/**
@@ -48995,11 +49267,11 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 353 */
+/* 358 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isFunction = __webpack_require__(315),
-	    isLength = __webpack_require__(354);
+	var isFunction = __webpack_require__(320),
+	    isLength = __webpack_require__(359);
 	
 	/**
 	 * Checks if `value` is array-like. A value is considered array-like if it's
@@ -49034,7 +49306,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 354 */
+/* 359 */
 /***/ function(module, exports) {
 
 	/** Used as references for various `Number` constants. */
@@ -49075,7 +49347,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 355 */
+/* 360 */
 /***/ function(module, exports) {
 
 	/**
@@ -49107,7 +49379,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 356 */
+/* 361 */
 /***/ function(module, exports) {
 
 	/** Used as references for various `Number` constants. */
@@ -49135,11 +49407,11 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 357 */
+/* 362 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isPrototype = __webpack_require__(341),
-	    nativeKeys = __webpack_require__(358);
+	var isPrototype = __webpack_require__(346),
+	    nativeKeys = __webpack_require__(363);
 	
 	/** Used for built-in method references. */
 	var objectProto = Object.prototype;
@@ -49171,7 +49443,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 358 */
+/* 363 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var overArg = __webpack_require__(184);
@@ -49183,7 +49455,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 359 */
+/* 364 */
 /***/ function(module, exports) {
 
 	/**
@@ -49207,7 +49479,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 360 */
+/* 365 */
 /***/ function(module, exports) {
 
 	/**
@@ -49233,11 +49505,11 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 361 */
+/* 366 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var copyObject = __webpack_require__(347),
-	    getSymbols = __webpack_require__(362);
+	var copyObject = __webpack_require__(352),
+	    getSymbols = __webpack_require__(367);
 	
 	/**
 	 * Copies own symbol properties of `source` to `object`.
@@ -49255,11 +49527,11 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 362 */
+/* 367 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var overArg = __webpack_require__(184),
-	    stubArray = __webpack_require__(363);
+	    stubArray = __webpack_require__(368);
 	
 	/* Built-in method references for those with the same name as other `lodash` methods. */
 	var nativeGetSymbols = Object.getOwnPropertySymbols;
@@ -49277,7 +49549,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 363 */
+/* 368 */
 /***/ function(module, exports) {
 
 	/**
@@ -49306,12 +49578,12 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 364 */
+/* 369 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseGetAllKeys = __webpack_require__(365),
-	    getSymbols = __webpack_require__(362),
-	    keys = __webpack_require__(348);
+	var baseGetAllKeys = __webpack_require__(370),
+	    getSymbols = __webpack_require__(367),
+	    keys = __webpack_require__(353);
 	
 	/**
 	 * Creates an array of own enumerable property names and symbols of `object`.
@@ -49328,11 +49600,11 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 365 */
+/* 370 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var arrayPush = __webpack_require__(366),
-	    isArray = __webpack_require__(355);
+	var arrayPush = __webpack_require__(371),
+	    isArray = __webpack_require__(360);
 	
 	/**
 	 * The base implementation of `getAllKeys` and `getAllKeysIn` which uses
@@ -49354,7 +49626,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 366 */
+/* 371 */
 /***/ function(module, exports) {
 
 	/**
@@ -49380,16 +49652,16 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 367 */
+/* 372 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var DataView = __webpack_require__(368),
-	    Map = __webpack_require__(312),
-	    Promise = __webpack_require__(369),
-	    Set = __webpack_require__(370),
-	    WeakMap = __webpack_require__(371),
-	    baseGetTag = __webpack_require__(372),
-	    toSource = __webpack_require__(321);
+	var DataView = __webpack_require__(373),
+	    Map = __webpack_require__(317),
+	    Promise = __webpack_require__(374),
+	    Set = __webpack_require__(375),
+	    WeakMap = __webpack_require__(376),
+	    baseGetTag = __webpack_require__(377),
+	    toSource = __webpack_require__(326);
 	
 	/** `Object#toString` result references. */
 	var mapTag = '[object Map]',
@@ -49455,11 +49727,11 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 368 */
+/* 373 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var getNative = __webpack_require__(313),
-	    root = __webpack_require__(319);
+	var getNative = __webpack_require__(318),
+	    root = __webpack_require__(324);
 	
 	/* Built-in method references that are verified to be native. */
 	var DataView = getNative(root, 'DataView');
@@ -49468,11 +49740,11 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 369 */
+/* 374 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var getNative = __webpack_require__(313),
-	    root = __webpack_require__(319);
+	var getNative = __webpack_require__(318),
+	    root = __webpack_require__(324);
 	
 	/* Built-in method references that are verified to be native. */
 	var Promise = getNative(root, 'Promise');
@@ -49481,11 +49753,11 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 370 */
+/* 375 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var getNative = __webpack_require__(313),
-	    root = __webpack_require__(319);
+	var getNative = __webpack_require__(318),
+	    root = __webpack_require__(324);
 	
 	/* Built-in method references that are verified to be native. */
 	var Set = getNative(root, 'Set');
@@ -49494,11 +49766,11 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 371 */
+/* 376 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var getNative = __webpack_require__(313),
-	    root = __webpack_require__(319);
+	var getNative = __webpack_require__(318),
+	    root = __webpack_require__(324);
 	
 	/* Built-in method references that are verified to be native. */
 	var WeakMap = getNative(root, 'WeakMap');
@@ -49507,7 +49779,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 372 */
+/* 377 */
 /***/ function(module, exports) {
 
 	/** Used for built-in method references. */
@@ -49535,7 +49807,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 373 */
+/* 378 */
 /***/ function(module, exports) {
 
 	/** Used for built-in method references. */
@@ -49567,16 +49839,16 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 374 */
+/* 379 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var cloneArrayBuffer = __webpack_require__(375),
-	    cloneDataView = __webpack_require__(377),
-	    cloneMap = __webpack_require__(378),
-	    cloneRegExp = __webpack_require__(382),
-	    cloneSet = __webpack_require__(383),
-	    cloneSymbol = __webpack_require__(386),
-	    cloneTypedArray = __webpack_require__(388);
+	var cloneArrayBuffer = __webpack_require__(380),
+	    cloneDataView = __webpack_require__(382),
+	    cloneMap = __webpack_require__(383),
+	    cloneRegExp = __webpack_require__(387),
+	    cloneSet = __webpack_require__(388),
+	    cloneSymbol = __webpack_require__(391),
+	    cloneTypedArray = __webpack_require__(393);
 	
 	/** `Object#toString` result references. */
 	var boolTag = '[object Boolean]',
@@ -49653,10 +49925,10 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 375 */
+/* 380 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Uint8Array = __webpack_require__(376);
+	var Uint8Array = __webpack_require__(381);
 	
 	/**
 	 * Creates a clone of `arrayBuffer`.
@@ -49675,10 +49947,10 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 376 */
+/* 381 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var root = __webpack_require__(319);
+	var root = __webpack_require__(324);
 	
 	/** Built-in value references. */
 	var Uint8Array = root.Uint8Array;
@@ -49687,10 +49959,10 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 377 */
+/* 382 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var cloneArrayBuffer = __webpack_require__(375);
+	var cloneArrayBuffer = __webpack_require__(380);
 	
 	/**
 	 * Creates a clone of `dataView`.
@@ -49709,12 +49981,12 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 378 */
+/* 383 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var addMapEntry = __webpack_require__(379),
-	    arrayReduce = __webpack_require__(380),
-	    mapToArray = __webpack_require__(381);
+	var addMapEntry = __webpack_require__(384),
+	    arrayReduce = __webpack_require__(385),
+	    mapToArray = __webpack_require__(386);
 	
 	/**
 	 * Creates a clone of `map`.
@@ -49734,7 +50006,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 379 */
+/* 384 */
 /***/ function(module, exports) {
 
 	/**
@@ -49755,7 +50027,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 380 */
+/* 385 */
 /***/ function(module, exports) {
 
 	/**
@@ -49787,7 +50059,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 381 */
+/* 386 */
 /***/ function(module, exports) {
 
 	/**
@@ -49811,7 +50083,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 382 */
+/* 387 */
 /***/ function(module, exports) {
 
 	/** Used to match `RegExp` flags from their coerced string values. */
@@ -49834,12 +50106,12 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 383 */
+/* 388 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var addSetEntry = __webpack_require__(384),
-	    arrayReduce = __webpack_require__(380),
-	    setToArray = __webpack_require__(385);
+	var addSetEntry = __webpack_require__(389),
+	    arrayReduce = __webpack_require__(385),
+	    setToArray = __webpack_require__(390);
 	
 	/**
 	 * Creates a clone of `set`.
@@ -49859,7 +50131,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 384 */
+/* 389 */
 /***/ function(module, exports) {
 
 	/**
@@ -49880,7 +50152,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 385 */
+/* 390 */
 /***/ function(module, exports) {
 
 	/**
@@ -49904,10 +50176,10 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 386 */
+/* 391 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var Symbol = __webpack_require__(387);
+	var Symbol = __webpack_require__(392);
 	
 	/** Used to convert symbols to primitives and strings. */
 	var symbolProto = Symbol ? Symbol.prototype : undefined,
@@ -49928,10 +50200,10 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 387 */
+/* 392 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var root = __webpack_require__(319);
+	var root = __webpack_require__(324);
 	
 	/** Built-in value references. */
 	var Symbol = root.Symbol;
@@ -49940,10 +50212,10 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 388 */
+/* 393 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var cloneArrayBuffer = __webpack_require__(375);
+	var cloneArrayBuffer = __webpack_require__(380);
 	
 	/**
 	 * Creates a clone of `typedArray`.
@@ -49962,12 +50234,12 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 389 */
+/* 394 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseCreate = __webpack_require__(390),
+	var baseCreate = __webpack_require__(395),
 	    getPrototype = __webpack_require__(183),
-	    isPrototype = __webpack_require__(341);
+	    isPrototype = __webpack_require__(346);
 	
 	/**
 	 * Initializes an object clone.
@@ -49986,10 +50258,10 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 390 */
+/* 395 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isObject = __webpack_require__(316);
+	var isObject = __webpack_require__(321);
 	
 	/** Built-in value references. */
 	var objectCreate = Object.create;
@@ -50010,11 +50282,11 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 391 */
+/* 396 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(module) {var root = __webpack_require__(319),
-	    stubFalse = __webpack_require__(393);
+	/* WEBPACK VAR INJECTION */(function(module) {var root = __webpack_require__(324),
+	    stubFalse = __webpack_require__(398);
 	
 	/** Detect free variable `exports`. */
 	var freeExports = typeof exports == 'object' && exports && !exports.nodeType && exports;
@@ -50052,10 +50324,10 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	
 	module.exports = isBuffer;
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(392)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(397)(module)))
 
 /***/ },
-/* 392 */
+/* 397 */
 /***/ function(module, exports) {
 
 	module.exports = function(module) {
@@ -50071,7 +50343,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 393 */
+/* 398 */
 /***/ function(module, exports) {
 
 	/**
@@ -50095,12 +50367,12 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 394 */
+/* 399 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseIsTypedArray = __webpack_require__(395),
-	    baseUnary = __webpack_require__(396),
-	    nodeUtil = __webpack_require__(397);
+	var baseIsTypedArray = __webpack_require__(400),
+	    baseUnary = __webpack_require__(401),
+	    nodeUtil = __webpack_require__(402);
 	
 	/* Node.js helper references. */
 	var nodeIsTypedArray = nodeUtil && nodeUtil.isTypedArray;
@@ -50128,10 +50400,10 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 395 */
+/* 400 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isLength = __webpack_require__(354),
+	var isLength = __webpack_require__(359),
 	    isObjectLike = __webpack_require__(186);
 	
 	/** `Object#toString` result references. */
@@ -50203,7 +50475,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 396 */
+/* 401 */
 /***/ function(module, exports) {
 
 	/**
@@ -50223,10 +50495,10 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 397 */
+/* 402 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(module) {var freeGlobal = __webpack_require__(320);
+	/* WEBPACK VAR INJECTION */(function(module) {var freeGlobal = __webpack_require__(325);
 	
 	/** Detect free variable `exports`. */
 	var freeExports = typeof exports == 'object' && exports && !exports.nodeType && exports;
@@ -50249,14 +50521,14 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	
 	module.exports = nodeUtil;
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(392)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(397)(module)))
 
 /***/ },
-/* 398 */
+/* 403 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var copyObject = __webpack_require__(347),
-	    keysIn = __webpack_require__(399);
+	var copyObject = __webpack_require__(352),
+	    keysIn = __webpack_require__(404);
 	
 	/**
 	 * Converts `value` to a plain object flattening inherited enumerable string
@@ -50290,12 +50562,12 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 399 */
+/* 404 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var arrayLikeKeys = __webpack_require__(349),
-	    baseKeysIn = __webpack_require__(340),
-	    isArrayLike = __webpack_require__(353);
+	var arrayLikeKeys = __webpack_require__(354),
+	    baseKeysIn = __webpack_require__(345),
+	    isArrayLike = __webpack_require__(358);
 	
 	/**
 	 * Creates an array of the own and inherited enumerable property names of `object`.
@@ -50328,11 +50600,11 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 400 */
+/* 405 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var baseRest = __webpack_require__(401),
-	    isIterateeCall = __webpack_require__(403);
+	var baseRest = __webpack_require__(406),
+	    isIterateeCall = __webpack_require__(408);
 	
 	/**
 	 * Creates a function like `_.assign`.
@@ -50371,10 +50643,10 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 401 */
+/* 406 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var apply = __webpack_require__(402);
+	var apply = __webpack_require__(407);
 	
 	/* Built-in method references for those with the same name as other `lodash` methods. */
 	var nativeMax = Math.max;
@@ -50412,7 +50684,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 402 */
+/* 407 */
 /***/ function(module, exports) {
 
 	/**
@@ -50439,13 +50711,13 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 403 */
+/* 408 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var eq = __webpack_require__(303),
-	    isArrayLike = __webpack_require__(353),
-	    isIndex = __webpack_require__(356),
-	    isObject = __webpack_require__(316);
+	var eq = __webpack_require__(308),
+	    isArrayLike = __webpack_require__(358),
+	    isIndex = __webpack_require__(361),
+	    isObject = __webpack_require__(321);
 	
 	/**
 	 * Checks if the given arguments are from an iteratee call.
@@ -50475,7 +50747,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 
 /***/ },
-/* 404 */
+/* 409 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -50486,7 +50758,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	
 	var _artist_actions = __webpack_require__(266);
 	
-	var _merge = __webpack_require__(296);
+	var _merge = __webpack_require__(301);
 	
 	var _merge2 = _interopRequireDefault(_merge);
 	
@@ -50512,7 +50784,40 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	exports.default = ArtistReducer;
 
 /***/ },
-/* 405 */
+/* 410 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _song_actions = __webpack_require__(297);
+	
+	var _merge = __webpack_require__(301);
+	
+	var _merge2 = _interopRequireDefault(_merge);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var SongReducer = function SongReducer() {
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? null : arguments[0];
+	  var action = arguments[1];
+	
+	  switch (action.type) {
+	    case _song_actions.SongConstants.PLAY_SONG:
+	      // return merge({}, state, action.song);
+	      return action.song;
+	    default:
+	      return state;
+	  }
+	};
+	
+	exports.default = SongReducer;
+
+/***/ },
+/* 411 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -50523,15 +50828,15 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	
 	var _redux = __webpack_require__(180);
 	
-	var _reduxLogger = __webpack_require__(406);
+	var _reduxLogger = __webpack_require__(412);
 	
 	var _reduxLogger2 = _interopRequireDefault(_reduxLogger);
 	
-	var _session_middleware = __webpack_require__(407);
+	var _session_middleware = __webpack_require__(413);
 	
 	var _session_middleware2 = _interopRequireDefault(_session_middleware);
 	
-	var _artist_middleware = __webpack_require__(409);
+	var _artist_middleware = __webpack_require__(415);
 	
 	var _artist_middleware2 = _interopRequireDefault(_artist_middleware);
 	
@@ -50544,7 +50849,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	exports.default = RootMiddleware;
 
 /***/ },
-/* 406 */
+/* 412 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -50777,7 +51082,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	module.exports = createLogger;
 
 /***/ },
-/* 407 */
+/* 413 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -50788,7 +51093,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	
 	var _session_actions = __webpack_require__(261);
 	
-	var _session_api_util = __webpack_require__(408);
+	var _session_api_util = __webpack_require__(414);
 	
 	var _reactRouter = __webpack_require__(198);
 	
@@ -50825,7 +51130,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	};
 
 /***/ },
-/* 408 */
+/* 414 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -50869,7 +51174,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	};
 
 /***/ },
-/* 409 */
+/* 415 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -50878,7 +51183,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	  value: true
 	});
 	
-	var _artist_api_util = __webpack_require__(410);
+	var _artist_api_util = __webpack_require__(416);
 	
 	var _artist_actions = __webpack_require__(266);
 	
@@ -50913,7 +51218,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	//Artist Action
 
 /***/ },
-/* 410 */
+/* 416 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -50936,276 +51241,6 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	    success: success
 	  });
 	};
-
-/***/ },
-/* 411 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _song_actions = __webpack_require__(412);
-	
-	var _merge = __webpack_require__(296);
-	
-	var _merge2 = _interopRequireDefault(_merge);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var SongReducer = function SongReducer() {
-	  var state = arguments.length <= 0 || arguments[0] === undefined ? null : arguments[0];
-	  var action = arguments[1];
-	
-	  switch (action.type) {
-	    case _song_actions.SongConstants.PLAY_SONG:
-	      // return merge({}, state, action.song);
-	      return action.song;
-	    default:
-	      return state;
-	  }
-	};
-	
-	exports.default = SongReducer;
-
-/***/ },
-/* 412 */
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	var SongConstants = exports.SongConstants = {
-	  PLAY_SONG: "PLAY_SONG"
-	};
-	
-	var playSong = exports.playSong = function playSong(song) {
-	  return {
-	    type: SongConstants.PLAY_SONG,
-	    song: song
-	  };
-	};
-
-/***/ },
-/* 413 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRedux = __webpack_require__(173);
-	
-	var _audio_player = __webpack_require__(414);
-	
-	var _audio_player2 = _interopRequireDefault(_audio_player);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var mapStateToProps = function mapStateToProps(state, ownProps) {
-	  return {
-	    song: state.currentSong
-	  };
-	};
-	
-	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-	  return {};
-	};
-	
-	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_audio_player2.default);
-
-/***/ },
-/* 414 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var AudioPlayer = function (_React$Component) {
-	  _inherits(AudioPlayer, _React$Component);
-	
-	  function AudioPlayer(props) {
-	    _classCallCheck(this, AudioPlayer);
-	
-	    var _this = _possibleConstructorReturn(this, (AudioPlayer.__proto__ || Object.getPrototypeOf(AudioPlayer)).call(this, props));
-	
-	    _this.playSong = _this.playSong.bind(_this);
-	    return _this;
-	  }
-	
-	  _createClass(AudioPlayer, [{
-	    key: "playSong",
-	    value: function playSong() {
-	      if (window.as) {
-	        if (this.props.song && this.props.song.audio_url != window.as[0].mp3) {
-	          window.as[0].load(this.props.song.audio_url);
-	          window.as[0].play();
-	        }
-	      }
-	    }
-	  }, {
-	    key: "render",
-	    value: function render() {
-	      this.playSong();
-	      return _react2.default.createElement(
-	        "div",
-	        { className: "audio-player-container" },
-	        _react2.default.createElement(
-	          "div",
-	          null,
-	          _react2.default.createElement("audio", { preload: "none" })
-	        )
-	      );
-	    }
-	  }]);
-	
-	  return AudioPlayer;
-	}(_react2.default.Component);
-	
-	exports.default = AudioPlayer;
-
-/***/ },
-/* 415 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var Song = function (_React$Component) {
-	  _inherits(Song, _React$Component);
-	
-	  function Song(props) {
-	    _classCallCheck(this, Song);
-	
-	    var _this = _possibleConstructorReturn(this, (Song.__proto__ || Object.getPrototypeOf(Song)).call(this, props));
-	
-	    _this.playPause = _this.playPause.bind(_this);
-	    _this.songButton = _this.songButton.bind(_this);
-	    return _this;
-	  }
-	
-	  _createClass(Song, [{
-	    key: "playPause",
-	    value: function playPause() {
-	      if (window.as[0].mp3 !== this.props.song.audio_url) {
-	        this.props.playSong(this.props.song);
-	        this.forceUpdate();
-	      } else if (!window.as[0].playing) {
-	        window.as[0].play();
-	        this.forceUpdate();
-	      } else {
-	        window.as[0].pause();
-	        this.forceUpdate();
-	      }
-	    }
-	  }, {
-	    key: "songButton",
-	    value: function songButton() {
-	      if (window.as[0].playing && this.props.currentSong.id === this.props.song.id) {
-	        return "http://res.cloudinary.com/dtatkxxcm/image/upload/v1473113147/pause_dj_music_club_party-128_ietf2s.png";
-	      } else {
-	        return "http://res.cloudinary.com/dtatkxxcm/image/upload/v1473113149/play_dj_music_club_party-512_n8xnqx.png";
-	      }
-	    }
-	  }, {
-	    key: "render",
-	    value: function render() {
-	      return _react2.default.createElement(
-	        "div",
-	        { className: "song-button" },
-	        _react2.default.createElement("img", { src: this.songButton(), onClick: this.playPause, className: "play-button" })
-	      );
-	    }
-	  }]);
-	
-	  return Song;
-	}(_react2.default.Component);
-	
-	exports.default = Song;
-
-/***/ },
-/* 416 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRedux = __webpack_require__(173);
-	
-	var _song = __webpack_require__(415);
-	
-	var _song2 = _interopRequireDefault(_song);
-	
-	var _song_actions = __webpack_require__(412);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var mapStateToProps = function mapStateToProps(state) {
-	  return {
-	    currentSong: state.currentSong
-	  };
-	};
-	
-	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-	  return {
-	    playSong: function playSong(id) {
-	      return dispatch((0, _song_actions.playSong)(id));
-	    }
-	  };
-	};
-	
-	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_song2.default);
 
 /***/ }
 /******/ ]);
