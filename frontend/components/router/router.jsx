@@ -3,6 +3,7 @@ import React from 'react';
 import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 //Components
 import App from '../app';
+import HomePageContainer from '../home_page/home_page';
 import SessionFormContainer from '../session_form/session_form_container';
 import ExploreContainer from '../explore/explore_container';
 import ArtistShowContainer from '../artist/artist_show_container';
@@ -41,6 +42,7 @@ class AppRouter extends React.Component{
     return(
       <Router history={ hashHistory }>
         <Route path="/" component={ App } onEnter = { this._populateArtists } >
+          <IndexRoute component={ HomePageContainer } />
           <Route path="/login" component={ SessionFormContainer } onEnter={this._redirectIfLoggedIn}/>
           <Route path="/signup" component={ SessionFormContainer } onEnter={this._redirectIfLoggedIn}/>
           <Route path="/explore" component={ ExploreContainer } />

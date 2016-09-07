@@ -1,6 +1,7 @@
 .sibdebar {
   display: flex;
   position: relative;
+  overflow: hidden;
 }
 
 .sidebar-playing-container {
