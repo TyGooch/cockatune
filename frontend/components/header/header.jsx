@@ -12,7 +12,7 @@ const sessionLinks = () => (
 const profileLinks = (currentUser, logout) => (
 	<ul className="profile-links">
     <li>
-      <a href='http://google.com'><img
+      <a href={`#/users/${currentUser.id}`}><img
         src = {currentUser.profile_picture_url}
         className="profile-picture"/></a>
     </li>

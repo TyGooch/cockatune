@@ -7,6 +7,7 @@ import SessionFormContainer from '../session_form/session_form_container';
 import ExploreContainer from '../explore/explore_container';
 import ArtistShowContainer from '../artist/artist_show_container';
 import AlbumShowContainer from '../album/album_show_container';
+import UserShowContainer from '../user/user_show_container';
 
 import { requestArtists } from '../../actions/artist_actions';
 
@@ -45,6 +46,7 @@ class AppRouter extends React.Component{
           <Route path="/explore" component={ ExploreContainer } />
           <Route path="/artists/:artistId" component={ ArtistShowContainer } />
           <Route path="/artists/:artistId/albums/:albumId" component={ AlbumShowContainer } />
+          <Route path="/users/:userId" component={ UserShowContainer } />
         </Route>
       </Router>
     );
