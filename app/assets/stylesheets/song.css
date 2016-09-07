@@ -3,7 +3,7 @@
   width: 100%;
   margin-left: 0px;
   height: inherit;
-  overflow: auto;
+  overflow: hidden;
 }
 
 .song-index-item {
