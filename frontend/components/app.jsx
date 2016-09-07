@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import HeaderContainer from './header/header_container';
 import ExploreContainer from './explore/explore_container';
 import FooterContainer from './footer/footer_container';
+import SidebarContainer from './sidebar/sidebar_container';
 
 const App = ({children}) => (
   <div>
@@ -11,7 +12,7 @@ const App = ({children}) => (
     </header>
     <div className = 'app-container' >
       <div className='sidebar-container' >
-        SIDEBAR
+        <SidebarContainer />
       </div>
       <div className = 'app-content-container'>
         {children}
