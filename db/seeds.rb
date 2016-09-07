@@ -73,6 +73,6 @@ Artist.create({name: 'Kendrick Lamar', genre:'hip hop', artist_picture_url: 'htt
 Artist.create({name: 'Ariana Grande', genre:'pop', artist_picture_url: 'http://www.rap-up.com/wp-content/uploads/2014/12/ariana-grande.jpg', header_image_url: 'http://static.tumblr.com/k9j0lua/B9Xnbavxq/8.png'})
 
 
-Artist.create({name: 'ODESZA', genre:'ambient', artist_picture_url: 'https://i1.sndcdn.com/avatars-000097056058-s07lh7-t500x500.jpg', header_image_url: 'https://upload.wikimedia.org/wikipedia/commons/3/31/Odesza_2014.jpg'})
+Artist.create({name: 'ODESZA', genre:'ambient', artist_picture_url: 'https://i1.sndcdn.com/avatars-000097056058-s07lh7-t500x500.jpg', header_image_url: 'https://va.sndcdn.com/bg/soundcloud:sounds:191621466/Haywyre_Odesza_PPP_-_Visual_sound_image.jpg'})
 
-Artist.create({name: 'The Rolling Stones', genre:'rock', artist_picture_url: 'http://wwwrollingstones.wpengine.netdna-cdn.com/files/2015/05/Rolling-Stones-2-600x485.jpg', header_image_url: 'http://wwwrollingstones.wpengine.netdna-cdn.com/files/2012/08/RS_Limited_Prints_940-458x172.jpg'})
+Artist.create({name: 'The Rolling Stones', genre:'rock', artist_picture_url: 'https://i.ytimg.com/vi/XAUovDuFelQ/hqdefault.jpg', header_image_url: 'http://www.uofmusic.com/wp-content/uploads/2015/12/1401x788-TheRoll_StickyF_Publici_3000DPI300RGB1000162369.jpg'})
