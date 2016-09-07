@@ -117,6 +117,7 @@
   align-content: center;
   max-width: 25%;
   overflow-x: hidden;
+
 }
 
 .album-sidebar-index-container::-webkit-scrollbar {
@@ -127,12 +128,7 @@
 .album-sidebar-index-header {
   align-self: center;
   font-weight: bold;
-}
-
-
-
-.album-sidebar-index-header {
-  align-self: center;
+  margin-bottom: 15px;
 }
 
 
