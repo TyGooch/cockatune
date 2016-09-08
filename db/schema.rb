@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160907203803) do
+ActiveRecord::Schema.define(version: 20160908002411) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,8 +41,9 @@ ActiveRecord::Schema.define(version: 20160907203803) do
   end
 
   create_table "playlists", force: :cascade do |t|
-    t.string  "name",    default: "unnamed playlist"
+    t.string  "name",               default: "unnamed playlist"
     t.integer "user_id"
+    t.string  "playlist_image_url", default: "http://www.nichebuilder.com/Shared/PageBuilder/images/empty-image-placeholder.png"
   end
 
   create_table "songs", force: :cascade do |t|
