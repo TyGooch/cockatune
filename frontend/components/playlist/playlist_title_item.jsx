@@ -3,9 +3,9 @@ import { Link, hashHistory } from 'react-router';
 
 const PlaylistTitleItem = ({playlist}) => {
   return(
-  <li className = 'playlist-index-item'>
+  <li className = 'playlist-title-item'>
     <Link to={`/playlists/${playlist.id}`} >
-      <div className = 'playlist-index-item-name'>
+      <div className = 'playlist-title-item-name'>
         {playlist.name}
       </div>
     </Link>

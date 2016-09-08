@@ -4,6 +4,19 @@
   overflow: hidden;
 }
 
+.sidebar-playlist-index {
+  list-style: none;
+  overflow: auto;
+  max-width: 200px;
+  color: white;
+  height: 100px;
+}
+
+.playlist-title-item-name {
+  color: white;
+  text-decoration: none;
+}
+
 .sidebar-playing-container {
   display: flex;
   position: absolute;

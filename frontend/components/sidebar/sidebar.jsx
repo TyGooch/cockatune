@@ -17,17 +17,15 @@ const playlistSidebar = (currentUser, playlists) => {
         <PlaylistTitleItem playlist = {userPlaylist} />
       ));
       return(
-        <div>
-          <ul>
-            {PlaylistTitleItems}
-          </ul>
-        </div>
+        <ul className = 'sidebar-playlist-index'>
+          {PlaylistTitleItems}
+        </ul>
       );
     }
-}
-else{
-  return <div></div> ;
-}
+  }
+  else{
+    return <div></div> ;
+  }
 };
 
 const nowPlaying = (currentSong, artists) => {
