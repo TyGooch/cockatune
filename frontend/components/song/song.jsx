@@ -5,6 +5,7 @@ class Song extends React.Component {
     super(props);
     this.playPause = this.playPause.bind(this);
     this.songButton = this.songButton.bind(this);
+    this.getPlaylistFromUser = this.getPlaylistFromUser.bind(this);
   }
 
   playPause() {
@@ -28,12 +29,19 @@ class Song extends React.Component {
     }
   }
 
+  getPlaylistFromUser(song) {
+    // debugger;
+    if(Object.keys(this.props.playlists).length > 0){
+      this.props.addSongToPlaylist(this.props.playlists[1], song);
+    }
+  }
+
   render() {
     return (
       <div className = 'song-button'>
         <img src={this.songButton()} onClick={this.playPause} className="play-button"></img>
         <img src = 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/VisualEditor_-_Icon_-_Add-item.svg/2000px-VisualEditor_-_Icon_-_Add-item.svg.png'
-          onClick={this.playPause} className='add-button' />
+          onClick={this.getPlaylistFromUser.bind(null, this.props.song)} className='add-button' />
       </div>
     );
   }

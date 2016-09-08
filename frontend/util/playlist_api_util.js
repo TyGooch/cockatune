@@ -32,7 +32,7 @@ export const updatePlaylist = (playlist, success) => {
   });
 };
 
-export const addSongToPlaylist = (playlist, song, success) => {
+export const addToPlaylist = (playlist, song, success) => {
   $.ajax({
     method: 'POST',
     url: 'api/playlist_songs',

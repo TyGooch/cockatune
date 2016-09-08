@@ -62,7 +62,7 @@ class AppRouter extends React.Component{
           <Route path="/explore" component={ ExploreContainer } />
           <Route path="/artists/:artistId" component={ ArtistShowContainer } />
           <Route path="/artists/:artistId/albums/:albumId" component={ AlbumShowContainer } />
-          <Route path="/users/:userId" component={ UserShowContainer } onEnter={this._populatePlaylists}/>
+          <Route path="/users/:userId" component={ UserShowContainer }/>
           <Route path="/playlists/new" component={ PlaylistFormContainer } />
           <Route path="/playlists/:playlistId" component={ PlaylistShowContainer } />
         </Route>

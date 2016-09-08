@@ -16,7 +16,7 @@ class Playlist extends React.Component {
 
     const playlistSongs = [];
     this.props.playlist.playlist_songs.forEach(pSong => {
-      playlistSongs.push(songs[pSong.song_id]);
+      playlistSongs.push(songs[pSong.song_id-1]);
     });
     return(playlistSongs);
   }
