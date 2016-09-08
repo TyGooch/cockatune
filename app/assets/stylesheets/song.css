@@ -13,6 +13,11 @@
   color: rgba(255,255,255,0.55);
 }
 
+.song-button {
+  display: flex;
+  flex-direction: row;
+}
+
 .play-button {
   display: flex;
   max-width: 15px;
@@ -23,9 +28,25 @@
   border-radius: 2px;
 }
 
+.add-button {
+  display: flex;
+  max-width: 15px;
+  max-height: 15px;
+  margin-left: 10px;
+  background-color: rgba(255,255,255,0.40);
+  border: 1px hidden;
+  border-radius: 2px;
+}
+
 .play-button:hover {
   opacity: 1;
   cursor: pointer;
+}
+
+.add-button:hover {
+  opacity: 1;
+  cursor: pointer;
+  background-color: rgba(255,255,255, 0.65);
 }
 
 .song-index-item-info {
