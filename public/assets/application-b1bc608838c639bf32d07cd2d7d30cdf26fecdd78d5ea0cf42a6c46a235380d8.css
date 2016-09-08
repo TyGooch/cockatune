@@ -95,7 +95,7 @@
 .album-header-image {
   height: 200px;
   width: 200px;
-  opacity: 0.5;
+  opacity: 0.75;
 }
 
 .album-header-name {
@@ -488,6 +488,7 @@
 .sibdebar {
   display: flex;
   position: relative;
+  overflow: hidden;
 }
 
 .sidebar-playing-container {
@@ -559,7 +560,8 @@ body {
   min-height: 100%;
   background-color: #000000;
   margin-left: -10px;
-  background-image: url('http://media.adriadaily.com/2016/03/dim.jpg');
+  background-image: url('http://res.cloudinary.com/dtatkxxcm/image/upload/v1473275148/interior-amazing-design-cool-black-and-white-wallpaper-with-black-white-abstract-image-use-the-level-of-high-art-also-uses-black-and-white-wallpaper-background-elegant-interesting-if-installed-indoors_vbeluy.jpg');
+  /*http://media.adriadaily.com/2016/03/dim.jpg'*/
   background-repeat: no-repeat;
   background-color: black;
   background-size: 200%;

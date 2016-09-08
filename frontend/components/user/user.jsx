@@ -35,7 +35,7 @@ class User extends React.Component {
               </div>
           </div>
           <div className = 'user-playlist-container'>
-            PLAYLISTS GO HERE
+            <h2>Playlists</h2>
             <PlaylistIndex playlists = {this.getUserPlaylists(this.props.playlists)} />
           </div>
 
