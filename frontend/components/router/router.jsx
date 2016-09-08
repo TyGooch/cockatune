@@ -10,6 +10,7 @@ import ArtistShowContainer from '../artist/artist_show_container';
 import AlbumShowContainer from '../album/album_show_container';
 import UserShowContainer from '../user/user_show_container';
 import PlaylistFormContainer from '../playlist/playlist_form_container';
+import PlaylistShowContainer from '../playlist/playlist_show_container';
 
 import { requestArtists } from '../../actions/artist_actions';
 import { requestPlaylists } from '../../actions/playlist_actions';
@@ -55,7 +56,7 @@ class AppRouter extends React.Component{
     return(
       <Router history={ hashHistory }>
         <Route path="/" component={ App } onEnter = { this._populateStore } >
-          <IndexRoute component={ HomePageContainer } />
+          <IndexRoute component={ ExploreContainer } />
           <Route path="/login" component={ SessionFormContainer } onEnter={this._redirectIfLoggedIn}/>
           <Route path="/signup" component={ SessionFormContainer } onEnter={this._redirectIfLoggedIn}/>
           <Route path="/explore" component={ ExploreContainer } />
@@ -63,6 +64,7 @@ class AppRouter extends React.Component{
           <Route path="/artists/:artistId/albums/:albumId" component={ AlbumShowContainer } />
           <Route path="/users/:userId" component={ UserShowContainer } onEnter={this._populatePlaylists}/>
           <Route path="/playlists/new" component={ PlaylistFormContainer } />
+          <Route path="/playlists/:playlistId" component={ PlaylistShowContainer } />
         </Route>
       </Router>
     );
