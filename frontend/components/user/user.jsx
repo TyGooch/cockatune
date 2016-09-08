@@ -11,7 +11,8 @@ class User extends React.Component {
   }
 
   getUserPlaylists(playlists){
-    Object.keys(playlists).forEach(key => {
+
+    Object.keys(playlists).map(key => {
       if(this.props.userId !== playlists[key].user_id){
         delete playlists[key];
       }
