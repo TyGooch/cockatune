@@ -30,7 +30,6 @@ class Song extends React.Component {
   }
 
   getPlaylistFromUser(song) {
-    // debugger;
     if(Object.keys(this.props.playlists).length > 0){
       this.props.addSongToPlaylist(this.props.playlists[1], song);
     }

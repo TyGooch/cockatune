@@ -4,7 +4,9 @@ import Sidebar from './sidebar';
 
 const mapStateToProps = state => ({
   currentSong: state.currentSong,
-  artists: state.artists
+  artists: state.artists,
+  playlists: state.playlists,
+  currentUser: state.session.currentUser
 });
 
 export default connect(
