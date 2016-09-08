@@ -9,8 +9,10 @@ import ExploreContainer from '../explore/explore_container';
 import ArtistShowContainer from '../artist/artist_show_container';
 import AlbumShowContainer from '../album/album_show_container';
 import UserShowContainer from '../user/user_show_container';
+import PlaylistFormContainer from '../playlist/playlist_form_container';
 
 import { requestArtists } from '../../actions/artist_actions';
+import { requestPlaylists } from '../../actions/playlist_actions';
 
 class AppRouter extends React.Component{
   constructor(props){
@@ -18,6 +20,8 @@ class AppRouter extends React.Component{
     this._ensureLoggedIn = this._ensureLoggedIn.bind(this);
     this._redirectIfLoggedIn = this._redirectIfLoggedIn.bind(this);
     this._populateArtists = this._populateArtists.bind(this);
+    this._populatePlaylists = this._populatePlaylists.bind(this);
+    this._populateStore = this._populateStore.bind(this);
   }
 
   _ensureLoggedIn(nextState, replace){
@@ -38,10 +42,19 @@ class AppRouter extends React.Component{
     this.context.store.dispatch(requestArtists());
   }
 
+  _populatePlaylists(nextState, replace) {
+    this.context.store.dispatch(requestPlaylists());
+  }
+
+  _populateStore() {
+    this._populateArtists();
+    this._populatePlaylists();
+  }
+
   render(){
     return(
       <Router history={ hashHistory }>
-        <Route path="/" component={ App } onEnter = { this._populateArtists } >
+        <Route path="/" component={ App } onEnter = { this._populateStore } >
           <IndexRoute component={ HomePageContainer } />
           <Route path="/login" component={ SessionFormContainer } onEnter={this._redirectIfLoggedIn}/>
           <Route path="/signup" component={ SessionFormContainer } onEnter={this._redirectIfLoggedIn}/>
@@ -49,6 +62,7 @@ class AppRouter extends React.Component{
           <Route path="/artists/:artistId" component={ ArtistShowContainer } />
           <Route path="/artists/:artistId/albums/:albumId" component={ AlbumShowContainer } />
           <Route path="/users/:userId" component={ UserShowContainer } />
+          <Route path="/playlists/new" component={ PlaylistFormContainer } />
         </Route>
       </Router>
     );

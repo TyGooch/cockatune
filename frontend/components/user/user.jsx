@@ -1,8 +1,22 @@
 import React from 'react';
+import PlaylistIndex from '../playlist/playlist_index';
 
 class User extends React.Component {
+  constructor(){
+    super();
+    this.getUserPlaylists = this.getUserPlaylists.bind(this);
+  }
   componentWillMount(){
     this.props.requestUser(this.props.userId);
+  }
+
+  getUserPlaylists(playlists){
+    Object.keys(playlists).forEach(key => {
+      if(this.props.userId !== playlists[key].user_id){
+        delete playlists[key];
+      }
+    });
+    return playlists;
   }
 
   render(){
@@ -21,6 +35,7 @@ class User extends React.Component {
           </div>
           <div className = 'user-playlist-container'>
             PLAYLISTS GO HERE
+            <PlaylistIndex playlists = {this.getUserPlaylists(this.props.playlists)} />
           </div>
 
         </div>

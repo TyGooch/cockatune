@@ -76,3 +76,11 @@ Artist.create({name: 'Ariana Grande', genre:'pop', artist_picture_url: 'http://w
 Artist.create({name: 'ODESZA', genre:'ambient', artist_picture_url: 'https://i1.sndcdn.com/avatars-000097056058-s07lh7-t500x500.jpg', header_image_url: 'https://va.sndcdn.com/bg/soundcloud:sounds:191621466/Haywyre_Odesza_PPP_-_Visual_sound_image.jpg'})
 
 Artist.create({name: 'The Rolling Stones', genre:'rock', artist_picture_url: 'https://i.ytimg.com/vi/XAUovDuFelQ/hqdefault.jpg', header_image_url: 'http://www.uofmusic.com/wp-content/uploads/2015/12/1401x788-TheRoll_StickyF_Publici_3000DPI300RGB1000162369.jpg'})
+
+#Playlists
+Playlist.create({name: 'Summer 2016', user_id: '1'})
+  PlaylistSong.create({playlist_id: 1, song_id: 1})
+  PlaylistSong.create({playlist_id: 1, song_id: 3})
+  PlaylistSong.create({playlist_id: 1, song_id: 15})
+  PlaylistSong.create({playlist_id: 1, song_id: 9})
+  PlaylistSong.create({playlist_id: 1, song_id: 3})
