@@ -25,7 +25,7 @@ class Playlist extends React.Component {
       const playlistSongs = this.getPlaylistSongs();
       return(
         <div className = "playlist-show-container">
-          {this.props.playlist.name}
+          <h2>{this.props.playlist.name}</h2>
           <SongIndex songs={playlistSongs} />
         </div>
       );

@@ -30,12 +30,11 @@ class User extends React.Component {
               <div className = 'user-header-username'>
                 {this.props.user.username}
               </div>
-              <div className = 'user-header-follows'>
-                XXXXXX FOLLOWERS
+              <div className = 'user-header-text'>
+                Playlists
               </div>
           </div>
           <div className = 'user-playlist-container'>
-            <h2>Playlists</h2>
             <PlaylistIndex playlists = {this.getUserPlaylists(this.props.playlists)} />
           </div>
 

@@ -19,8 +19,8 @@ export const playlistSidebar = (currentUser, playlists) => {
         <PlaylistTitleItem playlist = {userPlaylist} />
       ));
       return(
-        <div>
-          Your Playlists
+        <div className = 'sidebar-playlist-container-'>
+          <div className = 'sidebar-playlist-header'>Your Playlists</div>
           <ul className = 'sidebar-playlist-index'>
             {PlaylistTitleItems}
           </ul>
@@ -36,7 +36,7 @@ export const playlistSidebar = (currentUser, playlists) => {
 export const nowPlaying = (currentSong, artists) => {
   if(currentSong){
     return(
-      <div>
+      <div className = 'now-playing-container'>
         Now Playing
         <br />
         {currentSong.title}
@@ -66,6 +66,7 @@ class Sidebar extends React.Component {
 
     this._handleModalClick = this._handleModalClick.bind(this);
     this._modalClose = this._modalClose.bind(this);
+    this.createPlaylistButton = this.createPlaylistButton.bind(this);
   }
 
 
@@ -77,6 +78,21 @@ class Sidebar extends React.Component {
 
   _modalClose(){
     this.setState({ modalOpen: false });
+  }
+
+  createPlaylistButton(){
+    if(this.props.currentUser){
+      return(
+        <button className = 'create-playlist-button' onClick={this._handleModalClick}>
+          Create Playlist
+        </button>
+      );
+    }
+    else{
+      return(
+        <div></div>
+      );
+    }
   }
 
   render(){
@@ -104,9 +120,7 @@ class Sidebar extends React.Component {
       <div className ='sidebar'>
         {playlistSidebar(this.props.currentUser, this.props.playlists)}
 
-        <button className = 'create-playlist-button' onClick={this._handleModalClick}>
-          Create Playlist
-        </button>
+      {this.createPlaylistButton()}
 
         <Modal
           isOpen = {this.state.modalOpen} onRequestClose={this._modalClose} style={style}>

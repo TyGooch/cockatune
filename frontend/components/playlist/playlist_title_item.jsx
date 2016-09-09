@@ -6,7 +6,7 @@ const PlaylistTitleItem = ({playlist}) => {
   <li className = 'playlist-title-item'>
     <Link to={`/playlists/${playlist.id}`} >
       <div className = 'playlist-title-item-name'>
-        {playlist.name}
+        <span>{playlist.name}</span>
       </div>
     </Link>
   </li>

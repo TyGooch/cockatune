@@ -24,11 +24,12 @@
   font-weight: bold;
 }
 
-.user-header-follows {
+.user-header-text {
   position: absolute;
   left: 225px;
-  top: 100px;
-  font-style: italic;
+  top: 155px;
+  font-weight: bold;
+  font-size: 36px
 }
 
 .user-playlist-container {
@@ -37,5 +38,11 @@
   top: 200px;
   width: 100%;
   bottom: 0px;
+  overflow: auto;
+  list-style: none;
 
+}
+
+.user-playlist-container::-webkit-scrollbar {
+  display: none;
 }

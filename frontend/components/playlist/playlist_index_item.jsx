@@ -4,9 +4,9 @@ import { Link, hashHistory } from 'react-router';
 const PlaylistIndexItem = ({playlist}) => (
   <li className = 'playlist-index-item'>
     <Link to={`/playlists/${playlist.id}`} >
-      <img src = {playlist.playlist_image_url} />
+      <img src = {playlist.playlist_image_url} className = 'playlist-image'/>
       <div className = 'playlist-index-item-name'>
-        {playlist.name}
+        <span>{playlist.name}</span>
       </div>
     </Link>
   </li>
