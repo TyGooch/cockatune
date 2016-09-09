@@ -35,7 +35,7 @@ class SessionForm extends React.Component {
 		if (this.props.formType === "login") {
 			return(
 				<div className = "login-form-nav">
-					OR
+					{"Don't have an account?"}
 					<br />
 					<br />
 					<Link to="/signup" className="login-form-nav-button">Sign Up</Link>
