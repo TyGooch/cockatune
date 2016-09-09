@@ -12,6 +12,10 @@
   height: 100px;
 }
 
+.sidebar-playlist-index::-webkit-scrollbar {
+    display: none;
+}
+
 .playlist-title-item-name {
   text-decoration: none;
 }
