@@ -46,7 +46,8 @@ class SessionForm extends React.Component {
 					<br />
 					<br />
 					<Link to="/signup" className="login-form-nav-button">Sign Up</Link>
-					<button className="login-form-nav-button" onClick={this.handleGuestSubmit}>Guest</button>
+					or
+					<button className="login-form-guest-button" onClick={this.handleGuestSubmit}>Sign In As Guest</button>
 
 				</div>
 			);
