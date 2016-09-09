@@ -62,7 +62,7 @@ class Sidebar extends React.Component {
     super({currentSong, artists, playlists, currentUser});
     this.state = {
       modalOpen: false
-    },
+    };
 
     this._handleModalClick = this._handleModalClick.bind(this);
     this._modalClose = this._modalClose.bind(this);
