@@ -120,11 +120,19 @@ Artist.create({name: 'ODESZA', genre:'ambient', artist_picture_url: 'https://i1.
     Song.create({title:"Sun Models", audio_url: 'http://res.cloudinary.com/dtatkxxcm/video/upload/v1473441065/12_Sun_Models_feat._Madelyn_Grant_zxicnk.mp3', length: '160', album_id: 10, artist_id: 5})
     Song.create({title:"For Us", audio_url: 'http://res.cloudinary.com/dtatkxxcm/video/upload/v1473441101/13_For_Us_feat._Briana_Marela_muptg0.mp3', length: '349', album_id: 10, artist_id: 5})
 
-Artist.create({name: 'Ariana Grande', genre:'pop', artist_picture_url: 'http://www.rap-up.com/wp-content/uploads/2014/12/ariana-grande.jpg', header_image_url: 'http://static.tumblr.com/k9j0lua/B9Xnbavxq/8.png'})
-
-
-
-Artist.create({name: 'The Rolling Stones', genre:'rock', artist_picture_url: 'https://i.ytimg.com/vi/XAUovDuFelQ/hqdefault.jpg', header_image_url: 'http://www.uofmusic.com/wp-content/uploads/2015/12/1401x788-TheRoll_StickyF_Publici_3000DPI300RGB1000162369.jpg'})
+Artist.create({name: 'Ariana Grande', genre:'pop', artist_picture_url: 'http://www.rap-up.com/wp-content/uploads/2014/12/ariana-grande.jpg', header_image_url: 'http://i.imgur.com/TncvYJo.png'})
+  Album.create({title: "Dangerous Woman", artist_id: 6, album_picture_url: 'https://upload.wikimedia.org/wikipedia/en/4/4b/Ariana_Grande_-_Dangerous_Woman_%28Official_Album_Cover%29.png'})
+    Song.create({title:"Moonlight", audio_url: 'http://res.cloudinary.com/dtatkxxcm/video/upload/v1473447896/01_-_Moonlight_lodlfh.mp3', length: '202', album_id: 11, artist_id: 6})
+    Song.create({title:"Dangerous Woman", audio_url: 'http://res.cloudinary.com/dtatkxxcm/video/upload/v1473447956/02_-_Dangerous_Woman_jttlpa.mp3', length: '236', album_id: 11, artist_id: 6})
+    Song.create({title:"Be Alright", audio_url: 'http://res.cloudinary.com/dtatkxxcm/video/upload/v1473447853/03_-_Be_Alright_aqpb1h.mp3', length: '177', album_id: 11, artist_id: 6})
+    Song.create({title:"Into You", audio_url: 'http://res.cloudinary.com/dtatkxxcm/video/upload/v1473447979/04_-_Into_You_ges447.mp3', length: '244', album_id: 11, artist_id: 6})
+    Song.create({title:"Side to Side", audio_url: 'http://res.cloudinary.com/dtatkxxcm/video/upload/v1473447939/05_-_Side_To_Side_feat._Nicki_Minaj_ekywwp.mp3', length: '226', album_id: 11, artist_id: 6})
+    Song.create({title:"Let Me Love You", audio_url: 'http://res.cloudinary.com/dtatkxxcm/video/upload/v1473447943/06_-_Let_Me_Love_You_feat._Lil_Wayne_exrjc1.mp3', length: '223', album_id: 11, artist_id: 6})
+    Song.create({title:"Greedy", audio_url: 'http://res.cloudinary.com/dtatkxxcm/video/upload/v1473448220/07_-_Greedy_gpfjg1.mp3', length: '214', album_id: 11, artist_id: 6})
+    Song.create({title:"Leave Me Lonely", audio_url: 'http://res.cloudinary.com/dtatkxxcm/video/upload/v1473448264/08_-_Leave_Me_Lonely_feat._Macy_Gray_huxswk.mp3', length: '229', album_id: 11, artist_id: 6})
+    Song.create({title:"Everyday", audio_url: 'http://res.cloudinary.com/dtatkxxcm/video/upload/v1473448248/09_-_Everyday_feat._Future_a6nqjz.mp3', length: '214', album_id: 11, artist_id: 6})
+    Song.create({title:"Bad Decisions", audio_url: 'http://res.cloudinary.com/dtatkxxcm/video/upload/v1473448343/12_-_Bad_Decisions_j1hr5p.mp3', length: '226', album_id: 11, artist_id: 6})
+    Song.create({title:"Thinking Bout You", audio_url: 'http://res.cloudinary.com/dtatkxxcm/video/upload/v1473448262/15_-_Thinking_Bout_You_e3dlny.mp3', length: '200', album_id: 11, artist_id: 6})
 
 #Playlists
 Playlist.create({name: 'Summer 2016', user_id: '1'})

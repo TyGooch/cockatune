@@ -1,5 +1,6 @@
 .playlist-show-container{
   overflow: auto;
+  max-width: 600px;
 }
 
 .playlist-show-container::-webkit-scrollbar {
