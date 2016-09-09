@@ -2,6 +2,17 @@ import React from 'react';
 import SongContainer from './song_container';
 // import { Link, hashHistory } from 'react-router';
 
+const getLengthString = (length) =>{
+  let minutes = Math.floor(length / 60);
+  let seconds = length % 60;
+  if(seconds < 10){
+    seconds = `0${seconds}`;
+  }
+  return(
+    `${minutes}:${seconds}`
+  );
+};
+
 const SongIndexItem = ({song}) => {
   if(song){
     return(
@@ -12,7 +23,7 @@ const SongIndexItem = ({song}) => {
               {song.title}
           </div>
           <div className = 'song-length'>
-            {Math.floor(song.length / 60)}:{song.length % 60}
+            {getLengthString(song.length)}
           </div>
         </div>
       </li>

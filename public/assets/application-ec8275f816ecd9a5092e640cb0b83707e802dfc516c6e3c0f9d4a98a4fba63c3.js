@@ -11686,6 +11686,15 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	//Components
 	//React
 	document.addEventListener('DOMContentLoaded', function () {
+	  var orgError = console.error; // eslint-disable-line no-console
+	  console.error = function (message) {
+	    // eslint-disable-line no-console
+	    if (message && message.indexOf('You cannot change <Router routes>;') === -1) {
+	      // Log the error as normally
+	      orgError.apply(console, [message]);
+	    }
+	  };
+	
 	  var store = void 0;
 	  if (window.currentUser) {
 	    var initialState = { session: { currentUser: window.currentUser } };
@@ -46608,8 +46617,8 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	            userPlaylists.push(playlists[key]);
 	          }
 	        });
-	        var PlaylistTitleItems = userPlaylists.map(function (userPlaylist) {
-	          return _react2.default.createElement(_playlist_title_item2.default, { playlist: userPlaylist });
+	        var PlaylistTitleItems = userPlaylists.map(function (userPlaylist, idx) {
+	          return _react2.default.createElement(_playlist_title_item2.default, { playlist: userPlaylist, key: idx });
 	        });
 	        return {
 	          v: _react2.default.createElement(
@@ -46673,15 +46682,10 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	var Sidebar = function (_React$Component) {
 	  _inherits(Sidebar, _React$Component);
 	
-	  function Sidebar(_ref) {
-	    var currentSong = _ref.currentSong;
-	    var artists = _ref.artists;
-	    var playlists = _ref.playlists;
-	    var currentUser = _ref.currentUser;
-	
+	  function Sidebar(props) {
 	    _classCallCheck(this, Sidebar);
 	
-	    var _this = _possibleConstructorReturn(this, (Sidebar.__proto__ || Object.getPrototypeOf(Sidebar)).call(this, { currentSong: currentSong, artists: artists, playlists: playlists, currentUser: currentUser }));
+	    var _this = _possibleConstructorReturn(this, (Sidebar.__proto__ || Object.getPrototypeOf(Sidebar)).call(this, props));
 	
 	    _this.state = {
 	      modalOpen: false
@@ -46770,18 +46774,26 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 
 /***/ },
 /* 287 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.HomePageContainer = undefined;
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
 	var HomePageContainer = exports.HomePageContainer = function HomePageContainer() {
-	  return React.createElement(
-	    "h1",
+	  return _react2.default.createElement(
+	    'h1',
 	    null,
-	    "HELLO"
+	    'HELLO'
 	  );
 	};
 
@@ -46921,10 +46933,11 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 							{ to: '/signup', className: 'login-form-nav-button' },
 							'Sign Up'
 						),
+						'or',
 						_react2.default.createElement(
 							'button',
-							{ className: 'login-form-nav-button', onClick: this.handleGuestSubmit },
-							'Guest'
+							{ className: 'login-form-guest-button', onClick: this.handleGuestSubmit },
+							'Sign In As Guest'
 						)
 					);
 				} else {
@@ -47193,7 +47206,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	      var _this2 = this;
 	
 	      var albumIndexItems = Object.keys(this.props.albums).map(function (key) {
-	        return _react2.default.createElement(_album_index_item2.default, { album: _this2.props.albums[key] });
+	        return _react2.default.createElement(_album_index_item2.default, { album: _this2.props.albums[key], key: key });
 	      });
 	
 	      return _react2.default.createElement(
@@ -47449,7 +47462,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	      var _this2 = this;
 	
 	      var songIndexItems = Object.keys(this.props.songs).map(function (key) {
-	        return _react2.default.createElement(_song_index_item2.default, { song: _this2.props.songs[key] });
+	        return _react2.default.createElement(_song_index_item2.default, { song: _this2.props.songs[key], key: key });
 	      });
 	
 	      return _react2.default.createElement(
@@ -47487,6 +47500,15 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	
 	// import { Link, hashHistory } from 'react-router';
 	
+	var getLengthString = function getLengthString(length) {
+	  var minutes = Math.floor(length / 60);
+	  var seconds = length % 60;
+	  if (seconds < 10) {
+	    seconds = '0' + seconds;
+	  }
+	  return minutes + ':' + seconds;
+	};
+	
 	var SongIndexItem = function SongIndexItem(_ref) {
 	  var song = _ref.song;
 	
@@ -47506,9 +47528,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'song-length' },
-	          Math.floor(song.length / 60),
-	          ':',
-	          song.length % 60
+	          getLengthString(song.length)
 	        )
 	      )
 	    );
@@ -51846,7 +51866,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	
 	var loggerMiddleware = (0, _reduxLogger2.default)();
 	
-	var RootMiddleware = (0, _redux.applyMiddleware)(_session_middleware2.default, _artist_middleware2.default, _user_middleware2.default, _playlist_middleware2.default, loggerMiddleware);
+	var RootMiddleware = (0, _redux.applyMiddleware)(_session_middleware2.default, _artist_middleware2.default, _user_middleware2.default, _playlist_middleware2.default);
 	
 	exports.default = RootMiddleware;
 
@@ -54621,7 +54641,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	    value: function playlistItem(playlist) {
 	      return _react2.default.createElement(
 	        'button',
-	        { onClick: this.handleClick.bind(null, playlist), className: 'add-to-playlist-button' },
+	        { onClick: this.handleClick.bind(null, playlist), className: 'add-to-playlist-button', key: playlist.id },
 	        playlist.name
 	      );
 	    }
