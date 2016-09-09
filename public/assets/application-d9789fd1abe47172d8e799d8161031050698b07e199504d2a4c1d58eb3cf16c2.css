@@ -491,6 +491,23 @@
   overflow: hidden;
 }
 
+.sidebar-playlist-index {
+  list-style: none;
+  overflow: auto;
+  max-width: 200px;
+  color: white;
+  height: 100px;
+}
+
+.playlist-title-item-name {
+  text-decoration: none;
+}
+
+.playlist-title-item-name {
+  color: white;
+  text-decoration: none;
+}
+
 .sidebar-playing-container {
   display: flex;
   position: absolute;
@@ -509,6 +526,7 @@
   margin-left: 0px;
   height: inherit;
   overflow: hidden;
+  width: inherit;
 }
 
 .song-index-item {
@@ -517,6 +535,11 @@
   flex-direction: row;
   padding-top: 5px;
   color: rgba(255,255,255,0.55);
+}
+
+.song-button {
+  display: flex;
+  flex-direction: row;
 }
 
 .play-button {
@@ -529,9 +552,25 @@
   border-radius: 2px;
 }
 
+.add-button {
+  display: flex;
+  max-width: 15px;
+  max-height: 15px;
+  margin-left: 10px;
+  background-color: rgba(255,255,255,0.40);
+  border: 1px hidden;
+  border-radius: 2px;
+}
+
 .play-button:hover {
   opacity: 1;
   cursor: pointer;
+}
+
+.add-button:hover {
+  opacity: 1;
+  cursor: pointer;
+  background-color: rgba(255,255,255, 0.65);
 }
 
 .song-index-item-info {
