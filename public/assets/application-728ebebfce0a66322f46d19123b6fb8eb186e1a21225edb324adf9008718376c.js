@@ -11677,9 +11677,14 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	
 	var _artist_actions = __webpack_require__(266);
 	
+	var _reactModal = __webpack_require__(437);
+	
+	var _reactModal2 = _interopRequireDefault(_reactModal);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	//Actions
+	//Components
+	//React
 	document.addEventListener('DOMContentLoaded', function () {
 	  var store = void 0;
 	  if (window.currentUser) {
@@ -11690,11 +11695,12 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	  }
 	  window.store = store;
 	
+	  _reactModal2.default.setAppElement(document.body);
+	
 	  var root = document.getElementById('root');
 	  _reactDom2.default.render(_react2.default.createElement(_root2.default, { store: store }), root);
 	});
-	//Components
-	//React
+	//Actions
 
 /***/ },
 /* 1 */
@@ -46559,6 +46565,9 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.nowPlaying = exports.playlistSidebar = undefined;
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 	
@@ -46582,7 +46591,13 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var playlistSidebar = function playlistSidebar(currentUser, playlists) {
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var playlistSidebar = exports.playlistSidebar = function playlistSidebar(currentUser, playlists) {
 	  if (currentUser && playlists) {
 	    if (Object.keys(playlists).length > 0) {
 	      var _ret = function () {
@@ -46598,9 +46613,18 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	        });
 	        return {
 	          v: _react2.default.createElement(
-	            'ul',
-	            { className: 'sidebar-playlist-index' },
-	            PlaylistTitleItems
+	            'div',
+	            { className: 'sidebar-playlist-container-' },
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'sidebar-playlist-header' },
+	              'Your Playlists'
+	            ),
+	            _react2.default.createElement(
+	              'ul',
+	              { className: 'sidebar-playlist-index' },
+	              PlaylistTitleItems
+	            )
 	          )
 	        };
 	      }();
@@ -46612,17 +46636,26 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	  }
 	};
 	
-	var nowPlaying = function nowPlaying(currentSong, artists) {
+	var nowPlaying = exports.nowPlaying = function nowPlaying(currentSong, artists) {
 	  if (currentSong) {
 	    return _react2.default.createElement(
 	      'div',
-	      null,
-	      'Now Playing',
-	      _react2.default.createElement('br', null),
-	      currentSong.title,
-	      _react2.default.createElement('br', null),
-	      artists[currentSong.artist_id].name,
-	      _react2.default.createElement('br', null),
+	      { className: 'now-playing-container' },
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'now-playing-header' },
+	        'Now Playing'
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'now-playing-title' },
+	        currentSong.title
+	      ),
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'now-playing-artist' },
+	        artists[currentSong.artist_id].name
+	      ),
 	      _react2.default.createElement(
 	        _reactRouter.Link,
 	        { to: '/artists/' + currentSong.artist_id + '/albums/' + currentSong.album_id },
@@ -46637,22 +46670,101 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	  }
 	};
 	
-	var Sidebar = function Sidebar(_ref) {
-	  var currentSong = _ref.currentSong;
-	  var artists = _ref.artists;
-	  var playlists = _ref.playlists;
-	  var currentUser = _ref.currentUser;
-	  return _react2.default.createElement(
-	    'div',
-	    { className: 'sidebar' },
-	    playlistSidebar(currentUser, playlists),
-	    _react2.default.createElement(
-	      'div',
-	      { className: 'sidebar-playing-container' },
-	      nowPlaying(currentSong, artists)
-	    )
-	  );
-	};
+	var Sidebar = function (_React$Component) {
+	  _inherits(Sidebar, _React$Component);
+	
+	  function Sidebar(_ref) {
+	    var currentSong = _ref.currentSong;
+	    var artists = _ref.artists;
+	    var playlists = _ref.playlists;
+	    var currentUser = _ref.currentUser;
+	
+	    _classCallCheck(this, Sidebar);
+	
+	    var _this = _possibleConstructorReturn(this, (Sidebar.__proto__ || Object.getPrototypeOf(Sidebar)).call(this, { currentSong: currentSong, artists: artists, playlists: playlists, currentUser: currentUser }));
+	
+	    _this.state = {
+	      modalOpen: false
+	    };
+	
+	    _this._handleModalClick = _this._handleModalClick.bind(_this);
+	    _this._modalClose = _this._modalClose.bind(_this);
+	    _this.createPlaylistButton = _this.createPlaylistButton.bind(_this);
+	    return _this;
+	  }
+	
+	  _createClass(Sidebar, [{
+	    key: '_handleModalClick',
+	    value: function _handleModalClick() {
+	      this.setState({ modalOpen: true });
+	    }
+	  }, {
+	    key: '_modalClose',
+	    value: function _modalClose() {
+	      this.setState({ modalOpen: false });
+	    }
+	  }, {
+	    key: 'createPlaylistButton',
+	    value: function createPlaylistButton() {
+	      if (this.props.currentUser) {
+	        return _react2.default.createElement(
+	          'button',
+	          { className: 'create-playlist-button', onClick: this._handleModalClick },
+	          'Create Playlist'
+	        );
+	      } else {
+	        return _react2.default.createElement('div', null);
+	      }
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var style = {
+	        overlay: {
+	          position: 'fixed',
+	          top: 0,
+	          left: 0,
+	          right: 0,
+	          bottom: 0,
+	          backgroundColor: 'rgba(0,0,0,0.75)'
+	        },
+	        content: {
+	          position: 'fixed',
+	          top: '200px',
+	          left: '400px',
+	          right: '400px',
+	          bottom: '200px',
+	          border: '1px solid #ccc',
+	          borderRadius: '5px',
+	          padding: '20px',
+	          textAlign: 'center',
+	          backgroundColor: 'rgba(0,0,0,0.45)',
+	          color: 'white'
+	        }
+	      };
+	
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'sidebar' },
+	        playlistSidebar(this.props.currentUser, this.props.playlists),
+	        this.createPlaylistButton(),
+	        _react2.default.createElement(
+	          _reactModal2.default,
+	          {
+	            isOpen: this.state.modalOpen, onRequestClose: this._modalClose, style: style },
+	          _react2.default.createElement(_playlist_form_container2.default, { closeModal: this._modalClose })
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'sidebar-playing-container' },
+	          nowPlaying(this.props.currentSong, this.props.artists)
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return Sidebar;
+	}(_react2.default.Component);
 	
 	exports.default = Sidebar;
 
@@ -46755,6 +46867,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 				password: ""
 			};
 			_this.handleSubmit = _this.handleSubmit.bind(_this);
+			_this.handleGuestSubmit = _this.handleGuestSubmit.bind(_this);
 			return _this;
 		}
 	
@@ -46787,19 +46900,31 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 				this.props.processForm({ user: user });
 			}
 		}, {
+			key: 'handleGuestSubmit',
+			value: function handleGuestSubmit(e) {
+				e.preventDefault();
+				var user = { username: 'TyGooch', password: 'password' };
+				this.props.processForm({ user: user });
+			}
+		}, {
 			key: 'navLink',
 			value: function navLink() {
 				if (this.props.formType === "login") {
 					return _react2.default.createElement(
 						'div',
 						{ className: 'login-form-nav' },
-						'OR',
+						"Don't have an account?",
 						_react2.default.createElement('br', null),
 						_react2.default.createElement('br', null),
 						_react2.default.createElement(
 							_reactRouter.Link,
 							{ to: '/signup', className: 'login-form-nav-button' },
 							'Sign Up'
+						),
+						_react2.default.createElement(
+							'button',
+							{ className: 'login-form-nav-button', onClick: this.handleGuestSubmit },
+							'Guest'
 						)
 					);
 				} else {
@@ -46859,7 +46984,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	
 				return _react2.default.createElement(
 					'form',
-					{ onSubmit: this.handleSubmit, className: 'login-form-container' },
+					{ className: 'login-form-container' },
 					this.optionName(),
 					_react2.default.createElement('br', null),
 					_react2.default.createElement(
@@ -46886,7 +47011,11 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 							onChange: this.update("password")
 						}, _defineProperty(_React$createElement2, 'className', 'login-input'), _defineProperty(_React$createElement2, 'placeholder', 'Password'), _React$createElement2)),
 						_react2.default.createElement('br', null),
-						_react2.default.createElement('input', { className: 'login-submit', type: 'submit', value: 'Go!' }),
+						_react2.default.createElement(
+							'button',
+							{ className: 'login-submit', onClick: this.handleSubmit },
+							'Go!'
+						),
 						_react2.default.createElement('br', null)
 					),
 					this.navLink()
@@ -47419,7 +47548,8 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	var mapStateToProps = function mapStateToProps(state) {
 	  return {
 	    currentSong: state.currentSong,
-	    playlists: state.playlists
+	    playlists: state.playlists,
+	    currentUser: state.session.currentUser
 	  };
 	};
 	
@@ -47443,7 +47573,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 /* 299 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -47454,6 +47584,14 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	var _react = __webpack_require__(1);
 	
 	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactModal = __webpack_require__(437);
+	
+	var _reactModal2 = _interopRequireDefault(_reactModal);
+	
+	var _add_to_playlist_container = __webpack_require__(457);
+	
+	var _add_to_playlist_container2 = _interopRequireDefault(_add_to_playlist_container);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -47471,14 +47609,21 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	
 	    var _this = _possibleConstructorReturn(this, (Song.__proto__ || Object.getPrototypeOf(Song)).call(this, props));
 	
+	    _this.state = {
+	      modalOpen: false
+	    };
+	
 	    _this.playPause = _this.playPause.bind(_this);
 	    _this.songButton = _this.songButton.bind(_this);
-	    _this.getPlaylistFromUser = _this.getPlaylistFromUser.bind(_this);
+	    _this.addButton = _this.addButton.bind(_this);
+	    // this.getPlaylistFromUser = this.getPlaylistFromUser.bind(this);
+	    _this._handleModalClick = _this._handleModalClick.bind(_this);
+	    _this._modalClose = _this._modalClose.bind(_this);
 	    return _this;
 	  }
 	
 	  _createClass(Song, [{
-	    key: "playPause",
+	    key: 'playPause',
 	    value: function playPause() {
 	      if (window.as[0].mp3 !== this.props.song.audio_url) {
 	        this.props.playSong(this.props.song);
@@ -47492,7 +47637,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	      }
 	    }
 	  }, {
-	    key: "songButton",
+	    key: 'songButton',
 	    value: function songButton() {
 	      if (window.as[0].playing && this.props.currentSong.id === this.props.song.id) {
 	        return "http://res.cloudinary.com/dtatkxxcm/image/upload/v1473113147/pause_dj_music_club_party-128_ietf2s.png";
@@ -47501,21 +47646,71 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	      }
 	    }
 	  }, {
-	    key: "getPlaylistFromUser",
-	    value: function getPlaylistFromUser(song) {
-	      if (Object.keys(this.props.playlists).length > 0) {
-	        this.props.addSongToPlaylist(this.props.playlists[1], song);
+	    key: 'addButton',
+	    value: function addButton() {
+	      if (this.props.currentUser) {
+	        return _react2.default.createElement('img', { src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/VisualEditor_-_Icon_-_Add-item.svg/2000px-VisualEditor_-_Icon_-_Add-item.svg.png',
+	          onClick: this._handleModalClick, className: 'add-button' });
+	      } else {
+	        return _react2.default.createElement('div', null);
 	      }
 	    }
 	  }, {
-	    key: "render",
+	    key: '_handleModalClick',
+	    value: function _handleModalClick() {
+	      this.setState({ modalOpen: true });
+	    }
+	  }, {
+	    key: '_modalClose',
+	    value: function _modalClose() {
+	      this.setState({ modalOpen: false });
+	    }
+	
+	    // getPlaylistFromUser(song) {
+	    //   if(Object.keys(this.props.playlists).length > 0){
+	    //     this.props.addSongToPlaylist(this.props.playlists[1], song);
+	    //   }
+	    // }
+	
+	
+	  }, {
+	    key: 'render',
 	    value: function render() {
+	      var style = {
+	        overlay: {
+	          position: 'fixed',
+	          top: 0,
+	          left: 0,
+	          right: 0,
+	          bottom: 0,
+	          backgroundColor: 'rgba(0,0,0,0.75)'
+	        },
+	        content: {
+	          position: 'fixed',
+	          top: '200px',
+	          left: '400px',
+	          right: '400px',
+	          bottom: '200px',
+	          border: '1px solid #ccc',
+	          borderRadius: '5px',
+	          padding: '20px',
+	          textAlign: 'center',
+	          backgroundColor: 'rgba(0,0,0,0.45)',
+	          color: 'white'
+	        }
+	      };
+	
 	      return _react2.default.createElement(
-	        "div",
-	        { className: "song-button" },
-	        _react2.default.createElement("img", { src: this.songButton(), onClick: this.playPause, className: "play-button" }),
-	        _react2.default.createElement("img", { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/VisualEditor_-_Icon_-_Add-item.svg/2000px-VisualEditor_-_Icon_-_Add-item.svg.png",
-	          onClick: this.getPlaylistFromUser.bind(null, this.props.song), className: "add-button" })
+	        'div',
+	        { className: 'song-button' },
+	        _react2.default.createElement('img', { src: this.songButton(), onClick: this.playPause, className: 'play-button' }),
+	        this.addButton(),
+	        _react2.default.createElement(
+	          _reactModal2.default,
+	          {
+	            isOpen: this.state.modalOpen, onRequestClose: this._modalClose, style: style },
+	          _react2.default.createElement(_add_to_playlist_container2.default, { closeModal: this._modalClose, song: this.props.song })
+	        )
 	      );
 	    }
 	  }]);
@@ -47663,18 +47858,13 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	            ),
 	            _react2.default.createElement(
 	              'div',
-	              { className: 'user-header-follows' },
-	              'XXXXXX FOLLOWERS'
+	              { className: 'user-header-text' },
+	              'Playlists'
 	            )
 	          ),
 	          _react2.default.createElement(
 	            'div',
 	            { className: 'user-playlist-container' },
-	            _react2.default.createElement(
-	              'h2',
-	              null,
-	              'Playlists'
-	            ),
 	            _react2.default.createElement(_playlist_index2.default, { playlists: this.getUserPlaylists(this.props.playlists) })
 	          )
 	        );
@@ -47782,11 +47972,15 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	    _react2.default.createElement(
 	      _reactRouter.Link,
 	      { to: '/playlists/' + playlist.id },
-	      _react2.default.createElement('img', { src: playlist.playlist_image_url }),
+	      _react2.default.createElement('img', { src: playlist.playlist_image_url, className: 'playlist-image' }),
 	      _react2.default.createElement(
 	        'div',
 	        { className: 'playlist-index-item-name' },
-	        playlist.name
+	        _react2.default.createElement(
+	          'span',
+	          null,
+	          playlist.name
+	        )
 	      )
 	    )
 	  );
@@ -47926,6 +48120,7 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	    value: function handleSubmit(e) {
 	      e.preventDefault();
 	      var playlist = this.state;
+	      this.props.closeModal();
 	      this.props.createPlaylist({ playlist: playlist });
 	    }
 	  }, {
@@ -47940,22 +48135,17 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	          _react2.default.createElement(
 	            'h3',
 	            { className: 'new-playlist-title' },
-	            'Create A Playlist'
+	            'New Playlist Name'
 	          ),
 	          _react2.default.createElement(
 	            'form',
 	            { onSubmit: this.handleSubmit },
-	            _react2.default.createElement(
-	              'label',
-	              { className: 'playlist-field' },
-	              'Name'
-	            ),
 	            _react2.default.createElement('input', { type: 'text', defaultValue: this.state.name,
 	              onChange: this.update, className: 'playlist-field' }),
 	            _react2.default.createElement(
 	              'div',
 	              { className: 'button-holder' },
-	              _react2.default.createElement('input', { type: 'submit', value: 'Create Playlist', className: 'new-playlist-button' })
+	              _react2.default.createElement('input', { type: 'submit', value: 'Create', className: 'new-playlist-button' })
 	            )
 	          )
 	        )
@@ -52335,7 +52525,11 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	        return _react2.default.createElement(
 	          'div',
 	          { className: 'playlist-show-container' },
-	          this.props.playlist.name,
+	          _react2.default.createElement(
+	            'h2',
+	            null,
+	            this.props.playlist.name
+	          ),
 	          _react2.default.createElement(_song_index2.default, { songs: playlistSongs })
 	        );
 	      } else {
@@ -52379,7 +52573,11 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	      _react2.default.createElement(
 	        'div',
 	        { className: 'playlist-title-item-name' },
-	        playlist.name
+	        _react2.default.createElement(
+	          'span',
+	          null,
+	          playlist.name
+	        )
 	      )
 	    )
 	  );
@@ -54326,6 +54524,165 @@ setVolume:function(b){this.element.volume=b},trackEnded:function(){this.skipTo.a
 	  else this.add(className)
 	}
 
+
+/***/ },
+/* 457 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _reactRedux = __webpack_require__(173);
+	
+	var _add_to_playlist_form = __webpack_require__(458);
+	
+	var _add_to_playlist_form2 = _interopRequireDefault(_add_to_playlist_form);
+	
+	var _playlist_actions = __webpack_require__(308);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var mapStateToProps = function mapStateToProps(state, ownProps) {
+	  return {
+	    currentUser: state.session.currentUser,
+	    playlists: state.playlists
+	  };
+	};
+	
+	var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+	  return {
+	    addSongToPlaylist: function addSongToPlaylist(playlist, song) {
+	      return dispatch((0, _playlist_actions.addSongToPlaylist)(playlist, song));
+	    }
+	  };
+	};
+	
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_add_to_playlist_form2.default);
+
+/***/ },
+/* 458 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRouter = __webpack_require__(198);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	//pass song as props
+	
+	var AddToPlaylistForm = function (_React$Component) {
+	  _inherits(AddToPlaylistForm, _React$Component);
+	
+	  function AddToPlaylistForm(props) {
+	    _classCallCheck(this, AddToPlaylistForm);
+	
+	    var _this = _possibleConstructorReturn(this, (AddToPlaylistForm.__proto__ || Object.getPrototypeOf(AddToPlaylistForm)).call(this, props));
+	
+	    _this.handleClick = _this.handleClick.bind(_this);
+	    _this.playlistItem = _this.playlistItem.bind(_this);
+	    _this.userPlaylistItems = _this.userPlaylistItems.bind(_this);
+	
+	    _this.state = {
+	      user_id: _this.props.currentUser.id
+	    };
+	    return _this;
+	  }
+	
+	  _createClass(AddToPlaylistForm, [{
+	    key: 'handleClick',
+	    value: function handleClick(playlist) {
+	      this.props.addSongToPlaylist(playlist, this.props.song);
+	      this.props.closeModal();
+	    }
+	  }, {
+	    key: 'playlistItem',
+	    value: function playlistItem(playlist) {
+	      return _react2.default.createElement(
+	        'button',
+	        { onClick: this.handleClick.bind(null, playlist), className: 'add-to-playlist-button' },
+	        playlist.name
+	      );
+	    }
+	  }, {
+	    key: 'userPlaylistItems',
+	    value: function userPlaylistItems() {
+	      var _this2 = this;
+	
+	      var currentUser = this.props.currentUser;
+	      var playlists = this.props.playlists;
+	      if (currentUser && playlists) {
+	        if (Object.keys(playlists).length > 0) {
+	          var _ret = function () {
+	            var userPlaylists = [];
+	
+	            Object.keys(playlists).forEach(function (key) {
+	              if (playlists[key].user_id === currentUser.id) {
+	                userPlaylists.push(playlists[key]);
+	              }
+	            });
+	
+	            var PlaylistItems = userPlaylists.map(function (userPlaylist) {
+	              return _this2.playlistItem(userPlaylist);
+	            });
+	            return {
+	              v: _react2.default.createElement(
+	                'ul',
+	                { className: 'user-playlist-items' },
+	                PlaylistItems
+	              )
+	            };
+	          }();
+	
+	          if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
+	        }
+	      } else {
+	        return _react2.default.createElement('div', null);
+	      }
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'add-to-playlist-form-container' },
+	        _react2.default.createElement(
+	          'h3',
+	          { className: 'add-to-playlist-header' },
+	          'Which playlist do you want to add ',
+	          '' + this.props.song.title,
+	          ' to?'
+	        ),
+	        this.userPlaylistItems()
+	      );
+	    }
+	  }]);
+	
+	  return AddToPlaylistForm;
+	}(_react2.default.Component);
+	
+	exports.default = (0, _reactRouter.withRouter)(AddToPlaylistForm);
 
 /***/ }
 /******/ ]);
