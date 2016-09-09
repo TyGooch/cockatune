@@ -37,12 +37,9 @@ export const nowPlaying = (currentSong, artists) => {
   if(currentSong){
     return(
       <div className = 'now-playing-container'>
-        Now Playing
-        <br />
-        {currentSong.title}
-        <br />
-        {artists[currentSong.artist_id].name}
-        <br />
+        <div className = 'now-playing-header'>Now Playing</div>
+        <div className = 'now-playing-title'>{currentSong.title}</div>
+        <div className = 'now-playing-artist'>{artists[currentSong.artist_id].name}</div>
         <Link to={`/artists/${currentSong.artist_id}/albums/${currentSong.album_id}`}>
           <img src = {artists[currentSong.artist_id].albums.filter(el => el.id === currentSong.album_id)[0].album_picture_url}
             className = 'sidebar-album-picture' />

@@ -6,7 +6,7 @@
 
 .sidebar-playlist-header {
   position: absolute;
-  bottom: 345px;
+  bottom: 375px;
   text-align: center;
   width: 147px;
   border-bottom: 1px solid rgba(255,255,255,0.30);
@@ -20,7 +20,7 @@
   color: white;
   height: 100px;
   position: absolute;
-  bottom: 225px;
+  bottom: 255px;
   border-bottom: 1px solid rgba(255,255,255,0.30);
   padding-top: 5px;
   margin-left: 5px;
@@ -72,7 +72,7 @@
   border: 1px hidden;
   border-radius: 5px;
   position: absolute;
-  bottom: 220px;
+  bottom: 250px;
   left: 35px;
   background-color: rgba(255, 255, 255, 0.5);
 }
@@ -80,4 +80,24 @@
 .create-playlist-button:hover {
   cursor: pointer;
   background-color: rgba(255, 255, 255, 0.9);
+}
+
+.now-playing-container {
+  max-width: 150px;
+}
+
+.now-playing-header {
+  font-weight: bold;
+  font-size: 18px;
+  border-bottom: 1px solid rgba(255,255,255,0.30);
+}
+
+.now-playing-title {
+  font-style: italic;
+  font-size: 14px;
+}
+
+.now-playing-artist {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 14px;
 }
