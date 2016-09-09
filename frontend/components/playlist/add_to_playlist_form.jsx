@@ -24,7 +24,7 @@ class AddToPlaylistForm extends React.Component{
 
   playlistItem(playlist){
     return(
-      <button onClick={this.handleClick.bind(null, playlist)}>
+      <button onClick={this.handleClick.bind(null, playlist)} className = 'add-to-playlist-button'>
         {playlist.name}
       </button>
     );
@@ -47,12 +47,9 @@ class AddToPlaylistForm extends React.Component{
           this.playlistItem(userPlaylist)
         ));
         return(
-          <div>
-            Your Playlists
             <ul className = 'user-playlist-items'>
               {PlaylistItems}
             </ul>
-          </div>
         );
       }
     }
@@ -64,7 +61,7 @@ class AddToPlaylistForm extends React.Component{
   render() {
     return (
         <div className="add-to-playlist-form-container">
-            <h3 className="add-to-playlist-header">Which playlist do you want to add to?</h3>
+            <h3 className="add-to-playlist-header">Which playlist do you want to add {`${this.props.song.title}`} to?</h3>
             {this.userPlaylistItems()}
         </div>
     );

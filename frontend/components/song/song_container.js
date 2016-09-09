@@ -6,7 +6,8 @@ import { requestPlaylists, addSongToPlaylist } from '../../actions/playlist_acti
 
 const mapStateToProps = (state) => ({
   currentSong: state.currentSong,
-  playlists: state.playlists
+  playlists: state.playlists,
+  currentUser: state.session.currentUser
 });
 
 const mapDispatchToProps = dispatch => ({

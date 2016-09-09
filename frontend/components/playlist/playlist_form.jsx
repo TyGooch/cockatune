@@ -25,15 +25,14 @@ class PlaylistForm extends React.Component{
     return (
         <div className="new-playlist-container">
           <div className="new-playlist-form">
-            <h3 className="new-playlist-title">Create A Playlist</h3>
+            <h3 className="new-playlist-title">New Playlist Name</h3>
 
             <form onSubmit={this.handleSubmit}>
-              <label className="playlist-field">Name</label>
               <input type="text" defaultValue={this.state.name}
                 onChange = {this.update} className="playlist-field"/>
 
               <div className="button-holder">
-                <input type="submit" value="Create Playlist" className="new-playlist-button"/>
+                <input type="submit" value="Create" className="new-playlist-button"/>
               </div>
             </form>
           </div>
