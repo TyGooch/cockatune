@@ -24,7 +24,7 @@ class AddToPlaylistForm extends React.Component{
 
   playlistItem(playlist){
     return(
-      <button onClick={this.handleClick.bind(null, playlist)} className = 'add-to-playlist-button'>
+      <button onClick={this.handleClick.bind(null, playlist)} className = 'add-to-playlist-button' key = {playlist.id}>
         {playlist.name}
       </button>
     );

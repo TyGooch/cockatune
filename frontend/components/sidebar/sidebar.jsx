@@ -15,8 +15,8 @@ export const playlistSidebar = (currentUser, playlists) => {
           userPlaylists.push(playlists[key]);
         }
       });
-      const PlaylistTitleItems = userPlaylists.map(userPlaylist => (
-        <PlaylistTitleItem playlist = {userPlaylist} />
+      const PlaylistTitleItems = userPlaylists.map((userPlaylist, idx) => (
+        <PlaylistTitleItem playlist = {userPlaylist} key = {idx}/>
       ));
       return(
         <div className = 'sidebar-playlist-container-'>
@@ -55,8 +55,8 @@ export const nowPlaying = (currentSong, artists) => {
 };
 
 class Sidebar extends React.Component {
-  constructor({currentSong, artists, playlists, currentUser}){
-    super({currentSong, artists, playlists, currentUser});
+  constructor(props){
+    super(props);
     this.state = {
       modalOpen: false
     };

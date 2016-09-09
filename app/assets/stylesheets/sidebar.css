@@ -43,14 +43,16 @@
   background-color: rgba(255,255,255,0.10);
 }
 
-.playlist-title-item-name > span {
+.playlist-title-item > a{
   text-decoration: none;
+}
+
+.playlist-title-item-name > span {
   opacity: 0.6;
 }
 
 .playlist-title-item-name {
   color: white;
-  text-decoration: none;
 }
 
 .sidebar-playing-container {

@@ -6,7 +6,7 @@ import AlbumIndexItem from './album_index_item';
 class AlbumIndex extends React.Component {
   render(){
     let albumIndexItems = Object.keys(this.props.albums).map(key => (
-      <AlbumIndexItem album = {this.props.albums[key]} />
+      <AlbumIndexItem album = {this.props.albums[key]} key = {key}/>
     ));
 
     return(

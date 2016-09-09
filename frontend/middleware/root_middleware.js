@@ -12,8 +12,7 @@ const RootMiddleware = applyMiddleware(
   SessionMiddleware,
   ArtistMiddleware,
   UserMiddleware,
-  PlaylistMiddleware,
-  loggerMiddleware
+  PlaylistMiddleware
 );
 
 export default RootMiddleware;
