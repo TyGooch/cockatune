@@ -13,6 +13,10 @@
 }
 
 .playlist-title-item-name {
+  text-decoration: none;
+}
+
+.playlist-title-item-name {
   color: white;
   text-decoration: none;
 }

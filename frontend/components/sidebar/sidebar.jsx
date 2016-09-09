@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link, hashHistory } from 'react-router';
+import Modal from 'react-modal';
 
 import PlaylistTitleItem from '../playlist/playlist_title_item';
+import PlaylistFormContainer from '../playlist/playlist_form_container';
 
 const playlistSidebar = (currentUser, playlists) => {
   if(currentUser && playlists){
@@ -55,6 +57,7 @@ const nowPlaying = (currentSong, artists) => {
 const Sidebar = ({currentSong, artists, playlists, currentUser}) => (
     <div className ='sidebar'>
       {playlistSidebar(currentUser, playlists)}
+      
       <div className = 'sidebar-playing-container'>
         {nowPlaying(currentSong, artists)}
       </div>
