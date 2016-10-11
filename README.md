@@ -2,7 +2,7 @@
 
 [Cockatune live][cockatune]
 
-[cockatune]: https://www.cockatune.io
+[cockatune]: http://www.cockatune.io
 
 Cockatune is a full-stack application inspired by Spotify. It uses Ruby on Rails with a PostgreSQL database on the backend and React.js with a Redux architectural framework on the frontend.
 
