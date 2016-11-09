@@ -134,7 +134,7 @@ Artist.create({name: 'Ariana Grande', genre:'pop', artist_picture_url: 'http://w
     Song.create({title:"Bad Decisions", audio_url: 'http://res.cloudinary.com/dtatkxxcm/video/upload/v1473448343/12_-_Bad_Decisions_j1hr5p.mp3', length: '226', album_id: 11, artist_id: 6})
     Song.create({title:"Thinking Bout You", audio_url: 'http://res.cloudinary.com/dtatkxxcm/video/upload/v1473448262/15_-_Thinking_Bout_You_e3dlny.mp3', length: '200', album_id: 11, artist_id: 6})
 
-Artist.create({name: 'Chainsmokers', genre:'pop', artist_picture_url: 'https://pbs.twimg.com/profile_images/758878047370039296/usoYiHgE.jpg', header_image_url: 'http://static1.q-music.vmmacdn.be/f/47/da/b6/1337402/chainsmokers-header.png'})
+Artist.create({name: 'Chainsmokers', genre:'pop', artist_picture_url: 'http://image.iheart.com/images/rovi/1080/0004/058/MI0004058200.jpg', header_image_url: 'http://static1.q-music.vmmacdn.be/f/47/da/b6/1337402/chainsmokers-header.png'})
   Album.create({title: "Bouquet (EP)", artist_id: 7, album_picture_url: 'https://upload.wikimedia.org/wikipedia/en/c/c4/Bouquet_EP_cover_art.jpg'})
     Song.create({title:"Roses", audio_url: 'http://res.cloudinary.com/dtatkxxcm/video/upload/v1475110057/01_Roses_feat._ROZES_y56eah.m4a', length: '225', album_id: 12, artist_id: 7})
     Song.create({title:"New York City", audio_url: 'http://res.cloudinary.com/dtatkxxcm/video/upload/v1475110058/02_New_York_City_t8wntk.m4a', length: '230', album_id: 12, artist_id: 7})
