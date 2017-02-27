@@ -120,7 +120,7 @@ Artist.create({name: 'ODESZA', genre:'ambient', artist_picture_url: 'https://i1.
     Song.create({title:"Sun Models", audio_url: 'http://res.cloudinary.com/dtatkxxcm/video/upload/v1473441065/12_Sun_Models_feat._Madelyn_Grant_zxicnk.mp3', length: '160', album_id: 10, artist_id: 5})
     Song.create({title:"For Us", audio_url: 'http://res.cloudinary.com/dtatkxxcm/video/upload/v1473441101/13_For_Us_feat._Briana_Marela_muptg0.mp3', length: '349', album_id: 10, artist_id: 5})
 
-Artist.create({name: 'Ariana Grande', genre:'pop', artist_picture_url: 'http://www.rap-up.com/wp-content/uploads/2014/12/ariana-grande.jpg', header_image_url: 'http://i.imgur.com/TncvYJo.png'})
+Artist.create({name: 'Ariana Grande', genre:'pop', artist_picture_url: 'http://www.rap-up.com/app/uploads/2014/12/ariana-grande.jpg', header_image_url: 'http://i.imgur.com/TncvYJo.png'})
   Album.create({title: "Dangerous Woman", artist_id: 6, album_picture_url: 'https://upload.wikimedia.org/wikipedia/en/4/4b/Ariana_Grande_-_Dangerous_Woman_%28Official_Album_Cover%29.png'})
     Song.create({title:"Moonlight", audio_url: 'http://res.cloudinary.com/dtatkxxcm/video/upload/v1473447896/01_-_Moonlight_lodlfh.mp3', length: '202', album_id: 11, artist_id: 6})
     Song.create({title:"Dangerous Woman", audio_url: 'http://res.cloudinary.com/dtatkxxcm/video/upload/v1473447956/02_-_Dangerous_Woman_jttlpa.mp3', length: '236', album_id: 11, artist_id: 6})
